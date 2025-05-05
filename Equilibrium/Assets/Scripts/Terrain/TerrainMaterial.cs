@@ -19,10 +19,17 @@ namespace OuterWilds
 
         private void UpdateShaderProperties(ITerrainable terrainable, ref Mesh mesh) 
         {
-            material.SetFloat("_WorldFloorHeight", terrainable.GetColorFloor(ref mesh));
-            material.SetFloat("_WorldCeilingHeight", terrainable.GetColorFloor(ref mesh));
+            float min = terrainable.GetColorFloor(ref mesh);
+            float max = terrainable.GetColorCeiling(ref mesh);
+
+            print(min + " "+max);
+
+            material.SetFloat("_WorldFloorHeight", min);
+            material.SetFloat("_WorldCeilingHeight", max);
 
             material.SetTexture("_Texture", MakeTerrainTexture(terrainable));
+
+            print("DONE!");
         }
 
         private Texture2D MakeTerrainTexture(ITerrainable terrainable) 

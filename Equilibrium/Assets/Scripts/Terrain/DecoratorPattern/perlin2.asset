@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ceb508c1daaaa84aaf0838929e06fa8, type: 3}
   m_Name: perlin2
   m_EditorClassIdentifier: 
-  height: 3
-  noiseScale: 0.1
-  offsetX: 3
-  offsetZ: 26.48
+  height: 30
+  noiseScale: 0.03
+  offsetX: 15.69
+  offsetZ: 15.34

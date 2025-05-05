@@ -65,7 +65,7 @@ namespace OuterWilds
                     /*if (i < 150)
                         print($"{x} {z}");*/
 
-                    verticies[i] = new Vector3(x, terrainable.GetHeightAtPoint(x, z), z);
+                    verticies[i] = new Vector3(x, terrainable.GetHeightAtPoint(x, 0f, z), z);
                     i++;
                 }
             }
@@ -115,6 +115,7 @@ namespace OuterWilds
             // For camera pivot center.
             transformSetter.attached.Write(Vector3.up * ((mesh.bounds.min.y + mesh.bounds.max.y) / 2f));
             terrainMaterial.attached.Write(globalTerrainable, mesh);
+            print("mesh updated");
         }
 
         public void Write(ITerrainable terrainable)
@@ -133,7 +134,7 @@ namespace OuterWilds
 
             listeners.ForEach(x => x.attached.Pass(ref verts));
 
-            //UpdateMesh(ref verts);
+            UpdateMesh(ref verts);
         }
     }
 }

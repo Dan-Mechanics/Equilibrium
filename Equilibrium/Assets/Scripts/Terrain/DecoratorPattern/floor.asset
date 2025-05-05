@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: floor
   m_EditorClassIdentifier: 
   constraintType: 1
-  height: 0
+  height: 3

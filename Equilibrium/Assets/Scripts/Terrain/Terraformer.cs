@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace OuterWilds
 {
-    public class Terraformer : MonoBehaviour, IPassable<Vector3[]>, IReadable<Vector3[]>, IUpdatable
+    public class Terraformer : MonoBehaviour, IPassable<Vector3[]>, IDataGettable<Vector3[]>, IUpdatable, IWritable<ITerrainable>
     {
         public Vector3[] Data => verticies;
 
         [SerializeField] private MeshFilter filter = default;
         [SerializeField] private Camera cam = default;
-        [SerializeField] private TerrainData data = default;
+        //[SerializeField] private TerrainData data = default;
         [SerializeField] private List<InspectorInterface<IPassable<Vector3[]>>> listeners = default;
 
         [Header("Settings")]
@@ -18,6 +18,7 @@ namespace OuterWilds
         [SerializeField] private float brushStrength = default;
         [SerializeField] private float brushInterval = default;
 
+        private ITerrainable terrainable;
         private FixedTicks fixedTicks;
         private Vector3[] verticies;
         private bool hasChanged;
@@ -65,30 +66,20 @@ namespace OuterWilds
             point -= filter.transform.position;
             Vector2 offset = Vector2.zero;
 
-            /*if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x), Mathf.RoundToInt(point.z),
-                        data.sizeX, data.sizeZ, out int middleIndex))
-                return;*/
-
             for (int x = -brushSize; x <= brushSize; x++)
             {
                 for (int z = -brushSize; z <= brushSize; z++)
                 {
                     Utils.SetVector2(ref offset, x, z);
 
-                    /*if (x == 0 && z == 0)
-                        continue;*/
-
                     if (Vector2.Distance(Vector2.zero, offset) > brushSize)
                         continue;
 
                     if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x + x), Mathf.RoundToInt(point.z + z),
-                        data.sizeX, data.sizeZ, out int index))
+                        terrainable.GetSize(), terrainable.GetSize(), out int index))
                         continue;
 
                     Terraform(index, brushStrength * brushInterval * (Input.GetKey(KeyCode.LeftShift) ? -1f : 1f));
-
-                    //Flatten(index, verticies[middleIndex].y);
-
                     hasChanged = true;
                 }
             }
@@ -96,7 +87,8 @@ namespace OuterWilds
 
         private void Terraform(int index, float upwardsMeters)
         {
-            verticies[index].y = data.ClampTerrainHeight(verticies[index].y + upwardsMeters);
+            //verticies[index].y = data.ClampTerrainHeight(verticies[index].y + upwardsMeters);
+            verticies[index].y = terrainable.GetHeightAtPoint(verticies[index].x, verticies[index].y + upwardsMeters, verticies[index].z);
         }
 
         private void Flatten(int index, float y)
@@ -107,11 +99,14 @@ namespace OuterWilds
             if (y < verticies[index].y)
                 verticies[index].y -= brushInterval * 10f;*/
 
-            verticies[index].y = data.ClampTerrainHeight(y);
+            //verticies[index].y = data.ClampTerrainHeight(y);
         }
 
         public void Pass(ref Vector3[] verts) => verticies = verts;
 
-        //public void DoUpdate() => DoUpdate();
+        public void Write(ITerrainable terrainable)
+        {
+            this.terrainable = terrainable;
+        }
     }
 }

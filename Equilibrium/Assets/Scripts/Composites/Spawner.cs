@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace OuterWilds
 {
-    public class Spawner : MonoBehaviour, IReadable<SpawnData>, IWritable<Vector3>
+    public class Spawner : MonoBehaviour, IDataGettable<SpawnData>, IWritable<Vector3>
     {
         public SpawnData Data => spawnData;
 

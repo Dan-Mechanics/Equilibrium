@@ -14,7 +14,7 @@ namespace OuterWilds
         /// <summary>
         /// This will mean we have to do some memes
         /// </summary>
-        float GetHeightAtPoint(float x, float z);
+        float GetHeightAtPoint(float x, float y, float z);
 
         /// <summary>
         /// COuld make this give meshfilter for offset ???

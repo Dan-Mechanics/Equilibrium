@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 1965385969}
   - component: {fileID: 1965385968}
   m_Layer: 0
-  m_Name: terrain_data_supplier
+  m_Name: terrain_builder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,10 +484,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9be7c696fd05e4bb0e36a8a7994f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainBase: {fileID: 11400000, guid: 5e0224b7551a2164f908df64fc469bae, type: 2}
-  decorators:
-  - {fileID: 11400000, guid: e6b7d84b44aaf8d4a8b77b255c353ea2, type: 2}
-  - {fileID: 11400000, guid: 57260804321c7af46ab0b723d60917bd, type: 2}
+  maps:
+  - baseTerrain: {fileID: 11400000, guid: 5e0224b7551a2164f908df64fc469bae, type: 2}
+    decorators:
+    - {fileID: 11400000, guid: 69d8c3cc0598a5944abbc45d2b847b36, type: 2}
+    - {fileID: 11400000, guid: 57260804321c7af46ab0b723d60917bd, type: 2}
+    - {fileID: 11400000, guid: e6b7d84b44aaf8d4a8b77b255c353ea2, type: 2}
+    - {fileID: 11400000, guid: 8c3d607adeed2014a87097dbc88db973, type: 2}
+    - {fileID: 11400000, guid: afa4db1d28820984ab92d5a7976c155e, type: 2}
   listeners:
   - monoBehaviour: {fileID: 2135685229}
 --- !u!4 &1965385969
@@ -575,6 +579,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4754152451730490575, guid: ca647030b765a954b8dc53b0dab59d2d,
         type: 3}
+      propertyPath: terrainMaterial.monoBehaviour
+      value: 
+      objectReference: {fileID: 2135685231}
+    - target: {fileID: 4754152451730490575, guid: ca647030b765a954b8dc53b0dab59d2d,
+        type: 3}
+      propertyPath: transformSetter.monoBehaviour
+      value: 
+      objectReference: {fileID: 1644760248}
+    - target: {fileID: 4754152451730490575, guid: ca647030b765a954b8dc53b0dab59d2d,
+        type: 3}
       propertyPath: newCenterMeshListener.monoBehaviour
       value: 
       objectReference: {fileID: 1644760248}
@@ -598,6 +612,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2b39481dc157ef4bafa3cb60014c50f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2135685231 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7723378074022821824, guid: ca647030b765a954b8dc53b0dab59d2d,
+    type: 3}
+  m_PrefabInstance: {fileID: 2135685227}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46b4d81ce32cb549a1a80a031fdaf42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4658274002999731467

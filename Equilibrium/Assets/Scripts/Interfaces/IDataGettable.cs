@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace OuterWilds
 {
-    public interface IReadable<T> 
+    public interface IDataGettable<T> 
     {
         public T Data { get; }
     }

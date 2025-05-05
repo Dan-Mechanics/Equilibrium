@@ -24,7 +24,7 @@ namespace OuterWilds
         [SerializeField] private TerrainData terrainData = default;
         [SerializeField] private CreatureData creatureData = default;
         [SerializeField] private Spawner spawner = default;
-        [SerializeField] private InspectorInterface<IReadable<Vector3[]>> terrainReader = default;
+        [SerializeField] private InspectorInterface<IDataGettable<Vector3[]>> terrainReader = default;
         [SerializeField] private List<InspectorInterface<IPassable<int[]>>> factionsTallyListeners = default;
         [SerializeField] private UnityEvent onLoseRound = default;
 

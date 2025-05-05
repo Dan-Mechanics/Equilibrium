@@ -17,21 +17,24 @@ namespace OuterWilds
         /// it doesnt because its about the method huh.
         /// </summary>
         /// <param name="terrainable"></param>
-        public void Decorate(ITerrainable terrainable) 
+        public TerrainDecorator Decorate(ITerrainable terrainable) 
         {
-            if (ReferenceEquals(this, terrainable))
+            // why do i need to disable this ffs?
+
+            /*if (ReferenceEquals(this, terrainable))
                 throw new InvalidOperationException("Cannot decorate self.");
 
             if (this.terrainable is TerrainDecorator decorator)
             {
                 decorator.Decorate(terrainable);
-                return;
-            }
+                return this;
+            }*/
 
             this.terrainable = terrainable;
+            return this;
         }
 
-        public virtual float GetHeightAtPoint(float x, float z) => terrainable.GetHeightAtPoint(x, z);
+        public virtual float GetHeightAtPoint(float x, float y, float z) => terrainable.GetHeightAtPoint(x, y, z);
         public virtual float GetColorFloor(ref Mesh mesh) => terrainable.GetColorFloor(ref mesh);
         public virtual float GetColorCeiling(ref Mesh mesh) => terrainable.GetColorCeiling(ref mesh);
 

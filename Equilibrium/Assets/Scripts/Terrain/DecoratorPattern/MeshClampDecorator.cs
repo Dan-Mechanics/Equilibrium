@@ -12,10 +12,10 @@ namespace OuterWilds
         public ConstraintType constraintType;
         public float height;
 
-        public override float GetHeightAtPoint(float x, float z)
+        public override float GetHeightAtPoint(float x, float y, float z)
         {
             //Debug.Log(nameof(MeshClampDecorator));
-            float y = terrainable.GetHeightAtPoint(x, z);
+            //y = terrainable.GetHeightAtPoint(x, y, z);
             
             switch (constraintType)
             {
@@ -31,7 +31,7 @@ namespace OuterWilds
                     break;
             }
 
-            return y;
+            return terrainable.GetHeightAtPoint(x, y, z); 
         }
     }
 }

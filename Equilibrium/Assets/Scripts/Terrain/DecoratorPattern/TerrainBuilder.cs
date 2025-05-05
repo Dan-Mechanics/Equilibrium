@@ -9,11 +9,11 @@ namespace OuterWilds
     /// </summary>
     public class TerrainBuilder : MonoBehaviour
     {
-        [SerializeField] private DecoratedTerrain[] decoratedTerrains = default;
+        [SerializeField] private DecoratedTerrain[] maps = default;
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainable>>> listeners = default;
 
         private ITerrainable terrainable;
-        private int index;
+        private int currentMap;
 
         private void Awake()
         {
@@ -25,29 +25,28 @@ namespace OuterWilds
             Refresh();
         }
 
-        /*private void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 Refresh();
-        }*/
+        }
 
         private void Refresh()
         {
-            DecoratedTerrain curr = decoratedTerrains[index];
-            
-            terrainable = curr.baseTerrain;
-            
-            for (int i = 0; i < curr.decorators.Length; i++)
+            terrainable = maps[currentMap].baseTerrain;
+            TerrainDecorator[] decorators = maps[currentMap].decorators;
+
+            for (int i = 0; i < decorators.Length; i++)
             {
-                curr.decorators[i].Decorate(terrainable);
-                terrainable = curr.decorators[i];
+                //decorators[i].Decorate(terrainable);
+                terrainable = decorators[i].Decorate(terrainable);
             }
 
             listeners.ForEach(x => x.attached.Write(terrainable));
         }
 
         [System.Serializable]
-        public struct DecoratedTerrain 
+        public class DecoratedTerrain 
         {
             public BaseTerrain baseTerrain;
             public TerrainDecorator[] decorators;
