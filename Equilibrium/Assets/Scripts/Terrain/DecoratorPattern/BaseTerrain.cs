@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace OuterWilds
 {
-    [CreateAssetMenu(menuName = nameof(BaseTerrain), fileName = "New " + nameof(BaseTerrain))]
+    [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(BaseTerrain), fileName = "New " + nameof(BaseTerrain))]
     public class BaseTerrain : ScriptableObject, ITerrainable
     {
         [Header("Terrain")]

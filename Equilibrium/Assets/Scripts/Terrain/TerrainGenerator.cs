@@ -37,14 +37,11 @@ namespace OuterWilds
             GenerateStarterTerrain();
         }
 
-        /// <summary>
-        /// I know this breaks solid but its for debug...
-        /// </summary>
-        private void Update()
+        /*private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 GenerateStarterTerrain();
-        }
+        }*/
 
         [ContextMenu(nameof(GenerateStarterTerrain))]
         private void GenerateStarterTerrain() 

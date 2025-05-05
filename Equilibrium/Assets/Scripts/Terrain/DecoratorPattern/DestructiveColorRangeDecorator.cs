@@ -7,8 +7,8 @@ namespace OuterWilds
     /// <summary>
     /// NOTE: is destructive.
     /// </summary>
-    [CreateAssetMenu(menuName = nameof(ColorRangeDecorator), fileName = "New " + nameof(ColorRangeDecorator))]
-    public class ColorRangeDecorator : TerrainDecorator
+    [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(DestructiveColorRangeDecorator), fileName = "New " + nameof(DestructiveColorRangeDecorator))]
+    public class DestructiveColorRangeDecorator : TerrainDecorator
     {
         public float floorHeight;
         public float ceilingHeight;

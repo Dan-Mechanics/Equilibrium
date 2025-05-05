@@ -29,12 +29,5 @@ namespace OuterWilds
         public float GetSizeX() => terrainable.GetSizeX();
         public float GetSizeZ() => terrainable.GetSizeZ();
         public float GetWaterHeight() => terrainable.GetWaterHeight();
-
-        /*public virtual Biome GetBiome() => terrainable.GetBiome();
-        public virtual int GetColorFidelity() => terrainable.GetColorFidelity();
-        public virtual Gradient GetGradient() => terrainable.GetGradient();
-        public virtual float GetSizeX() => terrainable.GetSizeX();
-        public virtual float GetSizeZ() => terrainable.GetSizeZ();
-        public virtual float GetWaterHeight() => terrainable.GetWaterHeight();*/
     }
 }
