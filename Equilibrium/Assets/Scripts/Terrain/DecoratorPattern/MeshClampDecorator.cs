@@ -7,8 +7,6 @@ namespace OuterWilds
     [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(MeshClampDecorator), fileName = "New " + nameof(MeshClampDecorator))]
     public class MeshClampDecorator : TerrainDecorator
     {
-        //public enum ConstraintType { None = 0, Floor = 1, Ceiling = 2 }
-
         public ConstraintType constraintType;
         public float height;
 

@@ -27,33 +27,7 @@ namespace OuterWilds
             listeners.ForEach(x => x.Setup());
             terrainMaterial.Setup();
             transformSetter.Setup();
-
-            //FindObjectsByType
         }
-
-        /*private void _Start()
-        {
-            mesh = new Mesh();
-            filter.mesh = mesh;
-            coll.cookingOptions = cookingOptions;
-
-            GenerateStarterTerrain();
-        }*/
-
-        /*[ContextMenu(nameof(GenerateStarterTerrain))]
-        private void GenerateStarterTerrain() 
-        {
-            Vector3[] verts = GenerateMesh();
-            //UpdateMesh(ref verts);
-            print(terrainable.GetSize());
-            // i would like to keep it so that the mesh is always 0,0,0 so less bs with conversions and such.
-            transform.position = new Vector3(-terrainable.GetSize() / 2f, 0f, -terrainable.GetSize() / 2f);
-
-            listeners.ForEach(x => x.attached.Pass(ref verts));
-            //listeners.Clear();
-
-            UpdateMesh(ref verts);
-        }*/
 
         private Vector3[] GenerateMesh(ITerrainable terrainable)
         {
@@ -64,9 +38,6 @@ namespace OuterWilds
             {
                 for (int x = 0; x <= terrainable.GetSize(); x++)
                 {
-                    /*if (i < 150)
-                        print($"{x} {z}");*/
-
                     verticies[i] = new Vector3(x, terrainable.GetHeightAtPoint(x, 0f, z), z);
                     i++;
                 }
@@ -117,7 +88,6 @@ namespace OuterWilds
             // For camera pivot center.
             transformSetter.attached.Write(Vector3.up * ((mesh.bounds.min.y + mesh.bounds.max.y) / 2f));
             terrainMaterial.attached.Write(globalTerrainable, mesh);
-            //print("mesh updated");
         }
 
         public void Write(ITerrainable terrainable)

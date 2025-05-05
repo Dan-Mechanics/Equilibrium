@@ -9,7 +9,6 @@ namespace OuterWilds
     /// </summary>
     public class DecorationHandler : MonoBehaviour, IPassable<Vector3[]>, IWritable<ITerrainable>
     {
-        //[SerializeField] TerrainData data = default;
         [SerializeField] private Spawner[] spawners = default;
         [SerializeField] private bool spawnDecorations = default;
 
@@ -45,13 +44,8 @@ namespace OuterWilds
 
         private void Place(Decoration decoration, ref Vector3[] verts)
         {
-            //decoration.transform.gameObject.isStatic = false;
-
             decoration.transform.position = Utils.GetVertexWorldSpace(decoration.vertexIndex, ref verts, terrainable) + decoration.spawnData.spawnOffset;
             decoration.transform.gameObject.SetActive(verts[decoration.vertexIndex].y > terrainable.GetWaterHeight());
-
-            // lol XD
-            //decoration.transform.gameObject.isStatic = true;
         }
 
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
@@ -62,11 +56,11 @@ namespace OuterWilds
             public int vertexIndex;
             public SpawnData spawnData;
 
-            public Decoration(Transform transform, int vertexIndex, SpawnData decoration)
+            public Decoration(Transform transform, int vertexIndex, SpawnData spawnData)
             {
                 this.transform = transform;
                 this.vertexIndex = vertexIndex;
-                this.spawnData = decoration;
+                this.spawnData = spawnData;
             }
         }
     }
