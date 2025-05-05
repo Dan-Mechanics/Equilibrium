@@ -152,3 +152,6 @@ then we leverage our own shit or im just delulu idk. VVV
 
 if i implementan an IReadable thing on the things that need terrain data that would
 be nice.
+
+
+you could add a decorator that moves the mesh up lolo.

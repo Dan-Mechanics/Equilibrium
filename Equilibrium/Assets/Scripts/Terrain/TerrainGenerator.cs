@@ -9,37 +9,36 @@ namespace OuterWilds
     /// </summary>
     public class TerrainGenerator : MonoBehaviour, IPassable<Vector3[]>, IWritable<ITerrainable>
     {
-        //[SerializeField] private TerrainData data = default;
         [SerializeField] private MeshFilter filter = default;
         [SerializeField] private MeshCollider coll = default;
 
-        [SerializeField] private InspectorInterface<IPassable<Vector3>> newCenterMeshListener = default;
+        [SerializeField] private InspectorInterface<IWritable<Vector3>> transformSetter = default;
+        [SerializeField] private InspectorInterface<IWritable<ITerrainable, Mesh>> terrainMaterial = default;
         [SerializeField] private List<InspectorInterface<IPassable<Vector3[]>>> listeners = default;
 
         private Mesh mesh;
         private int[] triangles;
-
-        private ITerrainable terrainable;
-
+        private ITerrainable globalTerrainable;
         private readonly MeshColliderCookingOptions cookingOptions =
         MeshColliderCookingOptions.UseFastMidphase & MeshColliderCookingOptions.CookForFasterSimulation;
 
         private void Awake()
         {
             listeners.ForEach(x => x.Setup());
-            newCenterMeshListener.Setup();
+            terrainMaterial.Setup();
+            transformSetter.Setup();
         }
 
-        private void _Start()
+        /*private void _Start()
         {
             mesh = new Mesh();
             filter.mesh = mesh;
             coll.cookingOptions = cookingOptions;
 
             GenerateStarterTerrain();
-        }
+        }*/
 
-        [ContextMenu(nameof(GenerateStarterTerrain))]
+        /*[ContextMenu(nameof(GenerateStarterTerrain))]
         private void GenerateStarterTerrain() 
         {
             Vector3[] verts = GenerateMesh();
@@ -52,9 +51,9 @@ namespace OuterWilds
             //listeners.Clear();
 
             UpdateMesh(ref verts);
-        }
+        }*/
 
-        private Vector3[] GenerateMesh()
+        private Vector3[] GenerateMesh(ITerrainable terrainable)
         {
             Vector3[] verticies = new Vector3[(terrainable.GetSize() + 1) * (terrainable.GetSize() + 1)];
 
@@ -113,15 +112,28 @@ namespace OuterWilds
 
             coll.sharedMesh = mesh;
 
-            Vector3 newMeshCenter = Vector3.up * ((mesh.bounds.min.y + mesh.bounds.max.y) / 2f);
-            newCenterMeshListener.attached.Pass(ref newMeshCenter);
+            // For camera pivot center.
+            transformSetter.attached.Write(Vector3.up * ((mesh.bounds.min.y + mesh.bounds.max.y) / 2f));
+            terrainMaterial.attached.Write(globalTerrainable, mesh);
         }
 
         public void Write(ITerrainable terrainable)
         {
-            this.terrainable = terrainable;
-            _Start();
-            //print("HELLO!!");
+            globalTerrainable = terrainable;
+
+            mesh = new Mesh();
+            filter.mesh = mesh;
+            coll.cookingOptions = cookingOptions;
+
+            // ----
+
+            Vector3[] verts = GenerateMesh(terrainable);
+
+            transform.position = new Vector3(-terrainable.GetSize() / 2f, 0f, -terrainable.GetSize() / 2f);
+
+            listeners.ForEach(x => x.attached.Pass(ref verts));
+
+            //UpdateMesh(ref verts);
         }
     }
 }

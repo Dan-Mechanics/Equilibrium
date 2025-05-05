@@ -15,8 +15,6 @@ namespace OuterWilds
 
         public override float GetColorFloor(ref Mesh mesh)
         {
-            Debug.Log(nameof(DestructiveColorRangeDecorator));
-
             return floorHeight;
         }
 

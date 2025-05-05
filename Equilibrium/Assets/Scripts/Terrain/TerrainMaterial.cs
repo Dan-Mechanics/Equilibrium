@@ -6,28 +6,28 @@ namespace OuterWilds
     /// Need to make something that spawns in the borders so they cant run off the map.
     /// </summary>
     [RequireComponent(typeof(Renderer))]
-    public class TerrainMaterial : MonoBehaviour
+    public class TerrainMaterial : MonoBehaviour, IWritable<ITerrainable, Mesh>
     {
-        [SerializeField] private TerrainData data = default;
         [SerializeField] private Material material = default;
 
-        private Texture2D texture;
+        private void Awake() => GetComponent<Renderer>().material = material;
 
-        private void Start()
+        public void Write(ITerrainable terrainable, Mesh mesh)
         {
-            GetComponent<Renderer>().material = material;
-
-            MakeTexture();
-
-            UpdateShaderProperties(data.colorFloorHeight, data.colorCeilingHeight);
-
-            // or keep it if u wanna change materials in the future !!
-            //Destroy(this);
+            UpdateShaderProperties(terrainable, ref mesh);
         }
 
-        private void MakeTexture() 
+        private void UpdateShaderProperties(ITerrainable terrainable, ref Mesh mesh) 
         {
-            texture = new Texture2D(data.colorFidelity, 1)
+            material.SetFloat("_WorldFloorHeight", terrainable.GetColorFloor(ref mesh));
+            material.SetFloat("_WorldCeilingHeight", terrainable.GetColorFloor(ref mesh));
+
+            material.SetTexture("_Texture", MakeTerrainTexture(terrainable));
+        }
+
+        private Texture2D MakeTerrainTexture(ITerrainable terrainable) 
+        {
+            Texture2D texture = new Texture2D(terrainable.GetColorFidelity(), 1)
             {
                 filterMode = FilterMode.Point,
                 wrapMode = TextureWrapMode.Clamp
@@ -35,24 +35,12 @@ namespace OuterWilds
 
             for (int i = 0; i < texture.width; i++)
             {
-                texture.SetPixel(i, 0, data.gradient.Evaluate((float)i / data.colorFidelity));
+                texture.SetPixel(i, 0, terrainable.GetGradient().Evaluate((float)i / terrainable.GetColorFidelity()));
             }
 
             texture.Apply();
-        }
 
-        private void UpdateShaderProperties(float floor, float ceiling) 
-        {
-            /*if (floor > ceiling)
-                floor = ceiling;*/
-
-            material.SetFloat("_WorldFloorHeight", floor);
-            material.SetFloat("_WorldCeilingHeight", ceiling);
-
-            /*if (useGradient)
-                WriteGradientTexture();*/
-
-            material.SetTexture("_Texture", texture);
+            return texture;
         }
     }
 }

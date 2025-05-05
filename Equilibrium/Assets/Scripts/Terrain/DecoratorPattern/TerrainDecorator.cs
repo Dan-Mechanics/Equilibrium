@@ -1,9 +1,13 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 namespace OuterWilds
 {
+    /// <summary>
+    /// https://www.youtube.com/watch?v=o5Iwu5wpINQ
+    /// </summary>
     public abstract class TerrainDecorator : ScriptableObject, ITerrainable
     {
         protected ITerrainable terrainable;
@@ -15,6 +19,15 @@ namespace OuterWilds
         /// <param name="terrainable"></param>
         public void Decorate(ITerrainable terrainable) 
         {
+            if (ReferenceEquals(this, terrainable))
+                throw new InvalidOperationException("Cannot decorate self.");
+
+            if (this.terrainable is TerrainDecorator decorator)
+            {
+                decorator.Decorate(terrainable);
+                return;
+            }
+
             this.terrainable = terrainable;
         }
 

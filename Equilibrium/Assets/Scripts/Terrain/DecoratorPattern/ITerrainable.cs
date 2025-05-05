@@ -4,6 +4,11 @@ using System.Collections.Generic;
 
 namespace OuterWilds
 {
+    /// <summary>
+    /// Question for Aaron: does this break the interface segregation principle?
+    /// I think im overthinking it in this context but in the future i could split this enum into 
+    /// different types of shit.
+    /// </summary>
     public interface ITerrainable 
     {
         /// <summary>

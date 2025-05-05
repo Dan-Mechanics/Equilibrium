@@ -25,16 +25,5 @@ namespace OuterWilds
             if (attached == null)
                 Debug.LogError($"if (attached == null), on {GetType()}");
         }
-
-        public void Validate() 
-        {
-            if (monoBehaviour == null)
-                return;
-
-            attached = monoBehaviour.GetComponent<T>();
-
-            if (attached == null)
-                Debug.LogWarning($"attached type not found on monoBehaviour, on {GetType()}");
-        }
     }
 }

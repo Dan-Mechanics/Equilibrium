@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace OuterWilds
 {
-    public class TransformSetter : MonoBehaviour, IPassable<Vector3>
+    public class TransformSetter : MonoBehaviour, IWritable<Vector3>
     {
-        public void Pass(ref Vector3 t) => SetPos(t);
+        public void Write(Vector3 pos) => SetPos(pos);
 
         public void SetPos(Vector3 pos)
         {

@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 1965385969}
   - component: {fileID: 1965385968}
   m_Layer: 0
-  m_Name: terrain_builder
+  m_Name: terrain_data_supplier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

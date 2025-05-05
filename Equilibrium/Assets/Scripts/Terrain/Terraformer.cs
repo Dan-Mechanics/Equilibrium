@@ -28,11 +28,6 @@ namespace OuterWilds
             fixedTicks = new FixedTicks(brushInterval);
         }
 
-        private void OnValidate()
-        {
-            listeners.ForEach(x => x.Validate());
-        }
-
         public void DoUpdate()
         {
             hasChanged = false;
