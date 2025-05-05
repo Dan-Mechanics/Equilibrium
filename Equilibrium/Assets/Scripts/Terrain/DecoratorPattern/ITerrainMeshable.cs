@@ -4,9 +4,8 @@ using System.Collections.Generic;
 
 namespace OuterWilds
 {
-    public interface ITerrain 
+    public interface ITerrainMeshable 
     {
-        float GetPerlin(float x, float z);
-        float ClampHeight(float y);
+        float GetVertexHeight(float x, float y, float z);
     }
 }

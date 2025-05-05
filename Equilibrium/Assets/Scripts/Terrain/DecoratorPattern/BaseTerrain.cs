@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace OuterWilds
 {
-    public class NewTerrainData : ITerrain
+    public class BaseTerrain : ScriptableObject, ITerrainMeshable, ITerrainColorable
     {
         public enum Biome { Mesa, Icey }
         //public int sizeZ => sizeX;
@@ -30,12 +30,17 @@ namespace OuterWilds
         /*[Min(0f)] public float colorFloorHeight;
         [Min(0f)] public float colorCeilingHeight;*/
 
-        public float GetPerlin(float x, float z)
+        public float GetVertexHeight(float x, float y, float z)
         {
-            throw new System.NotImplementedException();
+            return y;
         }
 
-        public float ClampHeight(float y)
+        public float GetColorFloor(ref Mesh mesh)
+        {
+            return 0f;
+        }
+
+        public float GetColorCeiling(ref Mesh mesh)
         {
             throw new System.NotImplementedException();
         }
