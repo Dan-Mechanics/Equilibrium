@@ -118,10 +118,10 @@ namespace OuterWilds
                 Set(comp, dist);
             }
 
-            public void Set(Component comp, float dist)
+            public void Set(Component component, float distance)
             {
-                this.component = comp;
-                this.distance = dist;
+                this.component = component;
+                this.distance = distance;
             }
         }
 
@@ -133,15 +133,14 @@ namespace OuterWilds
             return new Vector2Int(x, z);
         }
 
-        public static Vector3 GetVertexWorldSpace(int index, ref Vector3[] verts, TerrainData data)
+        public static Vector3 GetVertexWorldSpace(int index, ref Vector3[] verts, ITerrainable terrainable)
         {
-            return verts[index] + new Vector3(-data.sizeX / 2f, 0f, -data.sizeZ / 2f);
+            return verts[index] + new Vector3(-terrainable.GetSize() / 2f, 0f, -terrainable.GetSize() / 2f);
         }
 
-        public static Vector3 GetRandomVertexWorldSpace(ref Vector3[] verts, TerrainData data)
+        public static Vector3 GetRandomVertexWorldSpace(ref Vector3[] verts, ITerrainable terrainable)
         {
-            return GetVertexWorldSpace(Random.Range(0, verts.Length), ref verts, data);
-            //return verts[Random.Range(0, verts.Length)] + new Vector3(-data.sizeX / 2f, 0f, -data.sizeZ / 2f);
+            return GetVertexWorldSpace(Random.Range(0, verts.Length), ref verts, terrainable);
         }
     }
 }

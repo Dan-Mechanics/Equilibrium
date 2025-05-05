@@ -115,7 +115,7 @@ namespace OuterWilds
             // For camera pivot center.
             transformSetter.attached.Write(Vector3.up * ((mesh.bounds.min.y + mesh.bounds.max.y) / 2f));
             terrainMaterial.attached.Write(globalTerrainable, mesh);
-            print("mesh updated");
+            //print("mesh updated");
         }
 
         public void Write(ITerrainable terrainable)

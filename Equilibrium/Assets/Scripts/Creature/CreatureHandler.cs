@@ -17,11 +17,11 @@ namespace OuterWilds
     /// This code is a little bit overengineerd i think.
     /// i think i can make some conrete interfaces like IClaimCallback and IDieCallback or something
     /// </summary>
-    public class CreatureHandler : MonoBehaviour, IDieCallback, IClaimCallback, IUpdatable, IWritable<float>
+    public class CreatureHandler : MonoBehaviour, IDieCallback, IClaimCallback, IUpdatable, IWritable<float>, IWritable<ITerrainable>
     {
         //public event Action OnLoseRound;
         
-        [SerializeField] private TerrainData terrainData = default;
+        //[SerializeField] private TerrainData terrainData = default;
         [SerializeField] private CreatureData creatureData = default;
         [SerializeField] private Spawner spawner = default;
         [SerializeField] private InspectorInterface<IDataGettable<Vector3[]>> terrainReader = default;
@@ -32,7 +32,8 @@ namespace OuterWilds
         private readonly List<Creature> creatures = new List<Creature>();
         private int[] factionsTally;
         private bool hasChangedThisFrame;
-        
+        private ITerrainable terrainable;
+
         private void Awake()
         {
             terrainReader.Setup();
@@ -129,7 +130,7 @@ namespace OuterWilds
 
         private void ResetCreature(Creature creature, ref Vector3[] verts)
         {
-            creature.transform.position = Utils.GetRandomVertexWorldSpace(ref verts, terrainData) + spawner.Data.spawnOffset;
+            creature.transform.position = Utils.GetRandomVertexWorldSpace(ref verts, terrainable) + spawner.Data.spawnOffset;
             TallyFaction(creature.ResetCreature(), 1); // use the int here.
         }
 
@@ -159,5 +160,7 @@ namespace OuterWilds
         {
             fixedTicks = new FixedTicks(creatureData.processInterval * timeScale);
         }
+
+        public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
     }
 }

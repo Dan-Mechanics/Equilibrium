@@ -4,9 +4,12 @@ using System.Collections.Generic;
 
 namespace OuterWilds
 {
-    public class ContainerMaker : MonoBehaviour
+    /// <summary>
+    /// Make suer this shit doesnt break like crazy when you add more than 1 terrain types bascially.
+    /// </summary>
+    public class ContainerMaker : MonoBehaviour, IWritable<ITerrainable>
     {
-        [SerializeField] private TerrainData data = default;
+        //[SerializeField] private TerrainData data = default;
         [SerializeField] private GameObject waterPrefab = default;
         [SerializeField] private GameObject wallPrefab = default;
         [SerializeField] private float verticalContainerMargin = default;
@@ -21,15 +24,19 @@ namespace OuterWilds
         /// for all possible combinations of the data. Idk how to do it better
         /// maybe decorator or builder idk.
         /// </summary>
-        private void Start()
+        private void Spawn(ITerrainable terrainable)
         {
+            // LOLOLOLOL, now this is what i would like to call a hack fix guys.
+            float meshCeilingHeight = terrainable.GetHeightAtPoint(0f, Mathf.Infinity, 0f);
+            float meshFloorHeight = terrainable.GetHeightAtPoint(0f, -Mathf.Infinity, 0f);
+
             // Water.
-            GameObject water = Instantiate(waterPrefab, Vector3.up * data.waterHeight, Quaternion.identity);
-            water.transform.localScale = new Vector3(data.sizeX * waterScaleFactor, 1f, data.sizeZ * waterScaleFactor);
+            GameObject water = Instantiate(waterPrefab, Vector3.up * terrainable.GetWaterHeight(), Quaternion.identity);
+            water.transform.localScale = new Vector3(terrainable.GetSize() * waterScaleFactor, 1f, terrainable.GetSize() * waterScaleFactor);
 
             // Ceiling.
-            SetupCube(new Vector3(data.sizeX + horizontalContainerMargin, 1f, data.sizeZ + horizontalContainerMargin),
-                Vector3.up * (data.meshCeilingHeight + (verticalContainerMargin * 0.5f) - 0.5f));
+            SetupCube(new Vector3(terrainable.GetSize() + horizontalContainerMargin, 1f, terrainable.GetSize() + horizontalContainerMargin),
+                Vector3.up * (meshCeilingHeight + (verticalContainerMargin * 0.5f) - 0.5f));
 
             // Walls.
             for (int x = -1; x <= 1; x++)
@@ -39,26 +46,26 @@ namespace OuterWilds
                     if (Mathf.Abs(x) == Mathf.Abs(z))
                         continue;
 
-                    float dist = Vector3.Distance(Vector3.up * data.meshFloorHeight, Vector3.up * data.meshCeilingHeight) + verticalContainerMargin;
+                    float dist = Vector3.Distance(Vector3.up * meshFloorHeight, Vector3.up * meshCeilingHeight) + verticalContainerMargin;
                     Vector3 scale = dist * Vector3.up;
                     Vector3 pos;
 
                     if (x == 0)
                     {
-                        scale += Vector3.right * (data.sizeX + horizontalContainerMargin);
+                        scale += Vector3.right * (terrainable.GetSize() + horizontalContainerMargin);
                         scale += Vector3.forward;
 
-                        pos = 0.5f * data.sizeZ * new Vector3(x, 0f, z) + (outreach * z * Vector3.forward);
+                        pos = 0.5f * terrainable.GetSize() * new Vector3(x, 0f, z) + (outreach * z * Vector3.forward);
                     }
                     else
                     {
-                        scale += Vector3.forward * (data.sizeZ + horizontalContainerMargin);
+                        scale += Vector3.forward * (terrainable.GetSize() + horizontalContainerMargin);
                         scale += Vector3.right;
 
-                        pos = 0.5f * data.sizeX * new Vector3(x, 0f, z) + (outreach * x * Vector3.right);
+                        pos = 0.5f * terrainable.GetSize() * new Vector3(x, 0f, z) + (outreach * x * Vector3.right);
                     }
 
-                    pos.y = (data.meshFloorHeight + data.meshCeilingHeight) / 2f;
+                    pos.y = (meshFloorHeight + meshCeilingHeight) / 2f;
 
                     SetupCube(scale, pos);
                 }
@@ -71,5 +78,7 @@ namespace OuterWilds
             cube.transform.localScale = scale;
             cube.GetComponent<MeshRenderer>().enabled = visible;
         }
+
+        public void Write(ITerrainable obj) => Spawn(obj);
     }
 }

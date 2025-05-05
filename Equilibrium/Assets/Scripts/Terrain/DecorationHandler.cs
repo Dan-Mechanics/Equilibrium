@@ -7,13 +7,14 @@ namespace OuterWilds
     /// Maybe try make this class mor general ?? Open and closed vibes.
     /// NOTE: this script will prolly not work for changing sizes of the terrain.
     /// </summary>
-    public class DecorationHandler : MonoBehaviour, IPassable<Vector3[]>
+    public class DecorationHandler : MonoBehaviour, IPassable<Vector3[]>, IWritable<ITerrainable>
     {
-        [SerializeField] TerrainData data = default;
+        //[SerializeField] TerrainData data = default;
         [SerializeField] private Spawner[] spawners = default;
         [SerializeField] private bool spawnDecorations = default;
 
         private readonly List<Decoration> decorations = new List<Decoration>();
+        private ITerrainable terrainable;
 
         public void Pass(ref Vector3[] verts)
         {
@@ -46,12 +47,14 @@ namespace OuterWilds
         {
             //decoration.transform.gameObject.isStatic = false;
 
-            decoration.transform.position = Utils.GetVertexWorldSpace(decoration.vertexIndex, ref verts, data) + decoration.spawnData.spawnOffset;
-            decoration.transform.gameObject.SetActive(verts[decoration.vertexIndex].y > data.waterHeight);
+            decoration.transform.position = Utils.GetVertexWorldSpace(decoration.vertexIndex, ref verts, terrainable) + decoration.spawnData.spawnOffset;
+            decoration.transform.gameObject.SetActive(verts[decoration.vertexIndex].y > terrainable.GetWaterHeight());
 
             // lol XD
             //decoration.transform.gameObject.isStatic = true;
         }
+
+        public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
 
         private struct Decoration
         {

@@ -22,14 +22,14 @@ namespace OuterWilds
             float min = terrainable.GetColorFloor(ref mesh);
             float max = terrainable.GetColorCeiling(ref mesh);
 
-            print(min + " "+max);
+            //print(min + " "+max);
 
             material.SetFloat("_WorldFloorHeight", min);
             material.SetFloat("_WorldCeilingHeight", max);
 
             material.SetTexture("_Texture", MakeTerrainTexture(terrainable));
 
-            print("DONE!");
+            //print("DONE!");
         }
 
         private Texture2D MakeTerrainTexture(ITerrainable terrainable) 
