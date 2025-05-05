@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe24309d30b310647bec57aeb7206488, type: 3}
+  m_Name: creature
+  m_EditorClassIdentifier: 
+  baseSpeed: 2.3
+  foodSeeingRange: 50
+  dangerSeeingRange: 25
+  eatingRange: 2
+  asleepTime: 0.15
+  size: 1
+  dragValue: 15
+  factionsCount: 3
+  creatureSpawnCount: 100
+  randomSpeedIncrease: 3
+  deathPitHeight: -10
+  chaseBias: 1
+  runBias: 0.5
+  aliveTimeWithoutFood: 24.5
+  processInterval: 0.04

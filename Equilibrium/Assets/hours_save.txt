@@ -1,0 +1,113 @@
+14 april
+
+30 min
+Verder uitwerken van twee fascinaties
+( ik moet gaan kiezen )
+
+2 uur
+administratie en planning outer wilds
+opdrachten
+
+30 min
+uitwerken fascinatie
+mode spel maken --> wat is de doelstelling ?
+
+VOOR WICKED ARTS : 30 min
+kiezen tussen wicked arts assignment of experiment en conceptualisatie.
+
+15 april
+30 mins kiezen en uitwerken
+Ik ga voor fantasy landscapes 
+
+30 mins
+game concepting fantasy landschape fasciantie
+
+1.5 uur
+project aanamken met correcte installeing en github instlenne
+
+30 mins
+game concept nog verder conceptualiseren.
+
+30 mins
+verder conceptualiseren en concept page maken
+
+16 april:
+
+2 uur wicked arts assignment setup gemaakt en gepraat over concept van game
+
+1 uur eerste tekening maken
+
+17 april:
+
+30 min printjes samenstellen en slides maken.  
+
+30 min field painting maken.
+
+1.5 uur concept verbeteren en HELE vroege prototypes maken
+
+18 april:
+
+30 min inspiratiepaspoort
+
+2.5 uur inspiratiepaspoort
+
+30 inspiratiepaspoort
+30 inspiratiepaspoort
+
+19 april:
+
+1 uur inspiratiepaspoort
+30 mins planning en volgend prototype bedenken
+30 min inspiratiepaspoort
+30 min prototype
+(misschien 30 min als je alle gesprekken vandaag samentelt)
+
+20 april:
+1 uur 30 min prototyping (+10)
+2 uur prototyping
+
+21 april:
+3 uur werken aan prototype
+
+22 april:
+2 uur en 40 minuten
+
+23 april:
+1 uur 45 minuten inspiratie passport
+1 uur aan prototypes ( en ideeen doelstelling )
+
+24:
+
+1 uur inspiratiepassport / beetje prototype
+45 mins inspiratiepassport afronden
+1 uur 30 min doelstelling en prototype
+
+25 april:
+2 uur en 50 min prototype, doelstelling en mechanics
+
+26 april
+3 uur terrain etc
+30 min terrains
+
+27 april:
+3 uur shaders
+( ik moet echt beginnen aan met concept duidelijk maken )
+15 min assignment 3
+1 uur 40 min shader en concept page
+2.5 uur shaders en cleanup project
+
+28 april
+2.5 uur terraforming geïmplementeerd.
+1 uur 15 min terraforming beter maken
+
+29 april:
+3 uur terraforming beter maken
+
+30 april
+3 uur en 15 min coding en conceptvideo
+
+1 mei:
+2.5 uur creatures en buttons implementeren + refactoring
+40 min refactoring en creatures toevoegen
+2.5 uur creature code refactoring en bug fixing
+
