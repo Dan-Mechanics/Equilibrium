@@ -4,20 +4,19 @@ using System.Collections.Generic;
 
 namespace OuterWilds
 {
-    //[CreateAssetMenu(menuName = "PerlinDecorator")]
+    [CreateAssetMenu(menuName = nameof(PerlinDecorator), fileName = "New " + nameof(PerlinDecorator))]
     public class PerlinDecorator : TerrainDecorator
     {
-        public float height;
-        public float noiseScale;
+        [Min(0f)] public float height;
+        [Min(0f)] public float noiseScale;
         public float offsetX, offsetZ;
 
-        public override float GetVertexHeight(float x, float y, float z)
+        public override float GetHeightAtPoint(float x, float z)
         {
-            float perlinx = x + offsetX;
-            float perlinz = z + offsetZ;
-            y += Mathf.PerlinNoise(perlinx * noiseScale, perlinz * noiseScale) * height;
+            float perlinX = x + offsetX;
+            float perlinZ = z + offsetZ;
 
-            return wrapped.GetVertexHeight(x, y, z);
+            return terrainable.GetHeightAtPoint(x, z) + Mathf.PerlinNoise(perlinX * noiseScale, perlinZ * noiseScale) * height;
         }
     }
 }
