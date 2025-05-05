@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(MeshClampDecorator), fileName = "New " + nameof(MeshClampDecorator))]
     public class MeshClampDecorator : TerrainDecorator

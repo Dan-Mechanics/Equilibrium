@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     public class Mover : MonoBehaviour, IWritable<Vector3>, IWritable<float>
     {

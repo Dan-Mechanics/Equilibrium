@@ -1,4 +1,4 @@
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// Dont really feel like using this class thb.

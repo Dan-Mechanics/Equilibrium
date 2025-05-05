@@ -1,6 +1,6 @@
 using System;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// Also useful for creatures.

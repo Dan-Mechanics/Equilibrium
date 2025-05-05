@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f538dbf083aa96440af64c4fbe38b68c, type: 3}
-  m_Name: ceiling_color
+  m_Script: {fileID: 11500000, guid: e5afdc364c93b864799b1aec6d399a00, type: 3}
+  m_Name: standard
   m_EditorClassIdentifier: 
-  constraintType: 2
-  height: 30
+  constraintType: 0
+  meshFloor: -0.5
+  meshCeiling: 50
+  colorFloor: 0
+  colorCeiling: 35

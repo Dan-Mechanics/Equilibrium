@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// Have 3 bars,

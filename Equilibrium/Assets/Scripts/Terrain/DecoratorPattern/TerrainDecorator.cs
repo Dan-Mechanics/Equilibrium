@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// https://www.youtube.com/watch?v=o5Iwu5wpINQ

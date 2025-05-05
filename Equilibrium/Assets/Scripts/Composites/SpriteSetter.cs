@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     [RequireComponent(typeof(Image))]
     public class SpriteSetter : MonoBehaviour

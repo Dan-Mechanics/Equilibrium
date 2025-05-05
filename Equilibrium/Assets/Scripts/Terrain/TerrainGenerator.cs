@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// This class is responsible for generating the mesh, i could make another script that actually generates the perinl
@@ -87,7 +87,9 @@ namespace OuterWilds
 
             // For camera pivot center.
             transformSetter.attached.Write(Vector3.up * ((mesh.bounds.min.y + mesh.bounds.max.y) / 2f));
-            terrainMaterial.attached.Write(globalTerrainable, mesh);
+
+            // NOTE: this means that the mesh wil not hot change.
+            //terrainMaterial.attached.Write(globalTerrainable, mesh);
         }
 
         public void Write(ITerrainable terrainable)
@@ -107,6 +109,8 @@ namespace OuterWilds
             listeners.ForEach(x => x.attached.Pass(ref verts));
 
             UpdateMesh(ref verts);
+
+            terrainMaterial.attached.Write(globalTerrainable, mesh);
         }
     }
 }

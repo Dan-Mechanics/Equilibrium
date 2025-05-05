@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     public class TimeHandler : MonoBehaviour, IWritable<float>
     {

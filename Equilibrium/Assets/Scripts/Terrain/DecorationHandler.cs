@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// Maybe try make this class mor general ?? Open and closed vibes.

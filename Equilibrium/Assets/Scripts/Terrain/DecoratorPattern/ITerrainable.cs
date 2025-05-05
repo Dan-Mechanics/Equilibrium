@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// Question for Aaron: does this break the interface segregation principle?

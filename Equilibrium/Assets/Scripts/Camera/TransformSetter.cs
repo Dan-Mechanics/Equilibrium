@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     public class TransformSetter : MonoBehaviour, IWritable<Vector3>
     {

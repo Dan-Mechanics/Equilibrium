@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// I call this the "bullshit fuck your mother pattern".

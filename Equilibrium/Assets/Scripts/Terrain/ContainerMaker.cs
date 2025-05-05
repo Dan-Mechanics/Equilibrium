@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// Make suer this shit doesnt break like crazy when you add more than 1 terrain types bascially.

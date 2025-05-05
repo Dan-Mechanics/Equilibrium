@@ -1,4 +1,4 @@
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// How do you add more params in the T that would be useufl?

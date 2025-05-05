@@ -1,4 +1,4 @@
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// Or call it IWritable or something,

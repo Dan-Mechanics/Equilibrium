@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     public class InputHook : MonoBehaviour
     {

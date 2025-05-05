@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     [CreateAssetMenu(menuName = "CreatureData")]
     public class CreatureData : ScriptableObject

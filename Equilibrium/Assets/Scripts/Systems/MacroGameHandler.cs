@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     public class MacroGameHandler : MonoBehaviour
     {

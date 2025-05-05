@@ -1,4 +1,4 @@
-namespace OuterWilds
+namespace Equilibrium
 {
     public interface ISetupable 
     {

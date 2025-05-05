@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     public class BetterButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

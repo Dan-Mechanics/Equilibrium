@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// Need to make something that spawns in the borders so they cant run off the map.

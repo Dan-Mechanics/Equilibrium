@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// User timer composite !!

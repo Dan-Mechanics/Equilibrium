@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OuterWilds 
+namespace Equilibrium 
 {
     /// <summary>
     /// You could add spread and flatten here but thats not required for this game really.

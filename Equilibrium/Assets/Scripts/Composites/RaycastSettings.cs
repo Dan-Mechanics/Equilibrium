@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     [Serializable]
     public struct RaycastSettings

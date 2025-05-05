@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// Note: use interfaces for beter performance prolly.

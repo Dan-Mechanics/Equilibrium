@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace OuterWilds
+namespace Equilibrium
 {
     /// <summary>
     /// https://i.pinimg.com/736x/f5/c7/51/f5c75186d5c9e47032fdac3e6c7e3964.jpg
