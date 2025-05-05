@@ -24,6 +24,17 @@ namespace OuterWilds
 
         private void Start()
         {
+            _Start();
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+                _Start();
+        }
+
+        private void _Start()
+        {
             terrainable = terrainBase;
             
             for (int i = 0; i < decorators.Length; i++)
@@ -31,6 +42,10 @@ namespace OuterWilds
                 decorators[i].Decorate(terrainable);
                 terrainable = decorators[i];
             }
+
+            /*terrainable.GetHeightAtPoint(0, 0);
+
+            return;*/
 
             listeners.ForEach(x => x.attached.Write(terrainable));
         }

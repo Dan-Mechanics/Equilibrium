@@ -19,15 +19,15 @@ namespace OuterWilds
         }
 
         public virtual float GetHeightAtPoint(float x, float z) => terrainable.GetHeightAtPoint(x, z);
-
         public virtual float GetColorFloor(ref Mesh mesh) => terrainable.GetColorFloor(ref mesh);
         public virtual float GetColorCeiling(ref Mesh mesh) => terrainable.GetColorCeiling(ref mesh);
 
+        // can make these virtual in the future.
+        // im not that good about future specfualtion
         public Biome GetBiome() => terrainable.GetBiome();
         public int GetColorFidelity() => terrainable.GetColorFidelity();
         public Gradient GetGradient() => terrainable.GetGradient();
-        public float GetSizeX() => terrainable.GetSizeX();
-        public float GetSizeZ() => terrainable.GetSizeZ();
+        public int GetSize() => terrainable.GetSize();
         public float GetWaterHeight() => terrainable.GetWaterHeight();
     }
 }

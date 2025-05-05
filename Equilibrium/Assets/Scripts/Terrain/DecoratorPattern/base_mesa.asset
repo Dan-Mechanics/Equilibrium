@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biome: 0
   waterHeight: -0.1
-  sizeX: 100
-  sizeZ: 100
+  size: 100
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.6839622, b: 0.91759986, a: 1}

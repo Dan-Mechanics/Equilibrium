@@ -14,6 +14,7 @@ namespace OuterWilds
 
         public override float GetHeightAtPoint(float x, float z)
         {
+            //Debug.Log(nameof(MeshClampDecorator));
             float y = terrainable.GetHeightAtPoint(x, z);
             
             switch (constraintType)

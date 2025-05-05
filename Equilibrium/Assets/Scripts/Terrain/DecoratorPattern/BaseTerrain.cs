@@ -12,16 +12,14 @@ namespace OuterWilds
         public float waterHeight;
 
         [Header("Mesh")]
-        [Min(1)] public int sizeX;
-        [Min(1)] public int sizeZ;
+        [Min(1)] public int size;
+        //[Min(1)] public int sizeZ;
 
         [Header("Color")]
         public Gradient gradient;
         [Min(1)] public int colorFidelity;
 
-        public float GetSizeX() => sizeX;
-
-        public float GetSizeZ() => sizeZ;
+        public int GetSize() => size;
 
         public float GetWaterHeight() => waterHeight;
 
@@ -51,6 +49,5 @@ namespace OuterWilds
         public Gradient GetGradient() => gradient;
 
         public int GetColorFidelity() => colorFidelity;
-
     }
 }

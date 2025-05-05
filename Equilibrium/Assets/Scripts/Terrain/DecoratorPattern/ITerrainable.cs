@@ -19,8 +19,7 @@ namespace OuterWilds
         float GetColorFloor(ref Mesh mesh);
         float GetColorCeiling(ref Mesh mesh);
 
-        float GetSizeX();
-        float GetSizeZ();
+        int GetSize();
         float GetWaterHeight();
         Biome GetBiome();
         Gradient GetGradient();

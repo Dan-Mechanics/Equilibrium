@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ceiling
   m_EditorClassIdentifier: 
   constraintType: 2
-  height: 100
+  height: 15
