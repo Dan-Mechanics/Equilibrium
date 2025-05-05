@@ -155,3 +155,12 @@ be nice.
 
 
 you could add a decorator that moves the mesh up lolo.
+
+===
+
+i like it better that we now depend on interfaces instead of concretions
+i think one point of improvement could be to segregate the iterrainable interface more
+but the amount of time that would take to impliment is exponetnional
+and really not required for what im trying to cook and on the other hand 
+the "client" is using all the methods to the fullest so yeah.
+

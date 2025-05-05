@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: mesh_ceiling
   m_EditorClassIdentifier: 
   constraintType: 2
-  height: 15
+  height: 50

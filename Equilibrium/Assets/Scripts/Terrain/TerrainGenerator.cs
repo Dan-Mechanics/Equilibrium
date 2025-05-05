@@ -27,6 +27,8 @@ namespace OuterWilds
             listeners.ForEach(x => x.Setup());
             terrainMaterial.Setup();
             transformSetter.Setup();
+
+            //FindObjectsByType
         }
 
         /*private void _Start()

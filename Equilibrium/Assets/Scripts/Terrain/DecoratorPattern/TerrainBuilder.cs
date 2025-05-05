@@ -15,9 +15,13 @@ namespace OuterWilds
         private ITerrainable terrainable;
         private int currentMap;
 
+        //private List<IWritable<ITerrainable>> writables;
+
         private void Awake()
         {
             listeners.ForEach(x => x.Setup());
+
+            //writables = Utils.GetAll<IWritable<ITerrainable>>();
         }
 
         private void Start()
@@ -25,11 +29,11 @@ namespace OuterWilds
             Refresh();
         }
 
-        private void Update()
+        /*private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
                 Refresh();
-        }
+        }*/
 
         private void Refresh()
         {
@@ -40,6 +44,7 @@ namespace OuterWilds
             {
                 terrainable = decorators[i].Decorate(terrainable);
             }
+
 
             listeners.ForEach(x => x.attached.Write(terrainable));
         }

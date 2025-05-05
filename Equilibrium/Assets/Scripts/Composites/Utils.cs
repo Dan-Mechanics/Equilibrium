@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace OuterWilds
@@ -141,6 +142,23 @@ namespace OuterWilds
         public static Vector3 GetRandomVertexWorldSpace(ref Vector3[] verts, ITerrainable terrainable)
         {
             return GetVertexWorldSpace(Random.Range(0, verts.Length), ref verts, terrainable);
+        }
+
+        public static List<T> GetAll<T>()
+        {
+            MonoBehaviour[] monoBehaviours = Object.FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None);
+
+            List<T> list = new List<T>();
+
+            for (int i = 0; i < monoBehaviours.Length; i++)
+            {
+                T t = monoBehaviours[i].GetComponent<T>();
+                if (t != null)
+                    list.Add(t);
+            }
+
+            //return list.ToArray();
+            return list;
         }
     }
 }

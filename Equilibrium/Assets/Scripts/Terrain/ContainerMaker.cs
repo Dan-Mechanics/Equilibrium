@@ -9,6 +9,8 @@ namespace OuterWilds
     /// </summary>
     public class ContainerMaker : MonoBehaviour, IWritable<ITerrainable>
     {
+        public const float MAX_CONTAINER_VERTICAL_EXTENT = 10000f;
+        
         //[SerializeField] private TerrainData data = default;
         [SerializeField] private GameObject waterPrefab = default;
         [SerializeField] private GameObject wallPrefab = default;
@@ -27,8 +29,8 @@ namespace OuterWilds
         private void Spawn(ITerrainable terrainable)
         {
             // LOLOLOLOL, now this is what i would like to call a hack fix guys.
-            float meshCeilingHeight = terrainable.GetHeightAtPoint(0f, Mathf.Infinity, 0f);
-            float meshFloorHeight = terrainable.GetHeightAtPoint(0f, -Mathf.Infinity, 0f);
+            float meshCeilingHeight = terrainable.GetHeightAtPoint(0f, MAX_CONTAINER_VERTICAL_EXTENT, 0f);
+            float meshFloorHeight = terrainable.GetHeightAtPoint(0f, -MAX_CONTAINER_VERTICAL_EXTENT, 0f);
 
             // Water.
             GameObject water = Instantiate(waterPrefab, Vector3.up * terrainable.GetWaterHeight(), Quaternion.identity);
