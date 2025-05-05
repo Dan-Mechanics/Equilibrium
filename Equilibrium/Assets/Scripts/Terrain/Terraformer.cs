@@ -91,16 +91,16 @@ namespace OuterWilds
             verticies[index].y = terrainable.GetHeightAtPoint(verticies[index].x, verticies[index].y + upwardsMeters, verticies[index].z);
         }
 
-        private void Flatten(int index, float y)
+        /*private void Flatten(int index, float y)
         {
-            /*if (y > verticies[index].y)
+            if (y > verticies[index].y)
                 verticies[index].y += brushInterval * 10f;
 
             if (y < verticies[index].y)
-                verticies[index].y -= brushInterval * 10f;*/
+                verticies[index].y -= brushInterval * 10f;
 
             //verticies[index].y = data.ClampTerrainHeight(y);
-        }
+        }*/
 
         public void Pass(ref Vector3[] verts) => verticies = verts;
 

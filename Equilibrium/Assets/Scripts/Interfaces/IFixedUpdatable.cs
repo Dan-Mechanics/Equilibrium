@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace OuterWilds
 {
     public interface IFixedUpdatable
