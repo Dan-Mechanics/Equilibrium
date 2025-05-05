@@ -110,4 +110,25 @@ verder conceptualiseren en concept page maken
 2.5 uur creatures en buttons implementeren + refactoring
 40 min refactoring en creatures toevoegen
 2.5 uur creature code refactoring en bug fixing
+30 mins testen van terrain generation features.
+
+2 mei:
+2 uur 10 min coding / optimizations
+1 uur SOLID implementeren 
+
+3 mei:
+3 uur coding en debugging
+2.5 uur SOLID coding toevoegen
+1 uur 50 min proberen creatures goed te maken
+
+4 mei:
+
+3 uur 10 min creature code verbeteren om het een game te maken.
+40 min state machine verbeteren
+
+5 mei:
+
+8 uur en 45 min decorator pattern voor terrain implementeren,
+met solid principles in mind, decorator pattern volledig begrijpen
+vooral veel cleanup van codebase via refactoring
 

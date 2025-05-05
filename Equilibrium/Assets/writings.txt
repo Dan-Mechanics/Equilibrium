@@ -164,3 +164,12 @@ but the amount of time that would take to impliment is exponetnional
 and really not required for what im trying to cook and on the other hand 
 the "client" is using all the methods to the fullest so yeah.
 
+maybe eventually fantasylandscapes van je yeet af yeeten?
+also ik wil icey peaks biome in de yeet hebben main en shit etc.
+ik denk dat dat een beetje de vibe is die ik morgen wil doen:
+2 x hyperspeed
+icey peaks biome toevoegen en werkt etc
+betere UX flow in terms of --> --> --> wat de speler doet, stappen.
+buttons en stuff, music maybe. lerp cam.
+ik ben altijd open voor arhcitecture changes en open om daarin
+te leren ook voor game patterns.
