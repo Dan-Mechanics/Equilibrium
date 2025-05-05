@@ -1,0 +1,154 @@
+tomorrow (28) or after i wanna:
+
+look at terraforming VV
+make custom walls code VV
+make the terravorming shit simpler VVV
+remove undeeded crap or something, per chance move everything to new scene ( REPO !! )
+make it so that for final game we dont have it that it updates every 1/10th, just in start and suhc.
+
+yeah and all the other stuff too, dont forget the game management and concept video ...
+and aslo dont forget the design patterns one.
+since i did doulbe today i can skip tomorrow.
+
+fix camera max angles should both be like -45 and 45 or 0 and 45 VV
+je kan het ook maken dat je je eigen texture en custom gradient kan geven, dat is wel cool VV
+
+...
+
+i think i can pviot the proejct away from gradient full range and own texutre etc
+it would have been smart if i did decorator with this but what can you dooo lol xd.
+
+in the code that spawns the walls, also make it so that it could perchance spawn the plane.
+
+todos:
+make it so the terrain proper recalculates when terraform VVV
+make that better --> i think better arhcitecutre ? maybe we shoulkd ahve some terrain management class that is the only one that holds terrain and such.
+remove stuff from terrain thing ?? --> i dont wanna have stretch or textur2  VVV
+it makes the code complicated but like maybe i need to make it more modular or rewrite everything,
+its like i need to write a function that gets y value and then decorate that function or something ya feel 
+me ?? literally like decorator.
+
+i could make it so that dots for the creatures if the project goes too fast.
+
+perchance fix the thing that makes it so you can have infinite depth and height
+add code for trees.
+add the walls code thing. VVV
+add the cool buttons
+keep working on the drafts for the concept video and actuall make the video too.
+rename branch VV
+add creature lore back in.
+
+definalty for the creatures have a thing with the update rate.
+use ur own fixedupdate lore with own interval.
+
+add water --> plane on the bottom of the yeet. VVV
+	now add better texture LOL. VV
+	consider switching to perspective cam. VVV
+
+watch that video about not perlin or erosion terrains.
+
+add music.
+
+it might be a funny mechanci to add it so that the creatures need water
+but on the other hand thatsn ot very intuative.
+
+make trees use the vertices and not mesh and then only recalculate collider when play press.
+or only spawn the trees after play press to make game more visible ??
+
+no you need collider update for the painting to work proper.
+
+MAKE THE VIDEO TOMORROW  VVV
+also make creatures now i think is next one, or music or buttons or time handler.
+TREES
+better ahrciteuctre with interfaces for this meme VV
+with like one place where all verticies are stored and such XX --> no because that just doesnt work / not needed.
+
+do a buncha merges again might be good.
+
+===
+
+implement scriptable object inhertience, i didnt even know that was fricking possible like ???
+decorator esque where we dont have gold class closed for modication open for extension.
+
+idk what i think about the decorations .. it can be nice looking but its a little bit hit or miss and also perfoamnce stuff.
+
+i think i have given myself enough flexibility to go to creature coding now, hopefully with the same
+level of solid coding ish
+
+that serializeinterface is really really frickign useful
+
+pretty good stuff
+
+creaturemanager --> setup all creatures and keeps count or something
+maybe make a universeal spawner class or something idk,
+that just has spawn with defautls and a defuault prefab or something.
+
+maybe add fog back in since LOD ???
+
+its not fast to add the shit with that each decoration is referenced
+in the terraformer so what im gonna do is just not do that right
+yepppp, i think that makes total sense.
+
+i would like it to be that we have a telematry for the creatures to see what they stats
+are and to delete all and object pool and such.
+
+i could maybe try to code arhcitecture it a bit better by making it
+that be like "what should creature handler do??/"
+
+next i wanna make it so that the spawning is based on the verticies because that makes sense.
+
+note to self: you can make the raycast go through the shit of the terrain and then it might be easier.
+
+je kan de skybox er per change weer in maken
+next stuff: maak fricking creature spawn height equal to vertex
+testen op laptop
+maak creatures die actually de win criteria volgen
+
+cool shit from this project:
+inspector interface
+max attribute
+ISettable
+
+i should prolly implement frickign object pooling for the creatures
+and then have random placement in the setup meme.
+
+note: there is lots of overlap between spawner and decoration handler, #Compostion !!!
+
+composites to implement:
+object pool for game objects --> #what even is a single responsiblity ??
+decoration handler and creaturehandler share same SOMECOMPOSITE composite
+
+if performance is an issue i could disable the meshcollider and then only process that when the game starts.
+
+question: waarom tf heb die lifetime shit,
+de bedoeling is dat er equalibruim is niet dont starve
+simuliton. --> omdat je anders een peaks and valleys wereld kan maken.
+
+ok so the nature of the species needs to be quite terrotorial because
+otherwise its peace and love which is of course my goal
+as a dev who makes the things but that needs to be the players problem to solve via the envrionment etc.
+
+
+i need something to set all the terrain data as one thing,
+i think i can do this easy via interface magic.
+
+todo tomorrow:
+make it so the speed up mechanic works VV
+
+requirements for good creature code:
+doesnt work flat terrain
+works mid terrain
+doesnt work extreme terrain
+
+make a new repo and duplicate project
+perchance make it so that the creatures cant scale walls and go around them
+that would help i think. --> but it lowkey kinda works now already tho but like
+i dont get how tho.
+
+
+i would still like to be able to modulate the update rate of the velocity
+change on the creatures but i think this should def be done in creaturehandler and
+then we leverage our own shit or im just delulu idk. VVV
+
+if i implementan an IReadable thing on the things that need terrain data that would
+be nice.
