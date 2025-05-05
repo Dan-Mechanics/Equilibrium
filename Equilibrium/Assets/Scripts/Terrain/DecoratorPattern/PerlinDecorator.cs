@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace OuterWilds
 {
     //[CreateAssetMenu(menuName = "PerlinDecorator")]
-    public class PerlinDecorator : TerrainMeshDecorator
+    public class PerlinDecorator : TerrainDecorator
     {
         public float height;
         public float noiseScale;
@@ -17,7 +17,7 @@ namespace OuterWilds
             float perlinz = z + offsetZ;
             y += Mathf.PerlinNoise(perlinx * noiseScale, perlinz * noiseScale) * height;
 
-            return wrappedTerrain.GetVertexHeight(x, y, z);
+            return wrapped.GetVertexHeight(x, y, z);
         }
     }
 }

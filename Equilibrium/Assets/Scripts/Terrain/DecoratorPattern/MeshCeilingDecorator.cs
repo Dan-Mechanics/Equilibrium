@@ -28,7 +28,7 @@ namespace OuterWilds
                     break;
             }
 
-            return wrappedTerrain.GetVertexHeight(x, y, z);
+            return wrapped.GetVertexHeight(x, y, z);
         }
     }
 }

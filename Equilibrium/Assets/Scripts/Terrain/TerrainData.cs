@@ -12,7 +12,7 @@ namespace OuterWilds
     [CreateAssetMenu(menuName = "TerrainData")]
     public class TerrainData : ScriptableObject, IDimensionsReadable
     {
-        public enum Biome { Mesa, Icey }
+        //public enum Biome { Mesa, Icey }
         //public int sizeZ => sizeX;
 
         [Header("Terrain")]
