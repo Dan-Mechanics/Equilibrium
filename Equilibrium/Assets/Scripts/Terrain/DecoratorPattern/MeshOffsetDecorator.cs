@@ -11,9 +11,7 @@ namespace OuterWilds
 
         public override float GetHeightAtPoint(float x, float y, float z)
         {
-            //Debug.Log(nameof(MeshOffsetDecorator));
-
-            return terrainable.GetHeightAtPoint(x, y, z) + verticalOffset;
+            return terrainable.GetHeightAtPoint(x, y + verticalOffset, z);
         }
     }
 }

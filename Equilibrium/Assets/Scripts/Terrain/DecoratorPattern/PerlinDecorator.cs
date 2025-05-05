@@ -16,10 +16,8 @@ namespace OuterWilds
             float perlinX = x + offsetX;
             float perlinZ = z + offsetZ;
 
-            //Debug.Log(nameof(PerlinDecorator));
-
+            return terrainable.GetHeightAtPoint(x, y + Mathf.PerlinNoise(perlinX * noiseScale, perlinZ * noiseScale) * height, z);
             //return terrainable.GetHeightAtPoint(x, y, z) + Mathf.PerlinNoise(perlinX * noiseScale, perlinZ * noiseScale) * height;
-            return terrainable.GetHeightAtPoint(x, Mathf.PerlinNoise(perlinX * noiseScale, perlinZ * noiseScale) * height, z);
         }
     }
 }

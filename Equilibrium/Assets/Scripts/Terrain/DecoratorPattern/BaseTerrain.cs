@@ -28,14 +28,16 @@ namespace OuterWilds
         /// <summary>
         /// Base layer.
         /// </summary>
-        public float GetHeightAtPoint(float x, float y, float z) { return y; }
+        public float GetHeightAtPoint(float x, float y, float z) 
+        {
+            return y;
+        }
 
         /// <summary>
         /// idk how i feel about this but whatever.
         /// </summary>
         public float GetColorFloor(ref Mesh mesh)
         {
-            Debug.Log("PPOSAY!");
             return mesh.bounds.min.y;
         }
 

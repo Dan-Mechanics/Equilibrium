@@ -10,14 +10,14 @@ namespace OuterWilds
         /// <summary>
         /// TODO: do in script.
         /// </summary>
-        public MeshClampDecorator.ConstraintType constraintType;
+        public ConstraintType constraintType;
         public float height;
 
         public override float GetColorCeiling(ref Mesh mesh)
         {
             float y = terrainable.GetColorCeiling(ref mesh);
 
-            if (constraintType != MeshClampDecorator.ConstraintType.Ceiling)
+            if (constraintType != ConstraintType.Ceiling)
                 return y;
             
             if (y > height)
@@ -30,7 +30,7 @@ namespace OuterWilds
         {
             float y = terrainable.GetColorFloor(ref mesh);
 
-            if (constraintType != MeshClampDecorator.ConstraintType.Floor)
+            if (constraintType != ConstraintType.Floor)
                 return y;
 
             if (y < height)

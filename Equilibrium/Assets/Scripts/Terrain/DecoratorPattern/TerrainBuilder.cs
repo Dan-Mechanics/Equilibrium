@@ -36,9 +36,8 @@ namespace OuterWilds
             terrainable = maps[currentMap].baseTerrain;
             TerrainDecorator[] decorators = maps[currentMap].decorators;
 
-            for (int i = 0; i < decorators.Length; i++)
+            for (int i = decorators.Length - 1; i >= 0; i--)
             {
-                //decorators[i].Decorate(terrainable);
                 terrainable = decorators[i].Decorate(terrainable);
             }
 

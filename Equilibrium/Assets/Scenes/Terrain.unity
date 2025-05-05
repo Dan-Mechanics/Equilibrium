@@ -487,10 +487,9 @@ MonoBehaviour:
   maps:
   - baseTerrain: {fileID: 11400000, guid: 5e0224b7551a2164f908df64fc469bae, type: 2}
     decorators:
-    - {fileID: 11400000, guid: 69d8c3cc0598a5944abbc45d2b847b36, type: 2}
-    - {fileID: 11400000, guid: 57260804321c7af46ab0b723d60917bd, type: 2}
     - {fileID: 11400000, guid: e6b7d84b44aaf8d4a8b77b255c353ea2, type: 2}
-    - {fileID: 11400000, guid: 8c3d607adeed2014a87097dbc88db973, type: 2}
+    - {fileID: 11400000, guid: 1be13138db3f1ab4984a0e1ea9ca1772, type: 2}
+    - {fileID: 11400000, guid: 69d8c3cc0598a5944abbc45d2b847b36, type: 2}
     - {fileID: 11400000, guid: afa4db1d28820984ab92d5a7976c155e, type: 2}
   listeners:
   - monoBehaviour: {fileID: 2135685229}

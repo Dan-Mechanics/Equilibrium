@@ -7,16 +7,13 @@ namespace OuterWilds
     [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(MeshClampDecorator), fileName = "New " + nameof(MeshClampDecorator))]
     public class MeshClampDecorator : TerrainDecorator
     {
-        public enum ConstraintType { None = 0, Floor = 1, Ceiling = 2 }
+        //public enum ConstraintType { None = 0, Floor = 1, Ceiling = 2 }
 
         public ConstraintType constraintType;
         public float height;
 
         public override float GetHeightAtPoint(float x, float y, float z)
         {
-            //Debug.Log(nameof(MeshClampDecorator));
-            //y = terrainable.GetHeightAtPoint(x, y, z);
-            
             switch (constraintType)
             {
                 case ConstraintType.Floor:
@@ -31,7 +28,7 @@ namespace OuterWilds
                     break;
             }
 
-            return terrainable.GetHeightAtPoint(x, y, z); 
+            return terrainable.GetHeightAtPoint(x, y, z);
         }
     }
 }
