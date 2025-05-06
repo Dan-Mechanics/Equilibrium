@@ -7,6 +7,9 @@ namespace Equilibrium
 {
     /// <summary>
     /// https://www.youtube.com/watch?v=o5Iwu5wpINQ
+    /// 
+    /// It might be smart to seperate differennt vibes
+    /// so like material and mesh are different for performance but whatever.
     /// </summary>
     public abstract class TerrainDecorator : ScriptableObject, ITerrainable
     {
@@ -35,14 +38,13 @@ namespace Equilibrium
         }
 
         public virtual float GetHeightAtPoint(float x, float y, float z) => terrainable.GetHeightAtPoint(x, y, z);
-        public virtual float GetColorFloor(ref Mesh mesh) => terrainable.GetColorFloor(ref mesh);
-        public virtual float GetColorCeiling(ref Mesh mesh) => terrainable.GetColorCeiling(ref mesh);
+        public virtual float GetColorFloor(float min) => terrainable.GetColorFloor(min);
+        public virtual float GetColorCeiling(float max) => terrainable.GetColorCeiling(max);
+        public virtual Texture2D GetTexture() => terrainable.GetTexture();
 
         // can make these virtual in the future.
         // im not that good about future specfualtion
         public Biome GetBiome() => terrainable.GetBiome();
-        public int GetColorFidelity() => terrainable.GetColorFidelity();
-        public Gradient GetGradient() => terrainable.GetGradient();
         public int GetSize() => terrainable.GetSize();
         public float GetWaterHeight() => terrainable.GetWaterHeight();
     }

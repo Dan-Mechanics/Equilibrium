@@ -17,12 +17,12 @@ namespace Equilibrium
             return base.GetHeightAtPoint(x, Mathf.Clamp(y, meshFloor, meshCeiling), z);
         }
 
-        public override float GetColorCeiling(ref Mesh mesh)
+        public override float GetColorCeiling(float max)
         {
             return colorCeiling;
         }
 
-        public override float GetColorFloor(ref Mesh mesh)
+        public override float GetColorFloor(float min)
         {
             return colorFloor;
         }

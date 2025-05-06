@@ -5,19 +5,24 @@ namespace Equilibrium
     /// <summary>
     /// Need to make something that spawns in the borders so they cant run off the map.
     /// </summary>
-    [RequireComponent(typeof(Renderer))]
-    public class TerrainMaterial : MonoBehaviour, IWritable<ITerrainable, Mesh>
+    //[RequireComponent(typeof(Renderer))]
+    public class TerrainMaterial : MonoBehaviour, IWritable<ITerrainable>, IWritable<float, float>
     {
         [SerializeField] private Material material = default;
+        [SerializeField] private Renderer _renderer = default;
+        private ITerrainable terrainable;
 
-        private void Awake() => GetComponent<Renderer>().material = material;
+        private void Awake() => _renderer.material = material;
 
-        public void Write(ITerrainable terrainable, Mesh mesh)
+        public void Write(ITerrainable terrainable)
         {
-            UpdateShaderProperties(terrainable, ref mesh);
+            this.terrainable = terrainable;
+            UpdateShaderTexture();
         }
 
-        private void UpdateShaderProperties(ITerrainable terrainable, ref Mesh mesh) 
+        public void Write(float min, float max) => UpdateShaderBounds(min, max);
+
+        /*private void UpdateShaderProperties(ITerrainable terrainable, ref Mesh mesh) 
         {
             float min = terrainable.GetColorFloor(ref mesh);
             float max = terrainable.GetColorCeiling(ref mesh);
@@ -30,9 +35,9 @@ namespace Equilibrium
             material.SetTexture("_Texture", MakeTerrainTexture(terrainable));
 
             //print("DONE!");
-        }
+        }*/
 
-        private Texture2D MakeTerrainTexture(ITerrainable terrainable) 
+        /*private Texture2D MakeTerrainTexture(ITerrainable terrainable) 
         {
             Texture2D texture = new Texture2D(terrainable.GetColorFidelity(), 1)
             {
@@ -48,6 +53,24 @@ namespace Equilibrium
             texture.Apply();
 
             return texture;
+        }*/
+
+        private void UpdateShaderTexture() 
+        {
+            //print("eello1");
+            material.SetTexture("_Texture", terrainable.GetTexture());
+        }
+
+        private void UpdateShaderBounds(float min, float max) 
+        {
+            min = terrainable.GetColorFloor(min);
+            max = terrainable.GetColorCeiling(max);
+
+            /*print(min);
+            print(max);*/
+
+            material.SetFloat("_WorldFloorHeight", min);
+            material.SetFloat("_WorldCeilingHeight", max);
         }
     }
 }

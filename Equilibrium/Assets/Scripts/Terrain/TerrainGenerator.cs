@@ -13,7 +13,7 @@ namespace Equilibrium
         [SerializeField] private MeshCollider coll = default;
 
         [SerializeField] private InspectorInterface<IWritable<Vector3>> cameraPivot = default;
-        [SerializeField] private InspectorInterface<IWritable<ITerrainable, Mesh>> terrainMaterial = default;
+        [SerializeField] private InspectorInterface<IWritable<float, float>> terrainMaterial = default;
         [SerializeField] private List<InspectorInterface<IPassable<Vector3[]>>> listeners = default;
 
         private Mesh mesh;
@@ -44,7 +44,9 @@ namespace Equilibrium
             UpdateMesh(ref verts);
 
             transform.position = new Vector3(-terrainable.GetSize() / 2f, 0f, -terrainable.GetSize() / 2f);
-            terrainMaterial.attached.Write(terrainable, mesh);
+
+            // You need to make sure this happens after terraianble has been referenced for this.
+            terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
         }
 
         private Vector3[] GenerateMesh(ITerrainable terrainable)
@@ -100,6 +102,10 @@ namespace Equilibrium
             coll.sharedMesh = mesh;
 
             cameraPivot.attached.Write(Vector3.up * ((mesh.bounds.min.y + mesh.bounds.max.y) / 2f));
+
+            // if we have this it lags tf out.
+            //terrainMaterial.attached.Write(terrainable, mesh);
+            terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
         }
     }
 }

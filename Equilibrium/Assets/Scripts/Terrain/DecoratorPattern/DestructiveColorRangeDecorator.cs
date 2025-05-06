@@ -13,12 +13,12 @@ namespace Equilibrium
         public float floorHeight;
         public float ceilingHeight;
 
-        public override float GetColorFloor(ref Mesh mesh)
+        public override float GetColorFloor(float min)
         {
             return floorHeight;
         }
 
-        public override float GetColorCeiling(ref Mesh mesh)
+        public override float GetColorCeiling(float max)
         {
             return ceilingHeight;
         }

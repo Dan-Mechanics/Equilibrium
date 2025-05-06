@@ -15,9 +15,9 @@ namespace Equilibrium
         [Min(1)] public int size;
         //[Min(1)] public int sizeZ;
 
-        [Header("Color")]
+        /*[Header("Color")]
         public Gradient gradient;
-        [Min(1)] public int colorFidelity;
+        [Min(1)] public int colorFidelity;*/
 
         public int GetSize() => size;
 
@@ -36,18 +36,19 @@ namespace Equilibrium
         /// <summary>
         /// idk how i feel about this but whatever.
         /// </summary>
-        public float GetColorFloor(ref Mesh mesh)
+        public float GetColorFloor(float min)
         {
-            return mesh.bounds.min.y;
+            return min;
         }
 
-        public float GetColorCeiling(ref Mesh mesh)
+        public float GetColorCeiling(float max)
         {
-            return mesh.bounds.max.y;
+            return max;
         }
 
-        public Gradient GetGradient() => gradient;
+       // public Gradient GetGradient() => gradient;
+        public Texture2D GetTexture() => null;
 
-        public int GetColorFidelity() => colorFidelity;
+        //public int GetColorFidelity() => colorFidelity;
     }
 }

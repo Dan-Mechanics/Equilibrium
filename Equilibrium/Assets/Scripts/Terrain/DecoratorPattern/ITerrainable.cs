@@ -21,13 +21,12 @@ namespace Equilibrium
         /// </summary>
         /// <param name="mesh"></param>
         /// <returns></returns>
-        float GetColorFloor(ref Mesh mesh);
-        float GetColorCeiling(ref Mesh mesh);
+        float GetColorFloor(float min);
+        float GetColorCeiling(float max);
 
         int GetSize();
         float GetWaterHeight();
         Biome GetBiome();
-        Gradient GetGradient();
-        int GetColorFidelity();
+        Texture2D GetTexture();
     }
 }
