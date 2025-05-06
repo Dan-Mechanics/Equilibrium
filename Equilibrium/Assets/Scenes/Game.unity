@@ -894,12 +894,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1211737383}
-        m_TargetAssemblyTypeName: OuterWilds.GameStateMachine, Assembly-CSharp
+        m_TargetAssemblyTypeName: Equilibrium.GameStateMachine, Assembly-CSharp
         m_MethodName: TransitionTo
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1871595743}
-          m_ObjectArgumentAssemblyTypeName: OuterWilds.GameState, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: Equilibrium.GameState, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: terra
@@ -1161,7 +1161,7 @@ PrefabInstance:
     - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
         type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: OuterWilds.GameStateMachine, Assembly-CSharp
+      value: Equilibrium.GameStateMachine, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
         type: 3}
@@ -1226,7 +1226,7 @@ PrefabInstance:
     - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
         type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: OuterWilds.GameState, Assembly-CSharp
+      value: Equilibrium.GameState, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
         type: 3}
@@ -2049,41 +2049,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: play_button
       objectReference: {fileID: 0}
-    - target: {fileID: 2133734757865620155, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: m_text
-      value: PLAY
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
         type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2091,184 +2056,9 @@ PrefabInstance:
       objectReference: {fileID: 1211737383}
     - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
         type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1211737383}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
-      value: 
-      objectReference: {fileID: 208073482}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
-      value: 
-      objectReference: {fileID: 250823184}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[4].m_Target
-      value: 
-      objectReference: {fileID: 687402575}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[4].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TransitionTo
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Gabagool
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: ResetTimer
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: Set
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onHighlight.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: Destroy
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: OuterWilds.GameStateMachine, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: OuterWilds.GameStateMachine, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
-      value: OuterWilds.TimerText, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
-      value: OuterWilds.TimeHandler, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_FloatArgument
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
       propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 1655427240}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: simu
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
-      value: simu
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_StringArgument
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onHighlight.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: OuterWilds.Destroyer, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: OuterWilds.GameState, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.MonoBehaviour, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 3179714680219263246, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: onClick.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 4664459882885182579, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2369,31 +2159,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6176819029368520195, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: colors.Array.data[0].b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176819029368520195, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: colors.Array.data[0].g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6176819029368520195, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: colors.Array.data[0].r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7102961404993922062, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7102961404993922062, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3137,7 +2902,7 @@ PrefabInstance:
     - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
         type: 3}
       propertyPath: onLoseRound.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: OuterWilds.GameStateMachine, Assembly-CSharp
+      value: Equilibrium.GameStateMachine, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
         type: 3}
@@ -3152,7 +2917,7 @@ PrefabInstance:
     - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
         type: 3}
       propertyPath: onLoseRound.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: OuterWilds.GameState, Assembly-CSharp
+      value: Equilibrium.GameState, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
