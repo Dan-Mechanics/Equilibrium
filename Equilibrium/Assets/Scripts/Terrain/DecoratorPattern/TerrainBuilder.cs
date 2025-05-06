@@ -1,6 +1,5 @@
-using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Equilibrium
 {
@@ -9,13 +8,13 @@ namespace Equilibrium
     /// </summary>
     public class TerrainBuilder : MonoBehaviour
     {
+        [SerializeField] private int currentMap = default;
         [SerializeField] private DecoratedTerrain[] maps = default;
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainable>>> terrainListeners = default;
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainableColorable>>> colorListeners = default;
 
         private ITerrainable terrainable;
         private ITerrainableColorable colorable;
-        private int currentMap;
 
         private void Awake()
         {
@@ -28,6 +27,7 @@ namespace Equilibrium
             Refresh();
         }
 
+        [ContextMenu(nameof(Refresh))]
         private void Refresh()
         {
             terrainable = maps[currentMap].baseTerrain;

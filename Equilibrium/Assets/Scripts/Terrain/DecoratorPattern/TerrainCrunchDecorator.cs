@@ -9,22 +9,10 @@ namespace Equilibrium
     {
         public float meshFloor;        // min max etc etc
         public float meshCeiling;      // min max etc etc
-        //public float colorFloor;       // min max etc etc
-        //public float colorCeiling;     // min max etc etc
 
         public override float GetHeightAtPoint(float x, float y, float z)
         {
             return base.GetHeightAtPoint(x, Mathf.Clamp(y, meshFloor, meshCeiling), z);
         }
-
-        /*public override float GetColorCeiling(float max)
-        {
-            return colorCeiling;
-        }
-
-        public override float GetColorFloor(float min)
-        {
-            return colorFloor;
-        }*/
     }
 }

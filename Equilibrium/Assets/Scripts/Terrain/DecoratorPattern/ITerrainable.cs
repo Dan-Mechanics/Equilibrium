@@ -16,17 +16,8 @@ namespace Equilibrium
         /// </summary>
         float GetHeightAtPoint(float x, float y, float z);
 
-        /// <summary>
-        /// COuld make this give meshfilter for offset ???
-        /// </summary>
-        /// <param name="mesh"></param>
-        /// <returns></returns>
-        /*float GetColorFloor(float min);
-        float GetColorCeiling(float max);*/
-
         int GetSize();
         float GetWaterHeight();
         Biome GetBiome();
-        //Texture2D GetTexture();
     }
 }

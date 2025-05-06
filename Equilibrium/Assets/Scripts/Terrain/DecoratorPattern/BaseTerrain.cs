@@ -13,16 +13,9 @@ namespace Equilibrium
 
         [Header("Mesh")]
         [Min(1)] public int size;
-        //[Min(1)] public int sizeZ;
-
-        /*[Header("Color")]
-        public Gradient gradient;
-        [Min(1)] public int colorFidelity;*/
 
         public int GetSize() => size;
-
         public float GetWaterHeight() => waterHeight;
-
         public Biome GetBiome() => biome;
 
         /// <summary>

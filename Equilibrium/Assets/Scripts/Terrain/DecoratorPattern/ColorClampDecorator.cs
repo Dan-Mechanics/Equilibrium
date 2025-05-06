@@ -12,7 +12,13 @@ namespace Equilibrium
         /// </summary>
         public ConstraintType constraintType;
         public float height;
-
+        
+        /// <summary>
+        /// COuld make this give meshfilter for offset ??? or somerthing ish.
+        /// i think it would be more about setting the min max meme.
+        /// </summary>
+        /// <param name="mesh"></param>
+        /// <returns></returns>
         public override float GetColorFloor(float min)
         {
             float y = colorable.GetColorFloor(min);
