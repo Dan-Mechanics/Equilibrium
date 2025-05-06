@@ -38,9 +38,9 @@ namespace Equilibrium
         }
 
         public virtual float GetHeightAtPoint(float x, float y, float z) => terrainable.GetHeightAtPoint(x, y, z);
-        public virtual float GetColorFloor(float min) => terrainable.GetColorFloor(min);
+        /*public virtual float GetColorFloor(float min) => terrainable.GetColorFloor(min);
         public virtual float GetColorCeiling(float max) => terrainable.GetColorCeiling(max);
-        public virtual Texture2D GetTexture() => terrainable.GetTexture();
+        public virtual Texture2D GetTexture() => terrainable.GetTexture();*/
 
         // can make these virtual in the future.
         // im not that good about future specfualtion

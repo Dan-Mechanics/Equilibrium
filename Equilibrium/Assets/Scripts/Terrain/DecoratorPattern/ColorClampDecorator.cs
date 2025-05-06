@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Equilibrium
 {
     [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(ColorClampDecorator), fileName = "New " + nameof(ColorClampDecorator))]
-    public class ColorClampDecorator : TerrainDecorator
+    public class ColorClampDecorator : TerrainColorDecorator
     {
         /// <summary>
         /// TODO: do in script.
@@ -15,7 +15,7 @@ namespace Equilibrium
 
         public override float GetColorFloor(float min)
         {
-            float y = terrainable.GetColorFloor(min);
+            float y = colorable.GetColorFloor(min);
 
             if (constraintType != ConstraintType.Floor)
                 return y;
@@ -28,7 +28,7 @@ namespace Equilibrium
 
         public override float GetColorCeiling(float max)
         {
-            float y = terrainable.GetColorCeiling(max);
+            float y = colorable.GetColorCeiling(max);
 
             if (constraintType != ConstraintType.Ceiling)
                 return y;

@@ -8,7 +8,7 @@ namespace Equilibrium
     /// NOTE: is destructive.
     /// </summary>
     [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(DestructiveColorRangeDecorator), fileName = "New " + nameof(DestructiveColorRangeDecorator))]
-    public class DestructiveColorRangeDecorator : TerrainDecorator
+    public class DestructiveColorRangeDecorator : TerrainColorDecorator
     {
         public float floorHeight;
         public float ceilingHeight;

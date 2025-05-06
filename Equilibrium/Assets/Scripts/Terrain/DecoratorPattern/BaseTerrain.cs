@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Equilibrium
 {
     [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(BaseTerrain), fileName = "New " + nameof(BaseTerrain))]
-    public class BaseTerrain : ScriptableObject, ITerrainable
+    public class BaseTerrain : ScriptableObject, ITerrainable, ITerrainableColorable
     {
         [Header("Terrain")]
         public Biome biome;
@@ -46,9 +46,6 @@ namespace Equilibrium
             return max;
         }
 
-       // public Gradient GetGradient() => gradient;
         public Texture2D GetTexture() => null;
-
-        //public int GetColorFidelity() => colorFidelity;
     }
 }

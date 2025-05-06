@@ -11,6 +11,7 @@ namespace Equilibrium
     {
         [SerializeField] private MeshFilter filter = default;
         [SerializeField] private MeshCollider coll = default;
+        [SerializeField] private bool keepUpdatingShader = default;
 
         [SerializeField] private InspectorInterface<IWritable<Vector3>> cameraPivot = default;
         [SerializeField] private InspectorInterface<IWritable<float, float>> terrainMaterial = default;
@@ -46,7 +47,8 @@ namespace Equilibrium
             transform.position = new Vector3(-terrainable.GetSize() / 2f, 0f, -terrainable.GetSize() / 2f);
 
             // You need to make sure this happens after terraianble has been referenced for this.
-            terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
+            if (!keepUpdatingShader)
+                terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
         }
 
         private Vector3[] GenerateMesh(ITerrainable terrainable)
@@ -105,7 +107,9 @@ namespace Equilibrium
 
             // if we have this it lags tf out.
             //terrainMaterial.attached.Write(terrainable, mesh);
-            terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
+
+            if (keepUpdatingShader)
+                terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
         }
     }
 }

@@ -10,14 +10,17 @@ namespace Equilibrium
     public class TerrainBuilder : MonoBehaviour
     {
         [SerializeField] private DecoratedTerrain[] maps = default;
-        [SerializeField] private List<InspectorInterface<IWritable<ITerrainable>>> listeners = default;
+        [SerializeField] private List<InspectorInterface<IWritable<ITerrainable>>> terrainListeners = default;
+        [SerializeField] private List<InspectorInterface<IWritable<ITerrainableColorable>>> colorListeners = default;
 
         private ITerrainable terrainable;
+        private ITerrainableColorable colorable;
         private int currentMap;
 
         private void Awake()
         {
-            listeners.ForEach(x => x.Setup());
+            terrainListeners.ForEach(x => x.Setup());
+            colorListeners.ForEach(x => x.Setup());
         }
 
         private void Start()
@@ -28,14 +31,21 @@ namespace Equilibrium
         private void Refresh()
         {
             terrainable = maps[currentMap].baseTerrain;
-            TerrainDecorator[] decorators = maps[currentMap].decorators;
+            colorable = maps[currentMap].baseTerrain;
 
-            for (int i = decorators.Length - 1; i >= 0; i--)
+            for (int i = maps[currentMap].decorators.Length - 1; i >= 0; i--)
             {
-                terrainable = decorators[i].Decorate(terrainable);
+                terrainable = maps[currentMap].decorators[i].Decorate(terrainable);
             }
 
-            listeners.ForEach(x => x.attached.Write(terrainable));
+            for (int i = maps[currentMap].colorDecorators.Length - 1; i >= 0; i--)
+            {
+                colorable = maps[currentMap].colorDecorators[i].Decorate(colorable);
+            }
+
+            // the order of these is important !!
+            colorListeners.ForEach(x => x.attached.Write(colorable));
+            terrainListeners.ForEach(x => x.attached.Write(terrainable));
         }
 
         [System.Serializable]
@@ -43,6 +53,7 @@ namespace Equilibrium
         {
             public BaseTerrain baseTerrain;
             public TerrainDecorator[] decorators;
+            public TerrainColorDecorator[] colorDecorators;
         }
     }
 }

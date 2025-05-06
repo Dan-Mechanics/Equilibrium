@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Equilibrium
 {
     [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(GradientDecorator), fileName = "New " + nameof(GradientDecorator))]
-    public class GradientDecorator : TerrainDecorator
+    public class GradientDecorator : TerrainColorDecorator
     {
         [Header("Gradient")]
         public Gradient gradient;
