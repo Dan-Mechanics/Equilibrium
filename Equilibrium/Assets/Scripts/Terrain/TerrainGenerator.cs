@@ -18,7 +18,6 @@ namespace Equilibrium
 
         private Mesh mesh;
         private int[] triangles;
-        //private ITerrainable globalTerrainable;
         private readonly MeshColliderCookingOptions cookingOptions =
         MeshColliderCookingOptions.UseFastMidphase & MeshColliderCookingOptions.CookForFasterSimulation;
 
@@ -97,16 +96,10 @@ namespace Equilibrium
             mesh.triangles = triangles;
             mesh.RecalculateNormals();
 
-            // idk if this is faster but ok.
             Physics.BakeMesh(mesh.GetInstanceID(), false, cookingOptions);
-
             coll.sharedMesh = mesh;
 
-            // For camera pivot center.
             cameraPivot.attached.Write(Vector3.up * ((mesh.bounds.min.y + mesh.bounds.max.y) / 2f));
-
-            // NOTE: this means that the mesh wil not hot change.
-            //terrainMaterial.attached.Write(globalTerrainable, mesh);
         }
     }
 }
