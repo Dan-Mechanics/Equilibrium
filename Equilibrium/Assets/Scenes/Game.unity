@@ -1492,6 +1492,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
+      propertyPath: maps.Array.data[0].baseTerrain
+      value: 
+      objectReference: {fileID: 11400000, guid: 314fe03b14b48144692749472375d1a3,
+        type: 2}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
       propertyPath: listeners.Array.data[0].monoBehaviour
       value: 
       objectReference: {fileID: 747860301}
@@ -2524,6 +2530,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4754152451730490575, guid: ca647030b765a954b8dc53b0dab59d2d,
         type: 3}
+      propertyPath: cameraPivot.monoBehaviour
+      value: 
+      objectReference: {fileID: 1644760248}
+    - target: {fileID: 4754152451730490575, guid: ca647030b765a954b8dc53b0dab59d2d,
+        type: 3}
       propertyPath: terrainMaterial.monoBehaviour
       value: 
       objectReference: {fileID: 2135685230}
@@ -3053,6 +3064,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1644760246}
   - {fileID: 1209841798}
+  - {fileID: 738120710}
   - {fileID: 2135685227}
   - {fileID: 249153633}
   - {fileID: 761388910}
@@ -3070,4 +3082,3 @@ SceneRoots:
   - {fileID: 1313433840}
   - {fileID: 1566245760}
   - {fileID: 1560893112}
-  - {fileID: 738120710}

@@ -29,6 +29,9 @@ namespace Equilibrium
             fixedTicks = new FixedTicks(brushInterval);
         }
 
+        public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
+        public void Pass(ref Vector3[] verts) => verticies = verts;
+
         public void DoUpdate()
         {
             hasChanged = false;
@@ -101,12 +104,5 @@ namespace Equilibrium
 
             //verticies[index].y = data.ClampTerrainHeight(y);
         }*/
-
-        public void Pass(ref Vector3[] verts) => verticies = verts;
-
-        public void Write(ITerrainable terrainable)
-        {
-            this.terrainable = terrainable;
-        }
     }
 }

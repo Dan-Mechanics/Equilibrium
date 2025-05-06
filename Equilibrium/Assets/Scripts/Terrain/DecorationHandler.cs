@@ -15,11 +15,14 @@ namespace Equilibrium
         private readonly List<Decoration> decorations = new List<Decoration>();
         private ITerrainable terrainable;
 
-        public void Pass(ref Vector3[] verts)
+        public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
+        public void Pass(ref Vector3[] verts) => TrySpawn(ref verts);
+
+        private void TrySpawn(ref Vector3[] verts)
         {
             if (!spawnDecorations)
                 return;
-            
+
             if (decorations.Count <= 0)
                 SpawnDecorations(ref verts);
 
@@ -47,8 +50,6 @@ namespace Equilibrium
             decoration.transform.position = Utils.GetVertexWorldSpace(decoration.vertexIndex, ref verts, terrainable) + decoration.spawnData.spawnOffset;
             decoration.transform.gameObject.SetActive(verts[decoration.vertexIndex].y > terrainable.GetWaterHeight());
         }
-
-        public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
 
         private struct Decoration
         {

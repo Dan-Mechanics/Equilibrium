@@ -12,13 +12,13 @@ namespace Equilibrium
         [SerializeField] private MeshFilter filter = default;
         [SerializeField] private MeshCollider coll = default;
 
-        [SerializeField] private InspectorInterface<IWritable<Vector3>> transformSetter = default;
+        [SerializeField] private InspectorInterface<IWritable<Vector3>> cameraPivot = default;
         [SerializeField] private InspectorInterface<IWritable<ITerrainable, Mesh>> terrainMaterial = default;
         [SerializeField] private List<InspectorInterface<IPassable<Vector3[]>>> listeners = default;
 
         private Mesh mesh;
         private int[] triangles;
-        private ITerrainable globalTerrainable;
+        //private ITerrainable globalTerrainable;
         private readonly MeshColliderCookingOptions cookingOptions =
         MeshColliderCookingOptions.UseFastMidphase & MeshColliderCookingOptions.CookForFasterSimulation;
 
@@ -26,7 +26,26 @@ namespace Equilibrium
         {
             listeners.ForEach(x => x.Setup());
             terrainMaterial.Setup();
-            transformSetter.Setup();
+            cameraPivot.Setup();
+        }
+
+        public void Write(ITerrainable terrainable) => MakeNewTerrain(terrainable);
+        public void Pass(ref Vector3[] verts) => UpdateMesh(ref verts);
+
+        private void MakeNewTerrain(ITerrainable terrainable)
+        {
+            mesh = new Mesh();
+            filter.mesh = mesh;
+            coll.cookingOptions = cookingOptions;
+
+            // ----
+
+            Vector3[] verts = GenerateMesh(terrainable);
+            listeners.ForEach(x => x.attached.Pass(ref verts));
+            UpdateMesh(ref verts);
+
+            transform.position = new Vector3(-terrainable.GetSize() / 2f, 0f, -terrainable.GetSize() / 2f);
+            terrainMaterial.attached.Write(terrainable, mesh);
         }
 
         private Vector3[] GenerateMesh(ITerrainable terrainable)
@@ -70,8 +89,6 @@ namespace Equilibrium
             return verticies;
         }
 
-        public void Pass(ref Vector3[] verts) => UpdateMesh(ref verts);
-
         private void UpdateMesh(ref Vector3[] verticies)
         {
             mesh.Clear();
@@ -86,31 +103,10 @@ namespace Equilibrium
             coll.sharedMesh = mesh;
 
             // For camera pivot center.
-            transformSetter.attached.Write(Vector3.up * ((mesh.bounds.min.y + mesh.bounds.max.y) / 2f));
+            cameraPivot.attached.Write(Vector3.up * ((mesh.bounds.min.y + mesh.bounds.max.y) / 2f));
 
             // NOTE: this means that the mesh wil not hot change.
             //terrainMaterial.attached.Write(globalTerrainable, mesh);
-        }
-
-        public void Write(ITerrainable terrainable)
-        {
-            globalTerrainable = terrainable;
-
-            mesh = new Mesh();
-            filter.mesh = mesh;
-            coll.cookingOptions = cookingOptions;
-
-            // ----
-
-            Vector3[] verts = GenerateMesh(terrainable);
-
-            transform.position = new Vector3(-terrainable.GetSize() / 2f, 0f, -terrainable.GetSize() / 2f);
-
-            listeners.ForEach(x => x.attached.Pass(ref verts));
-
-            UpdateMesh(ref verts);
-
-            terrainMaterial.attached.Write(globalTerrainable, mesh);
         }
     }
 }

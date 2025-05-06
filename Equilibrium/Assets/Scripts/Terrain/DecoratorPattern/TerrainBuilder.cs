@@ -35,7 +35,6 @@ namespace Equilibrium
                 terrainable = decorators[i].Decorate(terrainable);
             }
 
-
             listeners.ForEach(x => x.attached.Write(terrainable));
         }
 
