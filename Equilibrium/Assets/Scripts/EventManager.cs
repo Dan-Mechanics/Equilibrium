@@ -15,7 +15,8 @@ namespace Equilibrium
             ROUND_LOSE = 1,
             ROUND_WIN = 2,
             ROUND_START = 3,
-            CLOSE_GAME = 4
+            CLOSE_GAME = 4,
+            TITLE = 5
         }
 
         private static readonly Dictionary<EventType, Action<EventType>> events = new();
@@ -37,6 +38,35 @@ namespace Equilibrium
         }
 
         public static void RemoveListener(EventType eventType, Action<EventType> listener)
+        {
+            if (!events.ContainsKey(eventType))
+                return;
+
+            events[eventType] -= listener;
+        }
+    }
+
+    public static class EventManager<T>
+    {
+        private static readonly Dictionary<EventManager.EventType, Action<T>> events = new();
+
+        public static void RaiseEvent(EventManager.EventType eventType, T t)
+        {
+            if (!events.ContainsKey(eventType))
+                return;
+
+            events[eventType]?.Invoke(t);
+        }
+
+        public static void AddListener(EventManager.EventType eventType, Action<T> listener)
+        {
+            if (!events.ContainsKey(eventType))
+                events.Add(eventType, null);
+
+            events[eventType] += listener;
+        }
+
+        public static void RemoveListener(EventManager.EventType eventType, Action<T> listener)
         {
             if (!events.ContainsKey(eventType))
                 return;

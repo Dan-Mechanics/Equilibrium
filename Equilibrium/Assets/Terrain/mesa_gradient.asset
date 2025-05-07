@@ -43,3 +43,4 @@ MonoBehaviour:
     m_NumColorKeys: 7
     m_NumAlphaKeys: 2
   colorFidelity: 35
+  introductionColor: {r: 1, g: 0.2901961, b: 0, a: 1}

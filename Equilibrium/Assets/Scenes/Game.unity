@@ -1687,10 +1687,6 @@ MonoBehaviour:
     message: you won
     color: {r: 0, g: 1, b: 0, a: 1}
     duration: 2
-  - eventType: 3
-    message: round start
-    color: {r: 1, g: 1, b: 1, a: 1}
-    duration: 1
 --- !u!4 &743940106
 Transform:
   m_ObjectHideFlags: 0

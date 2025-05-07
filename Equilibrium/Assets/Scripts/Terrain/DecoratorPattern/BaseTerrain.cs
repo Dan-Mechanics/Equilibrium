@@ -40,5 +40,7 @@ namespace Equilibrium
         }
 
         public Texture2D GetTexture() => null;
+
+        public Color GetIntroductionColor() => Color.clear;
     }
 }

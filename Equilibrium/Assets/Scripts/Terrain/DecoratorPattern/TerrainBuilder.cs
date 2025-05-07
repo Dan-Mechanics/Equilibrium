@@ -56,6 +56,9 @@ namespace Equilibrium
             // the order of these is important !!
             colorListeners.ForEach(x => x.attached.Write(colorable));
             terrainListeners.ForEach(x => x.attached.Write(terrainable));
+
+            EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
+                new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, colorable.GetIntroductionColor(), 2f));
         }
 
         private void GoNextMap(EventManager.EventType eventType) 

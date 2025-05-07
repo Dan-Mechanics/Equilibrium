@@ -16,7 +16,6 @@ namespace Equilibrium
         [SerializeField] private TMP_Text title = default;
         [SerializeField] private TitleMessage[] titleMessages = default;
 
-        private float clearTime;
         private TitleMessage current;
         private readonly Dictionary<EventManager.EventType, TitleMessage> conversions = new();
 
@@ -27,6 +26,8 @@ namespace Equilibrium
                 conversions.Add(titleMessages[i].eventType, titleMessages[i]);
                 EventManager.AddListener(titleMessages[i].eventType, ReceiveEventType);
             }
+
+            EventManager<TitleMessage>.AddListener(EventManager.EventType.TITLE, SetTitle);
         }
 
         private void OnDisable()
@@ -35,16 +36,15 @@ namespace Equilibrium
             {
                 EventManager.RemoveListener(titleMessages[i].eventType, ReceiveEventType);
             }
+
+            EventManager<TitleMessage>.RemoveListener(EventManager.EventType.TITLE, SetTitle);
         }
 
-        /// <summary>
-        /// Fade effect would be nice.
-        /// </summary>
         private void FixedUpdate()
         {
-            //title.gameObject.SetActive(!Utils.IsTime(clearTime));
-
-            // Not the best code this but ok.
+            if (current == null)
+                return;
+            
             Color temp = title.color;
             temp.a -= Time.fixedDeltaTime / current.duration;
             title.color = temp;
@@ -60,7 +60,7 @@ namespace Equilibrium
 
         private void SetTitle(TitleMessage message) 
         {
-            clearTime = Time.time + message.duration;
+            //clearTime = Time.time + message.duration;
             title.gameObject.SetActive(true);
             title.text = message.message.ToUpper();
             title.color = message.color;
@@ -69,12 +69,19 @@ namespace Equilibrium
         }
 
         [System.Serializable]
-        public struct TitleMessage 
+        public class TitleMessage
         {
             public EventManager.EventType eventType;
             public string message;
             public Color color;
             public float duration;
+
+            public TitleMessage(string message, Color color, float duration)
+            {
+                this.message = message;
+                this.color = color;
+                this.duration = duration;
+            }
         }
     }
 }
