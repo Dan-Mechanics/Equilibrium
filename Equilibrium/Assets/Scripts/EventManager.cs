@@ -46,6 +46,10 @@ namespace Equilibrium
         }
     }
 
+    /// <summary>
+    /// YOu could add a second T for the enum ??
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public static class EventManager<T>
     {
         private static readonly Dictionary<EventManager.EventType, Action<T>> events = new();

@@ -46,7 +46,7 @@ namespace Equilibrium
                 return;
             
             Color temp = title.color;
-            temp.a -= Time.fixedDeltaTime / current.duration;
+            temp.a -= Time.fixedDeltaTime / current.duration / Time.timeScale;
             title.color = temp;
         }
 

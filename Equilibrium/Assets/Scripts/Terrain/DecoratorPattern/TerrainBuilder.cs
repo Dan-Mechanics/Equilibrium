@@ -9,6 +9,7 @@ namespace Equilibrium
     public class TerrainBuilder : MonoBehaviour
     {
         [SerializeField] private int currentMap = default;
+        [SerializeField] private float introductionTime = default;
         [SerializeField] private DecoratedTerrain[] maps = default;
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainable>>> terrainListeners = default;
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainableColorable>>> colorListeners = default;
@@ -57,8 +58,8 @@ namespace Equilibrium
             colorListeners.ForEach(x => x.attached.Write(colorable));
             terrainListeners.ForEach(x => x.attached.Write(terrainable));
 
-            EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
-                new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, colorable.GetIntroductionColor(), 2f));
+            /*EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
+                new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, colorable.GetIntroductionColor(), introductionTime));*/
         }
 
         private void GoNextMap(EventManager.EventType eventType) 
