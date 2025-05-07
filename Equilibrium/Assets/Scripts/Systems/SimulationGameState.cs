@@ -1,17 +1,23 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 namespace Equilibrium
 {
     public class SimulationGameState : GameState
     {
+        [SerializeField] private GameStateMachine gameStateMachine = default;
         [SerializeField] private TimeHandler timeHandler = default;
         [SerializeField] private float hyperSpeedScale = default;
-        [SerializeField] private TimerText timerText = default;
+        [SerializeField] private TerraformingGameState terraforming = default;
         [SerializeField] private CreatureHandler creatureHandler = default;
         [SerializeField] private GameObject playButton = default;
         [SerializeField] private GameObject stopButton = default;
+        [SerializeField] private float simulationTime = default;
+        [SerializeField] private UnityEvent<string> onNewTimerText = default;
+
+        private readonly Timer timer = new();
 
         public override void EnterState()
         {
@@ -20,21 +26,53 @@ namespace Equilibrium
             playButton.SetActive(false);
             stopButton.SetActive(!playButton.activeSelf);
 
-            timerText.ResetTimer();
             creatureHandler.Respawn();
             timeHandler.SetTimeScale(hyperSpeedScale);
+            timer.SetValue(simulationTime);
+
+            EventManager.RaiseEvent(EventManager.EventType.ROUND_START);
+
+            EventManager.AddListener(EventManager.EventType.ROUND_LOSE, BackToTerraforming);
+            EventManager.AddListener(EventManager.EventType.ROUND_WIN, BackToTerraforming);
+        }
+        
+        public override void DoFixedUpdate()
+        {
+            base.DoFixedUpdate();
+
+            if (timer.Tick(Time.fixedDeltaTime))
+            {
+                EventManager.RaiseEvent(EventManager.EventType.ROUND_WIN);
+                return;
+            }
+
+            onNewTimerText?.Invoke(Mathf.Round(timer.Value).ToString());
+        }
+
+        private void BackToTerraforming(EventManager.EventType type)
+        {
+            gameStateMachine.TransitionTo(terraforming);
         }
 
         public override void ExitState()
         {
             base.ExitState();
 
+            onNewTimerText?.Invoke(string.Empty);
             playButton.SetActive(true);
             stopButton.SetActive(!playButton.activeSelf);
 
             timeHandler.BackToNormal();
             creatureHandler.Stop();
-            timerText.gameObject.SetActive(false);
+
+            EventManager.RemoveListener(EventManager.EventType.ROUND_LOSE, BackToTerraforming);
+            EventManager.RemoveListener(EventManager.EventType.ROUND_WIN, BackToTerraforming);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.RemoveListener(EventManager.EventType.ROUND_LOSE, BackToTerraforming);
+            EventManager.RemoveListener(EventManager.EventType.ROUND_WIN, BackToTerraforming);
         }
     }
 }

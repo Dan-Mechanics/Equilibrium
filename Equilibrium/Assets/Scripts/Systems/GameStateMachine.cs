@@ -7,7 +7,6 @@ namespace Equilibrium
     public class GameStateMachine : MonoBehaviour
     {
         [SerializeField] private GameState current = default;
-        //[SerializeField] private List<GameState> states = default;
 
         private void Update()
         {
@@ -36,12 +35,5 @@ namespace Equilibrium
             current = newState;
             current.EnterState();
         }
-
-        /*private void Switch(int i)
-        {
-            current.ExitState();
-            current = states[i];
-            current.EnterState();
-        }*/
     }
 }

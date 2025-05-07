@@ -26,7 +26,7 @@ namespace Equilibrium
         [SerializeField] private Spawner spawner = default;
         [SerializeField] private InspectorInterface<IDataGettable<Vector3[]>> terrainReader = default;
         [SerializeField] private List<InspectorInterface<IPassable<int[]>>> factionsTallyListeners = default;
-        [SerializeField] private UnityEvent onLoseRound = default;
+        //[SerializeField] private UnityEvent onLoseRound = default;
 
         private FixedTicks fixedTicks;
         private readonly List<Creature> creatures = new List<Creature>();
@@ -73,8 +73,9 @@ namespace Equilibrium
                 {
                     if (factionsTally[i] <= 0)
                     {
-                        onLoseRound?.Invoke();
-                        print("L ...");
+                        //onLoseRound?.Invoke();
+                        EventManager.RaiseEvent(EventManager.EventType.ROUND_LOSE);
+                        //print("L ...");
                         return;
                     }
                 }
@@ -156,6 +157,10 @@ namespace Equilibrium
             hasChangedThisFrame = true;
         }
 
+        /// <summary>
+        /// Or do this with eventmanager shit.
+        /// </summary>
+        /// <param name="timeScale"></param>
         public void Write(float timeScale)
         {
             fixedTicks = new FixedTicks(creatureData.processInterval * timeScale);

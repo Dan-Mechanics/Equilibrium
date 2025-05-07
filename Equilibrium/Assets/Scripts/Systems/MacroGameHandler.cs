@@ -8,7 +8,7 @@ namespace Equilibrium
         private void Start()
         {
             Application.targetFrameRate = 300;
-            //Time.fixedDeltaTime = 1f / 50f;
+            EventManager.RaiseEvent(EventManager.EventType.OPEN_GAME);
         }
 
         private void Update()
@@ -25,6 +25,7 @@ namespace Equilibrium
         public void Quit() 
         {
             print("quitting game ...");
+            EventManager.RaiseEvent(EventManager.EventType.CLOSE_GAME);
             Application.Quit();
         }
 

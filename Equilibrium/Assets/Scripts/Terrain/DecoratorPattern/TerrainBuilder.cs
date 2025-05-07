@@ -22,6 +22,16 @@ namespace Equilibrium
             colorListeners.ForEach(x => x.Setup());
         }
 
+        private void OnEnable()
+        {
+            EventManager.AddListener(EventManager.EventType.ROUND_WIN, GoNextMap);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.RemoveListener(EventManager.EventType.ROUND_WIN, GoNextMap);
+        }
+
         private void Start()
         {
             Refresh();
@@ -46,6 +56,12 @@ namespace Equilibrium
             // the order of these is important !!
             colorListeners.ForEach(x => x.attached.Write(colorable));
             terrainListeners.ForEach(x => x.attached.Write(terrainable));
+        }
+
+        private void GoNextMap(EventManager.EventType eventType) 
+        {
+            currentMap++;
+            Refresh();
         }
 
         [System.Serializable]
