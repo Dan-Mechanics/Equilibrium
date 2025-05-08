@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Equilibrium
 {
+    /// <summary>
+    /// Remove these frikcign shit.
+    /// </summary>
     public class Spawner : MonoBehaviour, IDataGettable<SpawnData>, IWritable<Vector3>
     {
         public SpawnData Data => spawnData;
@@ -12,36 +15,15 @@ namespace Equilibrium
 
         private void Start()
         {
-            if (fromStart)
-                Spawn(transform.position);
+            if (!fromStart)
+                return;
+
+            Spawn(transform.position);
         }
 
-        public Transform[] Spawn(Vector3 pos)
-        {
-            return SpawnWithData(pos, new SpawnData[] { spawnData });
-        }
+        public void Write(Vector3 t) => Spawn(t);
 
-        public Transform SpawnSingle(Vector3 pos)
-        {
-            return SpawnWithDataSingle(pos, spawnData);
-        }
-
-        public Transform[] SpawnWithData(Vector3 pos, SpawnData[] spawnDatas)
-        {
-            List<Transform> spawned = new();
-
-            for (int i = 0; i < spawnDatas.Length; i++)
-            {
-                for (int j = 0; j < spawnDatas[i].count; j++)
-                {
-                    spawned.Add(SpawnWithDataSingle(pos, spawnDatas[i]));
-                }
-            }
-
-            return spawned.ToArray();
-        }
-
-        public Transform SpawnWithDataSingle(Vector3 pos, SpawnData spawnData)
+        public Transform SpawnSingleWithData(Vector3 pos, SpawnData spawnData)
         {
             GameObject go = Instantiate(spawnData.prefab, pos + spawnData.spawnOffset, spawnData.prefab.transform.rotation);
 
@@ -52,11 +34,26 @@ namespace Equilibrium
             return go.transform;
         }
 
-        public void SetPrefab(GameObject prefab) 
+        public Transform[] SpawnWithData(Vector3 pos, SpawnData spawnData)
         {
-            spawnData.prefab = prefab;
+            Transform[] transforms = new Transform[spawnData.count];
+
+            for (int i = 0; i < spawnData.count; i++)
+            {
+                transforms[i] = SpawnSingleWithData(pos, spawnData);
+            }
+
+            return transforms;
         }
 
-        public void Write(Vector3 t) => Spawn(t);
+        public Transform[] Spawn(Vector3 pos)
+        {
+            return SpawnWithData(pos, spawnData);
+        }
+
+        public Transform SpawnSingle(Vector3 pos)
+        {
+            return SpawnSingleWithData(pos, spawnData);
+        }
     }
 }
