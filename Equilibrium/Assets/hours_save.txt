@@ -132,3 +132,12 @@ verder conceptualiseren en concept page maken
 met solid principles in mind, decorator pattern volledig begrijpen
 vooral veel cleanup van codebase via refactoring
 
+6 mei:
+2 uur 40 min interface segregaten en meerdere levels toevoegen
+
+7 mei:
+2 uur 40 min beter ontwerpvraag en title+ flow of game
+
+8 mei:
+1 uur 40 mins ontwerpvraag aanscherpen en decorations code
+1 uur 50 min decoration betere code en game flow + aanscherpen concept
