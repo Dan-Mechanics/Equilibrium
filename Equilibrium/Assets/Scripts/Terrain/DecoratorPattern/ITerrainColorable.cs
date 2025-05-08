@@ -7,6 +7,6 @@ namespace Equilibrium
         Texture2D GetTexture();
         float GetColorFloor(float min);
         float GetColorCeiling(float max);
-        Color GetIntroductionColor();
+        //Color GetIntroductionColor();
     }
 }

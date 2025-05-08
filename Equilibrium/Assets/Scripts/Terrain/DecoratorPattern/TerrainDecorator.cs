@@ -44,7 +44,7 @@ namespace Equilibrium
 
         // can make these virtual in the future.
         // im not that good about future specfualtion
-        public Biome GetBiome() => terrainable.GetBiome();
+       // public Biome GetBiome() => terrainable.GetBiome();
         public int GetSize() => terrainable.GetSize();
         public float GetWaterHeight() => terrainable.GetWaterHeight();
     }

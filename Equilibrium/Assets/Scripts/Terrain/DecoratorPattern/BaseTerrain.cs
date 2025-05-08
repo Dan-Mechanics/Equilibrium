@@ -10,13 +10,16 @@ namespace Equilibrium
         [Header("Terrain")]
         public Biome biome;
         public float waterHeight;
+        public float introductionTime;
+        public Color introductionColor;
 
         [Header("Mesh")]
         [Min(1)] public int size;
+        public SpawnData[] spawnDatas;
 
         public int GetSize() => size;
         public float GetWaterHeight() => waterHeight;
-        public Biome GetBiome() => biome;
+       // public Biome GetBiome() => biome;
 
         /// <summary>
         /// Base layer.
@@ -41,6 +44,6 @@ namespace Equilibrium
 
         public Texture2D GetTexture() => null;
 
-        public Color GetIntroductionColor() => Color.clear;
+        //public Color GetIntroductionColor() => Color.clear;
     }
 }

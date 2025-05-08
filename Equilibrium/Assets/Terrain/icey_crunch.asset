@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: icey_crunch
   m_EditorClassIdentifier: 
   meshFloor: -0.5
-  meshCeiling: 50
+  meshCeiling: 100

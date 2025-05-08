@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: mesa_crunch
   m_EditorClassIdentifier: 
   meshFloor: -0.5
-  meshCeiling: 30
+  meshCeiling: 35

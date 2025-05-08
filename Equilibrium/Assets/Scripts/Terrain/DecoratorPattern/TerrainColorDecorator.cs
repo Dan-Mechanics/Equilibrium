@@ -16,6 +16,6 @@ namespace Equilibrium
         public virtual float GetColorFloor(float min) => colorable.GetColorFloor(min);
         public virtual float GetColorCeiling(float max) => colorable.GetColorCeiling(max);
         public virtual Texture2D GetTexture() => colorable.GetTexture();
-        public virtual Color GetIntroductionColor() => colorable.GetIntroductionColor();
+        //public virtual Color GetIntroductionColor() => colorable.GetIntroductionColor();
     }
 }

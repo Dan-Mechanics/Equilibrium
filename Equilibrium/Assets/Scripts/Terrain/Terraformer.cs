@@ -38,7 +38,8 @@ namespace Equilibrium
 
             for (int i = 0; i < fixedTicks.GetTicksCount(Time.deltaTime); i++)
             {
-                DoRaycast();
+                if (Input.GetKey(KeyCode.Mouse0) && !Input.GetKey(KeyCode.Mouse1))
+                    DoRaycast();
             }
 
             if (!hasChanged)
@@ -53,8 +54,8 @@ namespace Equilibrium
         /// </summary>
         private void DoRaycast()
         {
-            if (!Input.GetKey(KeyCode.Mouse0))
-                return;
+            /*if (!Input.GetKey(KeyCode.Mouse0))
+                return;*/
 
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, raycastSettings.range, raycastSettings.mask, QueryTriggerInteraction.Ignore))

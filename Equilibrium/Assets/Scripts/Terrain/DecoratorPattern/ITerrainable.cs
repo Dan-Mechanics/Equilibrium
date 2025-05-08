@@ -18,6 +18,6 @@ namespace Equilibrium
 
         int GetSize();
         float GetWaterHeight();
-        Biome GetBiome();
+        //Biome GetBiome();
     }
 }

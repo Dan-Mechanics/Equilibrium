@@ -10,7 +10,7 @@ namespace Equilibrium
         [Header("Gradient")]
         public Gradient gradient;
         [Min(1)] public int colorFidelity;
-        public Color introductionColor = Color.white;
+        //public Color introductionColor = Color.white;
 
         public override Texture2D GetTexture()
         {
@@ -30,6 +30,6 @@ namespace Equilibrium
             return texture;
         }
 
-        public override Color GetIntroductionColor() => introductionColor;
+        //public override Color GetIntroductionColor() => introductionColor;
     }
 }

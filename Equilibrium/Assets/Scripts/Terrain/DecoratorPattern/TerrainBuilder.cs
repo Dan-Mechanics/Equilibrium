@@ -9,10 +9,11 @@ namespace Equilibrium
     public class TerrainBuilder : MonoBehaviour
     {
         [SerializeField] private int currentMap = default;
-        [SerializeField] private float introductionTime = default;
+        //[SerializeField] private float introductionTime = default;
         [SerializeField] private DecoratedTerrain[] maps = default;
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainable>>> terrainListeners = default;
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainableColorable>>> colorListeners = default;
+        [SerializeField] private List<InspectorInterface<IWritable<BaseTerrain>>> baseListeners = default;
 
         private ITerrainable terrainable;
         private ITerrainableColorable colorable;
@@ -21,28 +22,37 @@ namespace Equilibrium
         {
             terrainListeners.ForEach(x => x.Setup());
             colorListeners.ForEach(x => x.Setup());
+            baseListeners.ForEach(x => x.Setup());
         }
 
-        private void OnEnable()
+        /*private void OnEnable()
         {
-            EventManager.AddListener(EventManager.EventType.ROUND_WIN, GoNextMap);
+            EventManager.AddListener(EventManager.EventType.ROUND_WIN, OnRoundWin);
         }
 
         private void OnDisable()
         {
-            EventManager.RemoveListener(EventManager.EventType.ROUND_WIN, GoNextMap);
-        }
+            EventManager.RemoveListener(EventManager.EventType.ROUND_WIN, OnRoundWin);
+        }*/
 
-        private void Start()
+        /*private void Start()
         {
             Refresh();
-        }
+        }*/
 
         [ContextMenu(nameof(Refresh))]
         private void Refresh()
         {
+            if (currentMap >= maps.Length)
+                return;
+
+            baseListeners.ForEach(x => x.attached.Write(maps[currentMap].baseTerrain));
+
             terrainable = maps[currentMap].baseTerrain;
             colorable = maps[currentMap].baseTerrain;
+
+            EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
+                new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, maps[currentMap].baseTerrain.introductionColor, maps[currentMap].baseTerrain.introductionTime));
 
             for (int i = maps[currentMap].decorators.Length - 1; i >= 0; i--)
             {
@@ -57,12 +67,13 @@ namespace Equilibrium
             // the order of these is important !!
             colorListeners.ForEach(x => x.attached.Write(colorable));
             terrainListeners.ForEach(x => x.attached.Write(terrainable));
-
-            /*EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
-                new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, colorable.GetIntroductionColor(), introductionTime));*/
+            
+            
         }
 
-        private void GoNextMap(EventManager.EventType eventType) 
+        //private void OnRoundWin(EventManager.EventType eventType) => GoNextMap();
+
+        public void GoNextMap() 
         {
             currentMap++;
             Refresh();

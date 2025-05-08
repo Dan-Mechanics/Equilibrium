@@ -10,7 +10,10 @@ namespace Equilibrium
     {
         [SerializeField] private Material material = default;
         [SerializeField] private Renderer _renderer = default;
+        [SerializeField] private bool keepUpdatingShader = default;
+
         private ITerrainableColorable colorable;
+        private bool hasBeenUpdated;
 
         private void Awake() => _renderer.material = material;
 
@@ -34,6 +37,11 @@ namespace Equilibrium
 
         private void UpdateShaderBounds(float min, float max) 
         {
+            if (!keepUpdatingShader && hasBeenUpdated)
+                return;
+
+            hasBeenUpdated = true;
+
             min = colorable.GetColorFloor(min);
             max = colorable.GetColorCeiling(max);
 
