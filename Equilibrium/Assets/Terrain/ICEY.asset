@@ -15,10 +15,14 @@ MonoBehaviour:
   biome: 1
   waterHeight: -0.1
   introductionTime: 4.5
-  introductionColor: {r: 0.48584908, g: 0.9538658, b: 1, a: 1}
+  introductionColor: {r: 0, g: 0.7900574, b: 1, a: 1}
   size: 100
   spawnDatas:
   - prefab: {fileID: 919132149155446097, guid: 6eec6498e845dc5498351cd289f44949, type: 3}
-    count: 50
+    count: 25
+    spawnOffset: {x: 0, y: -0.3, z: 0}
+    randomRot: 1
+  - prefab: {fileID: 919132149155446097, guid: 5b1014fb87e698843ba68edc3778ec4d, type: 3}
+    count: 25
     spawnOffset: {x: 0, y: -0.3, z: 0}
     randomRot: 1

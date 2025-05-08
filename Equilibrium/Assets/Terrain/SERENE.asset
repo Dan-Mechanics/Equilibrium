@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed88d3ebad106a49b93e2f82d6f60b4, type: 3}
   m_Name: SERENE
   m_EditorClassIdentifier: 
-  biome: 1
+  biome: 2
   waterHeight: -0.1
   introductionTime: 4.5
   introductionColor: {r: 0.3380132, g: 0.28230685, b: 0.9811321, a: 1}
@@ -20,6 +20,11 @@ MonoBehaviour:
   spawnDatas:
   - prefab: {fileID: 4967717938370507359, guid: 26935a16622aa5f42af3cd12be319b78,
       type: 3}
-    count: 50
+    count: 25
+    spawnOffset: {x: 0, y: -0.3, z: 0}
+    randomRot: 1
+  - prefab: {fileID: 8533252744133438722, guid: 3f7c615c00f14b5409bd59db984c3359,
+      type: 3}
+    count: 25
     spawnOffset: {x: 0, y: -0.3, z: 0}
     randomRot: 1

@@ -17,6 +17,14 @@ MonoBehaviour:
   introductionTime: 4.5
   introductionColor: {r: 1, g: 0.32126835, b: 0, a: 1}
   size: 100
-  decorations:
-  - {fileID: 3435643351429671060, guid: fd5ab67aa510888499f842d51f660a4a, type: 3}
-  - {fileID: 6547305224143750733, guid: ad56e8c887f41c44eb5f929e3bb131a9, type: 3}
+  spawnDatas:
+  - prefab: {fileID: 6808096090866134018, guid: 43eebddd43cc8914a93363658ce6cdd6,
+      type: 3}
+    count: 20
+    spawnOffset: {x: 0, y: -0.3, z: 0}
+    randomRot: 1
+  - prefab: {fileID: 6547305224143750733, guid: ad56e8c887f41c44eb5f929e3bb131a9,
+      type: 3}
+    count: 20
+    spawnOffset: {x: 0, y: -0.3, z: 0}
+    randomRot: 1
