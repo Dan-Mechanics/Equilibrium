@@ -6,9 +6,9 @@ namespace Equilibrium
     /// <summary>
     /// Remove these frikcign shit.
     /// </summary>
-    public class Spawner : MonoBehaviour, IDataGettable<SpawnData>, IWritable<Vector3>
+    public class Spawner : MonoBehaviour
     {
-        public SpawnData Data => spawnData;
+        public SpawnData SpawnData => spawnData;
 
         [SerializeField] private bool fromStart = default;
         [SerializeField] private SpawnData spawnData = default;

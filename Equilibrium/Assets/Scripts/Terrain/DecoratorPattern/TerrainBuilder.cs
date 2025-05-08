@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Equilibrium
 {
@@ -14,6 +15,7 @@ namespace Equilibrium
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainable>>> terrainListeners = default;
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainableColorable>>> colorListeners = default;
         [SerializeField] private List<InspectorInterface<IWritable<BaseTerrain>>> baseListeners = default;
+        [SerializeField] private UnityEvent onRefresh = default;
 
         private ITerrainable terrainable;
         private ITerrainableColorable colorable;
@@ -24,6 +26,8 @@ namespace Equilibrium
             colorListeners.ForEach(x => x.Setup());
             baseListeners.ForEach(x => x.Setup());
         }
+
+        private void Start() => Refresh();
 
         /*private void OnEnable()
         {
@@ -46,13 +50,17 @@ namespace Equilibrium
             if (currentMap >= maps.Length)
                 return;
 
+            onRefresh?.Invoke();
             baseListeners.ForEach(x => x.attached.Write(maps[currentMap].baseTerrain));
 
             terrainable = maps[currentMap].baseTerrain;
             colorable = maps[currentMap].baseTerrain;
 
-            EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
-                new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, maps[currentMap].baseTerrain.introductionColor, maps[currentMap].baseTerrain.introductionTime));
+            if (currentMap > 0)
+            {
+                EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
+                    new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, maps[currentMap].baseTerrain.introductionColor, maps[currentMap].baseTerrain.introductionTime));
+            }
 
             for (int i = maps[currentMap].decorators.Length - 1; i >= 0; i--)
             {

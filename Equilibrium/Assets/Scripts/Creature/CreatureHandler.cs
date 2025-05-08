@@ -19,14 +19,10 @@ namespace Equilibrium
     /// </summary>
     public class CreatureHandler : MonoBehaviour, IDieCallback, IClaimCallback, IUpdatable, IWritable<float>, IWritable<ITerrainable>
     {
-        //public event Action OnLoseRound;
-        
-        //[SerializeField] private TerrainData terrainData = default;
         [SerializeField] private CreatureData creatureData = default;
         [SerializeField] private Spawner spawner = default;
         [SerializeField] private InspectorInterface<IDataGettable<Vector3[]>> terrainReader = default;
         [SerializeField] private List<InspectorInterface<IPassable<int[]>>> factionsTallyListeners = default;
-        //[SerializeField] private UnityEvent onLoseRound = default;
 
         private FixedTicks fixedTicks;
         private readonly List<Creature> creatures = new List<Creature>();
@@ -115,7 +111,6 @@ namespace Equilibrium
 
         private void SendTally()
         {
-            //OnNewFactionsTally?.Invoke(factionsTally);
             factionsTallyListeners.ForEach(x => x.attached.Pass(ref factionsTally));
         }
 
@@ -131,15 +126,11 @@ namespace Equilibrium
 
         private void ResetCreature(Creature creature, ref Vector3[] verts)
         {
-            creature.transform.position = Utils.GetRandomVertexWorldSpace(ref verts, terrainable) + spawner.Data.spawnOffset;
+            creature.transform.position = Utils.GetRandomVertexWorldSpace(ref verts, terrainable) + spawner.SpawnData.spawnOffset;
             TallyFaction(creature.ResetCreature(), 1); // use the int here.
         }
 
-        public void DieCallback(int faction)
-        {
-            TallyFaction(faction, -1);
-            //Debug.LogWarning("A BITCH DIED !!");
-        }
+        public void DieCallback(int faction) => TallyFaction(faction, -1);
 
         public void ClaimCallback(int faction)
         {
@@ -158,7 +149,7 @@ namespace Equilibrium
         }
 
         /// <summary>
-        /// Or do this with eventmanager shit.
+        /// Or do this with eventmanager shit ??
         /// </summary>
         /// <param name="timeScale"></param>
         public void Write(float timeScale)

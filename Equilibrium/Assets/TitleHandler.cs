@@ -14,6 +14,7 @@ namespace Equilibrium
     public class TitleHandler : MonoBehaviour
     {
         [SerializeField] private TMP_Text title = default;
+        [SerializeField] private TitleMessage standard = default;
         [SerializeField] private TitleMessage[] titleMessages = default;
 
         private TitleMessage current;
@@ -66,6 +67,12 @@ namespace Equilibrium
             title.color = message.color;
 
             current = message;
+        }
+
+        public void SetTitleWithMessage(string message) 
+        {
+            standard.message = message;
+            SetTitle(standard);
         }
 
         [System.Serializable]
