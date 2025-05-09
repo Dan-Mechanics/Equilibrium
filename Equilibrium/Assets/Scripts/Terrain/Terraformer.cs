@@ -83,6 +83,10 @@ namespace Equilibrium
                         terrainable.GetSize(), terrainable.GetSize(), out int index))
                         continue;
 
+                    /*if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x + x), Mathf.RoundToInt(point.z + z),
+                        terrainable.GetSize(), terrainable.GetSize(), out int index))
+                        continue;*/
+
                     Terraform(index, brushStrength * brushInterval * (Input.GetKey(KeyCode.LeftShift) ? -1f : 1f));
                     hasChanged = true;
                 }

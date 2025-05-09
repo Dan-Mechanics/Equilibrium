@@ -29,22 +29,6 @@ namespace Equilibrium
 
         private void Start() => Refresh();
 
-        /*private void OnEnable()
-        {
-            EventManager.AddListener(EventManager.EventType.ROUND_WIN, OnRoundWin);
-        }
-
-        private void OnDisable()
-        {
-            EventManager.RemoveListener(EventManager.EventType.ROUND_WIN, OnRoundWin);
-        }*/
-
-        /*private void Start()
-        {
-            Refresh();
-        }*/
-
-       // [ContextMenu(nameof(Refresh))]
         private void Refresh()
         {
             if (currentMap >= maps.Length)
@@ -75,8 +59,6 @@ namespace Equilibrium
             
             
         }
-
-        //private void OnRoundWin(EventManager.EventType eventType) => GoNextMap();
 
         public void GoNextMap() 
         {
