@@ -737,6 +737,16 @@ PrefabInstance:
       objectReference: {fileID: 2135685228}
     - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
         type: 3}
+      propertyPath: brushSize
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: brushStrength
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
       propertyPath: listeners.Array.data[0].monoBehaviour
       value: 
       objectReference: {fileID: 2135685229}

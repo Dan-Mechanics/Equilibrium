@@ -15,15 +15,15 @@ MonoBehaviour:
   biome: 0
   waterHeight: -0.1
   iconicColor: {r: 1, g: 0.42802835, b: 0, a: 1}
-  size: 100
+  size: 150
   spawnDatas:
   - prefab: {fileID: 6808096090866134018, guid: 43eebddd43cc8914a93363658ce6cdd6,
       type: 3}
-    count: 20
+    count: 15
     spawnOffset: {x: 0, y: -0.3, z: 0}
     randomRot: 1
   - prefab: {fileID: 6547305224143750733, guid: ad56e8c887f41c44eb5f929e3bb131a9,
       type: 3}
-    count: 20
+    count: 15
     spawnOffset: {x: 0, y: -0.3, z: 0}
     randomRot: 1

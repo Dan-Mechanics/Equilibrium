@@ -10,6 +10,9 @@ namespace Equilibrium
     [Serializable]
     public class InspectorInterface<T>
     {
+        /// <summary>
+        /// Could i add other things like ScriptableOjbect i nthe futuer?
+        /// </summary>
         public MonoBehaviour monoBehaviour;
         public T attached;
 

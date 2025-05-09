@@ -25,6 +25,9 @@ namespace Equilibrium
             terrainListeners.ForEach(x => x.Setup());
             colorListeners.ForEach(x => x.Setup());
             baseListeners.ForEach(x => x.Setup());
+
+            /*MonoBehaviour[] monoBehaviours = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None);
+            IWritable<ITerrainable>[] terrainables = FindObjectsByType<IWritable<ITerrainable>>(FindObjectsSortMode.None);*/
         }
 
         private void Start() => Refresh();

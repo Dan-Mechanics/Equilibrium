@@ -1,15 +1,19 @@
-custom cursor
+custom cursor --> with like mountain and water and rotate cam memes.
 spawner via interfaces
 background music
-150x150
-findobjectsoftype<INTERFACE>
-smarter terraform
+150x150 VVV
+findobjectsoftype<INTERFACE> --> XX literally doesnt work, you would need to get al monos and then one by one check them.
+smarter terraform --> XX ish ??
+
+why does creatyurehandelr take the reference from spawner? dont make sense.
 make more prototypes
 logboek target audience.
 fix titles V
 
 ideally, we would want to have it so that there are differernt scritps for titelhandler and the 
 response to events and what ttitles then, so the terrainbuilder doesnt worry about raising those events yaknow.
+
+random idea: interface with action or unity event in it.
 
 ===
 
