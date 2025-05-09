@@ -1,10 +1,13 @@
 custom cursor --> with like mountain and water and rotate cam memes.
-spawner via interfaces
+spawner via interfaces --> not really all that improtant / later time
 background music
 150x150 VVV
 findobjectsoftype<INTERFACE> --> XX literally doesnt work, you would need to get al monos and then one by one check them.
 smarter terraform --> XX ish ??
 remove tree LODS
+
+#E7AC97
+#97B2E7
 
 why does creatyurehandelr take the reference from spawner? dont make sense. VVV
 make more prototypes

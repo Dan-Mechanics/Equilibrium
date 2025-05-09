@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biome: 0
   waterHeight: -0.1
-  iconicColor: {r: 1, g: 0.42802835, b: 0, a: 1}
+  iconicColor: {r: 0.6792453, g: 0.14989251, b: 0, a: 1}
+  backgroundColor: {r: 0.90588236, g: 0.6745098, b: 0.5921569, a: 1}
   size: 100
   spawnDatas:
   - prefab: {fileID: 6808096090866134018, guid: 43eebddd43cc8914a93363658ce6cdd6,

@@ -9,7 +9,8 @@ namespace Equilibrium
         public Biome biome;
         public float waterHeight;
         //public float introductionTime;
-        public Color iconicColor;
+        public Color iconicColor; // itnroduciton coloir.
+        public Color backgroundColor;
 
         [Header("Mesh")]
         [Min(1)] public int size;
