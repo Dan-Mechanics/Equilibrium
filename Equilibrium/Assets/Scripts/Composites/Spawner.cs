@@ -5,10 +5,12 @@ namespace Equilibrium
 {
     /// <summary>
     /// Remove these frikcign shit.
+    /// 
+    /// Vibe: make this work with some interfaces? / clean the logic a little ?
     /// </summary>
     public class Spawner : MonoBehaviour
     {
-        public SpawnData SpawnData => spawnData;
+        //public SpawnData SpawnData => spawnData;
 
         [SerializeField] private bool fromStart = default;
         [SerializeField] private SpawnData spawnData = default;

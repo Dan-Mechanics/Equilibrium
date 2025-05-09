@@ -45,9 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a877c0fff138534439e6e30d5cb043a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainData: {fileID: 11400000, guid: 0962818c2764e2f449a5a698f2fbff49, type: 2}
   creatureData: {fileID: 11400000, guid: 4128568c2c5b885469944d83587edcd3, type: 2}
   spawner: {fileID: 2342203196600901853}
+  spawnData:
+    prefab: {fileID: 8485628854282705234, guid: 13aab55ef3f734248a1e07dc56ed249b,
+      type: 3}
+    count: 1
+    spawnOffset: {x: 0, y: 1, z: 0}
+    randomRot: 1
   terrainReader:
     monoBehaviour: {fileID: 0}
   factionsTallyListeners:
@@ -66,8 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fromStart: 0
   spawnData:
-    prefab: {fileID: 8485628854282705234, guid: 13aab55ef3f734248a1e07dc56ed249b,
-      type: 3}
-    count: 1
-    spawnOffset: {x: 0, y: 1, z: 0}
-    randomRot: 1
+    prefab: {fileID: 0}
+    count: 0
+    spawnOffset: {x: 0, y: 0, z: 0}
+    randomRot: 0

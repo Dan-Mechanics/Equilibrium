@@ -316,7 +316,7 @@ PrefabInstance:
     - target: {fileID: 229751120036161737, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2133734757865620155, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
         type: 3}
@@ -738,12 +738,12 @@ PrefabInstance:
     - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
         type: 3}
       propertyPath: brushSize
-      value: 12
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
         type: 3}
       propertyPath: brushStrength
-      value: 25
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
         type: 3}
@@ -1605,13 +1605,13 @@ PrefabInstance:
         type: 3}
       propertyPath: maps.Array.data[1].baseTerrain
       value: 
-      objectReference: {fileID: 11400000, guid: 314fe03b14b48144692749472375d1a3,
+      objectReference: {fileID: 11400000, guid: 4c67e4065a24a40499c1ff57b5e19c63,
         type: 2}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
       propertyPath: maps.Array.data[2].baseTerrain
       value: 
-      objectReference: {fileID: 11400000, guid: 4c67e4065a24a40499c1ff57b5e19c63,
+      objectReference: {fileID: 11400000, guid: 314fe03b14b48144692749472375d1a3,
         type: 2}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
@@ -1752,7 +1752,7 @@ PrefabInstance:
         type: 3}
       propertyPath: maps.Array.data[0].colorDecorators.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 815ca16833c83754cba1335a883988bc,
+      objectReference: {fileID: 11400000, guid: 3c9cd0a7a3468884fab69fd00027b35e,
         type: 2}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
@@ -1764,7 +1764,7 @@ PrefabInstance:
         type: 3}
       propertyPath: maps.Array.data[1].colorDecorators.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: e3bd935505277bd45b47c1f6c2ad80f5,
+      objectReference: {fileID: 11400000, guid: 126f7c0168804b44f971e78a04608e62,
         type: 2}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
@@ -1776,7 +1776,7 @@ PrefabInstance:
         type: 3}
       propertyPath: maps.Array.data[2].colorDecorators.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 126f7c0168804b44f971e78a04608e62,
+      objectReference: {fileID: 11400000, guid: e3bd935505277bd45b47c1f6c2ad80f5,
         type: 2}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
@@ -1822,7 +1822,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4226330559645307706, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1885297344}
+    - targetCorrespondingSourceObject: {fileID: 4226330559645307706, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1885297343}
   m_SourcePrefab: {fileID: 100100000, guid: 5f07d60a53338cb42ad8a1d949cecf55, type: 3}
 --- !u!114 &747860301 stripped
 MonoBehaviour:
@@ -2385,8 +2393,9 @@ GameObject:
   - component: {fileID: 1359728363}
   - component: {fileID: 1359728361}
   - component: {fileID: 1359728364}
+  - component: {fileID: 1359728365}
   m_Layer: 0
-  m_Name: event_based_state_transitions
+  m_Name: event_manager_conduit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2417,6 +2426,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: Equilibrium.GameState, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1359728365}
+        m_TargetAssemblyTypeName: Equilibrium.TimerEvent, Assembly-CSharp
+        m_MethodName: SetTimer
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 2.5
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -2463,46 +2484,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!1 &1386516291
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1386516292}
-  - component: {fileID: 1386516295}
-  - component: {fileID: 1386516293}
-  m_Layer: 0
-  m_Name: game_delays
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1386516292
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386516291}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1386516293
+--- !u!114 &1359728365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386516291}
+  m_GameObject: {fileID: 1359728360}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73a694d6963824e47b43a48797743e32, type: 3}
@@ -2532,34 +2520,6 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: Equilibrium.GameState, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1386516295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386516291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47a5bd04e961a754da490af6ddc7a8fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventType: 2
-  onReceive:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1386516293}
-        m_TargetAssemblyTypeName: Equilibrium.TimerEvent, Assembly-CSharp
-        m_MethodName: SetTimer
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 2.5
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -3321,6 +3281,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 77938197}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1797753490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4226330559645307706, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+    type: 3}
+  m_PrefabInstance: {fileID: 738120710}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1848321846 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5754473356495963624, guid: bf0a8c0b75d3da34a9eba2f228ffd740,
@@ -3398,12 +3364,68 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 738120710}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1797753490}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d9be7c696fd05e4bb0e36a8a7994f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1885297343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797753490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9e537862f247e49b600cc0ce2fb8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 112
+  onHook:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1885297341}
+        m_TargetAssemblyTypeName: Equilibrium.TerrainBuilder, Assembly-CSharp
+        m_MethodName: GoPreviousMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1885297344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797753490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d9e537862f247e49b600cc0ce2fb8f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 110
+  onHook:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1885297341}
+        m_TargetAssemblyTypeName: Equilibrium.TerrainBuilder, Assembly-CSharp
+        m_MethodName: GoNextMap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2051255576 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 229751120036161737, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
@@ -3913,11 +3935,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2342203196600901853, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
-      propertyPath: spawnData.spawnOffset.y
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7155231763548945223, guid: e4592990b2ea1c64a87a08866ed6aed0,
         type: 3}
       propertyPath: m_Name
@@ -3930,54 +3947,9 @@ PrefabInstance:
       objectReference: {fileID: 249153634}
     - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
         type: 3}
-      propertyPath: onLoseRound.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
       propertyPath: factionsTallyListeners.Array.data[0].monoBehaviour
       value: 
       objectReference: {fileID: 1679674776}
-    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
-      propertyPath: onLoseRound.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
-      propertyPath: onLoseRound.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1211737383}
-    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
-      propertyPath: onLoseRound.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
-      propertyPath: onLoseRound.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TransitionTo
-      objectReference: {fileID: 0}
-    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
-      propertyPath: onLoseRound.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Equilibrium.GameStateMachine, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
-      propertyPath: onLoseRound.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
-      value: 
-      objectReference: {fileID: 1871595743}
-    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
-      propertyPath: onLoseRound.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: terra
-      objectReference: {fileID: 0}
-    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
-      propertyPath: onLoseRound.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: Equilibrium.GameState, Assembly-CSharp
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4230,7 +4202,6 @@ SceneRoots:
   - {fileID: 1110074324}
   - {fileID: 8139122958114674066}
   - {fileID: 1359728363}
-  - {fileID: 1386516292}
   - {fileID: 107074900}
   - {fileID: 1566245760}
   - {fileID: 1560893112}

@@ -4,8 +4,9 @@ background music
 150x150 VVV
 findobjectsoftype<INTERFACE> --> XX literally doesnt work, you would need to get al monos and then one by one check them.
 smarter terraform --> XX ish ??
+remove tree LODS
 
-why does creatyurehandelr take the reference from spawner? dont make sense.
+why does creatyurehandelr take the reference from spawner? dont make sense. VVV
 make more prototypes
 logboek target audience.
 fix titles V

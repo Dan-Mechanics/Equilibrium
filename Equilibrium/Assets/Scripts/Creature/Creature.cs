@@ -58,27 +58,23 @@ namespace Equilibrium
                 Debug.LogError("if(materials.Length != data.factionsCount)");
         }
 
-        /*public void ProcessFrame()
-        {
-            for (int i = 0; i < fixedTicks.GetTicksCount(Time.deltaTime); i++)
-            {
-                ProcessFixedFrame();
-            }
-        }*/
-
         public void ProcessFixedFrame()
         {
+            // note: if it doesnt work, here is why:
             if (Utils.IsTime(dieTime)) 
             {
-                if (Random.value > 0.5)
+                Die();
+                return;
+
+                /*if (Random.value > 0.5)
                 {
                     Die();
                     return;
                 }
                 else 
                 {
-                    dieTime = Time.time + data.aliveTimeWithoutFood;
-                }
+                    SetDieTime();
+                }*/
             }
             
             if (transform.position.y <= data.deathPitHeight)
@@ -113,7 +109,7 @@ namespace Equilibrium
             if (closestFood.distance > data.eatingRange)
                 return;
 
-            dieTime = Time.time + data.aliveTimeWithoutFood;
+            SetDieTime();
 
             closestFood.component.GetComponent<Creature>().ClaimByCreature(factionIndex);
             MakeAsleep();
@@ -144,14 +140,19 @@ namespace Equilibrium
             claimCallback.ClaimCallback(factionIndex);
         }
 
-        public int ResetCreature() 
+        public int ResetCreature()
         {
             int faction = UnityEngine.Random.Range(0, data.factionsCount);
             Claim(faction);
             gameObject.SetActive(true);
-            dieTime = Time.time + data.aliveTimeWithoutFood;
+            SetDieTime();
 
             return faction;
+        }
+
+        private void SetDieTime()
+        {
+            dieTime = Time.time + data.aliveTimeWithoutFood;
         }
 
         private void Claim(int factionIndex) 

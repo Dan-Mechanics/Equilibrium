@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e4448833c1be38489966f89c7aa6bcb, type: 3}
   m_Name: color_crunch
   m_EditorClassIdentifier: 
-  floorHeight: 0
-  ceilingHeight: 30
+  floorHeight: -0.5
+  ceilingHeight: 35

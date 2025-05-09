@@ -42,6 +42,9 @@ namespace Equilibrium
                     DoRaycast();
             }
 
+            if (Input.GetKeyDown(KeyCode.F))
+                Fill();
+
             if (!hasChanged)
                 return;
 
@@ -62,6 +65,16 @@ namespace Equilibrium
                 TryChangeTerrain(hit.point);
         }
 
+        private void Fill() 
+        {
+            for (int i = 0; i < verticies.Length; i++)
+            {
+                verticies[i].y = terrainable.GetHeightAtPoint(verticies[i].x, 1000f, verticies[i].z);
+            }
+
+            hasChanged = true;
+        }
+
         // need tools for this ish.
         // maybe state machine esque object.
         private void TryChangeTerrain(Vector3 point) 
@@ -79,7 +92,7 @@ namespace Equilibrium
                     if (Vector2.Distance(Vector2.zero, offset) > brushSize)
                         continue;
 
-                    if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x + x), Mathf.RoundToInt(point.z + z),
+                    if (!Utils.TryGetIndexFromPos(Mathf.FloorToInt(point.x + x), Mathf.FloorToInt(point.z + z),
                         terrainable.GetSize(), terrainable.GetSize(), out int index))
                         continue;
 

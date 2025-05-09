@@ -34,7 +34,7 @@ namespace Equilibrium
 
         private void Refresh()
         {
-            if (currentMap >= maps.Length)
+            if (currentMap < 0 || currentMap >= maps.Length)
                 return;
 
             onRefresh?.Invoke();
@@ -61,6 +61,12 @@ namespace Equilibrium
             terrainListeners.ForEach(x => x.attached.Write(terrainable));
             
             
+        }
+
+        public void GoPreviousMap()
+        {
+            currentMap--;
+            Refresh();
         }
 
         public void GoNextMap() 
