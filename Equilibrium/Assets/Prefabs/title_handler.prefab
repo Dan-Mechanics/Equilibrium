@@ -45,16 +45,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 0}
+  introductionTime: 4.5
+  standard:
+    eventType: 5
+    message: 
+    color: {r: 1, g: 1, b: 1, a: 1}
+    duration: 1.5
   titleMessages:
   - eventType: 1
     message: you lost
     color: {r: 1, g: 0, b: 0, a: 1}
-    duration: 2
+    duration: 2.5
   - eventType: 2
     message: you won
     color: {r: 0, g: 1, b: 0, a: 1}
-    duration: 2
+    duration: 2.5
+  - eventType: 0
+    message: Equilibrium
+    color: {r: 1, g: 1, b: 1, a: 1}
+    duration: 4.5
   - eventType: 3
     message: go
     color: {r: 1, g: 1, b: 1, a: 1}
-    duration: 2
+    duration: 1.5

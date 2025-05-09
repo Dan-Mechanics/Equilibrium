@@ -1,3 +1,17 @@
+custom cursor
+spawner via interfaces
+background music
+150x150
+findobjectsoftype<INTERFACE>
+smarter terraform
+make more prototypes
+logboek target audience.
+
+ideally, we would want to have it so that there are differernt scritps for titelhandler and the 
+response to events and what ttitles then, so the terrainbuilder doesnt worry about raising those events yaknow.
+
+===
+
 tomorrow (28) or after i wanna:
 
 look at terraforming VV

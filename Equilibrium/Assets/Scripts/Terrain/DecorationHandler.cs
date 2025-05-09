@@ -35,7 +35,8 @@ namespace Equilibrium
             if (!spawnDecorations)
                 return;
 
-            if (baseTerrain != null && decorations.Count < 0)
+            // Make sure to write <= instead of <.
+            if (baseTerrain != null && decorations.Count <= 0)
                 SpawnNewDecorations(verts.Length);
 
             for (int i = 0; i < decorations.Count; i++)

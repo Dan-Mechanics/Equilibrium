@@ -44,7 +44,7 @@ namespace Equilibrium
             Refresh();
         }*/
 
-        [ContextMenu(nameof(Refresh))]
+       // [ContextMenu(nameof(Refresh))]
         private void Refresh()
         {
             if (currentMap >= maps.Length)
@@ -56,11 +56,8 @@ namespace Equilibrium
             terrainable = maps[currentMap].baseTerrain;
             colorable = maps[currentMap].baseTerrain;
 
-            if (currentMap > 0)
-            {
-                EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
-                    new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, maps[currentMap].baseTerrain.introductionColor, maps[currentMap].baseTerrain.introductionTime));
-            }
+            EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
+                    new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, maps[currentMap].baseTerrain.iconicColor, false));
 
             for (int i = maps[currentMap].decorators.Length - 1; i >= 0; i--)
             {

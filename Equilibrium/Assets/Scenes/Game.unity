@@ -2350,7 +2350,7 @@ GameObject:
   - component: {fileID: 1359728361}
   - component: {fileID: 1359728364}
   m_Layer: 0
-  m_Name: win_lose_state_transitions
+  m_Name: event_based_state_transitions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4135,6 +4135,11 @@ PrefabInstance:
       objectReference: {fileID: 1428089759}
     - target: {fileID: 999740152742602582, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
         type: 3}
+      propertyPath: introductionTime
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 999740152742602582, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
+        type: 3}
       propertyPath: standard.color.a
       value: 1
       objectReference: {fileID: 0}
@@ -4206,7 +4211,7 @@ PrefabInstance:
     - target: {fileID: 999740152742602582, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
         type: 3}
       propertyPath: titleMessages.Array.data[2].duration
-      value: 2.5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 999740152742602582, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
         type: 3}
