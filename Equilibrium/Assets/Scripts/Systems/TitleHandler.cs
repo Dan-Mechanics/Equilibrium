@@ -12,6 +12,8 @@ namespace Equilibrium
     /// and such/
     /// 
     /// I could make an event bus for this? or like a queeu type beat.
+    /// 
+    /// Ideally we would like to decouple this class from event manager and craetuer a middle man class.
     /// </summary>
     public class TitleHandler : MonoBehaviour
     {

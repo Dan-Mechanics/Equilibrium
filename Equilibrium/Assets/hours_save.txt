@@ -145,3 +145,6 @@ vooral veel cleanup van codebase via refactoring
 9 mei:
 2 uur 40 min doelgroep opniewu beschrijven, titels solid en verschillende
 maps met kleuren
+
+10 mei:
+2 uur decorator logic verbeteren en title handler logic.
