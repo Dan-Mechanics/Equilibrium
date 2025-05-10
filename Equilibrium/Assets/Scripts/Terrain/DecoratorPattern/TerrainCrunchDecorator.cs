@@ -10,9 +10,9 @@ namespace Equilibrium
         public float meshFloor;        // min max etc etc
         public float meshCeiling;      // min max etc etc
 
-        public override float GetHeightAtPoint(float x, float y, float z)
+        public override void SetHeightAtPoint(float x, ref float y, float z)
         {
-            return base.GetHeightAtPoint(x, Mathf.Clamp(y, meshFloor, meshCeiling), z);
+            y = Mathf.Clamp(y, meshFloor, meshCeiling);
         }
     }
 }

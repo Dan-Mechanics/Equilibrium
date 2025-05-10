@@ -8,6 +8,8 @@ namespace Equilibrium
     /// Question for Aaron: does this break the interface segregation principle?
     /// I think im overthinking it in this context but in the future i could split this enum into 
     /// different types of shit.
+    /// 
+    /// Maybe make different method for terraform and perlin??
     /// </summary>
     public interface ITerrainable 
     {
@@ -16,7 +18,7 @@ namespace Equilibrium
         /// 
         /// Maybe use REF y pos instead of return ??
         /// </summary>
-        float GetHeightAtPoint(float x, float y, float z);
+        void SetHeightAtPoint(float x, ref float height, float z);
 
         int GetSize();
         float GetWaterHeight();

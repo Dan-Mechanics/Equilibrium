@@ -59,7 +59,10 @@ namespace Equilibrium
             {
                 for (int x = 0; x <= terrainable.GetSize(); x++)
                 {
-                    verticies[i] = new Vector3(x, terrainable.GetHeightAtPoint(x, 0f, z), z);
+                    float height = 0f;
+                    terrainable.SetHeightAtPoint(x, ref height, z);
+                    
+                    verticies[i] = new Vector3(x, height, z);
                     i++;
                 }
             }

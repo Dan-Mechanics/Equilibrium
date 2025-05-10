@@ -11,12 +11,12 @@ namespace Equilibrium
         [Min(0f)] public float noiseScale;
         public float offsetX, offsetZ;
 
-        public override float GetHeightAtPoint(float x, float y, float z)
+        public override void SetHeightAtPoint(float x, ref float y, float z)
         {
             float perlinX = x + offsetX;
             float perlinZ = z + offsetZ;
 
-            return terrainable.GetHeightAtPoint(x, y + Mathf.PerlinNoise(perlinX * noiseScale, perlinZ * noiseScale) * height, z);
+            y += Mathf.PerlinNoise(perlinX * noiseScale, perlinZ * noiseScale) * height;
         }
     }
 }

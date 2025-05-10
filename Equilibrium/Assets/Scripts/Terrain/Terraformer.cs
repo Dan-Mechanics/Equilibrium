@@ -80,9 +80,13 @@ namespace Equilibrium
 
         private void Fill() 
         {
+            //float height = 1000f;
+            
             for (int i = 0; i < verticies.Length; i++)
             {
-                verticies[i].y = terrainable.GetHeightAtPoint(verticies[i].x, 1000f, verticies[i].z);
+                float height = 1000f;
+                //verticies[i].y = terrainable.GetHeightAtPoint(verticies[i].x, 1000f, verticies[i].z);
+                terrainable.SetHeightAtPoint(verticies[i].x, ref height, verticies[i].z);
             }
 
             hasChanged = true;
@@ -90,6 +94,11 @@ namespace Equilibrium
 
         // need tools for this ish.
         // maybe state machine esque object.
+
+        /// <summary>
+        /// Make this part of terraform object??
+        /// </summary>
+        /// <param name="point"></param>
         private void TryChangeTerrain(Vector3 point) 
         {
             // because we want mesh space.
@@ -131,8 +140,8 @@ namespace Equilibrium
 
         private void Terraform(int index, float upwardsMeters)
         {
-            //verticies[index].y = data.ClampTerrainHeight(verticies[index].y + upwardsMeters);
-            verticies[index].y = terrainable.GetHeightAtPoint(verticies[index].x, verticies[index].y + upwardsMeters, verticies[index].z);
+            verticies[index].y += upwardsMeters;
+            terrainable.SetHeightAtPoint(verticies[index].x, ref verticies[index].y, verticies[index].z);
         }
 
         private void Move(float amount) 

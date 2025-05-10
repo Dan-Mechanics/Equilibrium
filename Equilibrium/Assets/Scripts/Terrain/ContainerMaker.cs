@@ -36,10 +36,13 @@ namespace Equilibrium
             }
 
             previous.Clear();
-            
+
             // LOLOLOLOL, now this is what i would like to call a hack fix guys.
-            float meshCeilingHeight = terrainable.GetHeightAtPoint(0f, MAX_CONTAINER_VERTICAL_EXTENT, 0f);
-            float meshFloorHeight = terrainable.GetHeightAtPoint(0f, -MAX_CONTAINER_VERTICAL_EXTENT, 0f);
+            float meshCeilingHeight = MAX_CONTAINER_VERTICAL_EXTENT;
+            float meshFloorHeight = -MAX_CONTAINER_VERTICAL_EXTENT;
+
+            terrainable.SetHeightAtPoint(0f, ref meshCeilingHeight, 0f);
+            terrainable.SetHeightAtPoint(0f, ref meshFloorHeight, 0f);
 
             // Water.
             GameObject water = Instantiate(waterPrefab, Vector3.up * terrainable.GetWaterHeight(), Quaternion.identity);

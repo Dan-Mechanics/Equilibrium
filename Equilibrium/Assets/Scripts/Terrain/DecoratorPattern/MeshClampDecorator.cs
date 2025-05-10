@@ -10,7 +10,7 @@ namespace Equilibrium
         public ConstraintType constraintType;
         public float height;
 
-        public override float GetHeightAtPoint(float x, float y, float z)
+        public override void SetHeightAtPoint(float x, ref float y, float z)
         {
             switch (constraintType)
             {
@@ -26,7 +26,7 @@ namespace Equilibrium
                     break;
             }
 
-            return terrainable.GetHeightAtPoint(x, y, z);
+            //return terrainable.GetHeightAtPoint(x, y, z);
         }
     }
 }

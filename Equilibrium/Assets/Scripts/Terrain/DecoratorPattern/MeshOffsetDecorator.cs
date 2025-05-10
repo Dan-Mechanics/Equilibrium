@@ -9,9 +9,9 @@ namespace Equilibrium
     {
         public float verticalOffset;
 
-        public override float GetHeightAtPoint(float x, float y, float z)
+        public override void SetHeightAtPoint(float x, ref float y, float z)
         {
-            return terrainable.GetHeightAtPoint(x, y + verticalOffset, z);
+            y += verticalOffset;
         }
     }
 }

@@ -18,15 +18,12 @@ namespace Equilibrium
 
         public int GetSize() => size;
         public float GetWaterHeight() => waterHeight;
-       // public Biome GetBiome() => biome;
+        // public Biome GetBiome() => biome;
 
         /// <summary>
         /// Base layer.
         /// </summary>
-        public float GetHeightAtPoint(float x, float y, float z) 
-        {
-            return y;
-        }
+        public void SetHeightAtPoint(float x, ref float y, float z) { }
 
         /// <summary>
         /// idk how i feel about this but whatever.
