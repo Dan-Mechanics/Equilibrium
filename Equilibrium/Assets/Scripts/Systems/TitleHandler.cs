@@ -51,28 +51,34 @@ namespace Equilibrium
 
         private void EnqueueTitle(TitleMessage message) 
         {
-            bool ble = current != null && !current.priority && !message.priority;
-            if (ble)
-                message.priority = true;
-                //return;
-            // or make current massage have prioity.
-
             if (message.duration <= 0f)
                 message.duration = introductionTime;
 
             message.color.a = 1f;
             message.message = message.message.ToUpper();
 
+            if (pendingTitleMessages.Count <= 0)
+                SetCurrentMessage(message);
+
             if (message.priority)
             {
-                if (current != null && !current.priority && !ble)
+                // this makes sense.
+                if (current != null && !current.priority)
                     pendingTitleMessages.Enqueue(current);
 
                 SetCurrentMessage(message);
             }
             else 
             {
-                pendingTitleMessages.Enqueue(message);
+                if (current != null && !current.priority)
+                {
+                    pendingTitleMessages.Clear();
+                    SetCurrentMessage(message);
+                }
+                else if(pendingTitleMessages.Peek().priority)
+                {
+                    pendingTitleMessages.Enqueue(message);
+                }
             }
         }
 
