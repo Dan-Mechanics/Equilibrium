@@ -51,34 +51,43 @@ namespace Equilibrium
 
         private void EnqueueTitle(TitleMessage message) 
         {
+            //print(message);
+            
             if (message.duration <= 0f)
                 message.duration = introductionTime;
 
             message.color.a = 1f;
             message.message = message.message.ToUpper();
 
-            if (pendingTitleMessages.Count <= 0)
+            if (current == null) 
+            {
                 SetCurrentMessage(message);
+                return;
+            }
 
+            // notice how these mutually explude eachother ish.
             if (message.priority)
             {
-                // this makes sense.
-                if (current != null && !current.priority)
+                if (!current.priority)
+                {
+                    pendingTitleMessages.Clear();
                     pendingTitleMessages.Enqueue(current);
-
+                }
+                
                 SetCurrentMessage(message);
+                return;
+            }
+
+            // we do not have priority, so we can only override non priority.
+            if (!current.priority)
+            {
+                SetCurrentMessage(message);
+                return;
             }
             else 
             {
-                if (current != null && !current.priority)
-                {
-                    pendingTitleMessages.Clear();
-                    SetCurrentMessage(message);
-                }
-                else if(pendingTitleMessages.Peek().priority)
-                {
-                    pendingTitleMessages.Enqueue(message);
-                }
+                pendingTitleMessages.Clear();
+                pendingTitleMessages.Enqueue(message);
             }
         }
 
