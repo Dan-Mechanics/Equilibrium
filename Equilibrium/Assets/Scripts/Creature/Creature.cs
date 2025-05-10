@@ -63,18 +63,18 @@ namespace Equilibrium
             // note: if it doesnt work, here is why:
             if (Utils.IsTime(dieTime)) 
             {
-                Die();
-                return;
+                /*Die();
+                return;*/
 
-                /*if (Random.value > 0.5)
+                if (Random.value > 0.5)
                 {
                     Die();
                     return;
                 }
-                else 
+                else
                 {
                     SetDieTime();
-                }*/
+                }
             }
             
             if (transform.position.y <= data.deathPitHeight)

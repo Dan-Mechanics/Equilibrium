@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Equilibrium
 {
-    public class Terraformer : MonoBehaviour, IPassable<Vector3[]>, IDataGettable<Vector3[]>, IUpdatable, IWritable<ITerrainable>
+    public class Terraformer : MonoBehaviour, IPassable<Vector3[]>, IDataGettable<Vector3[]>, IUpdatable, IWritable<ITerrainable>, IWritable<BaseTerrain>
     {
         public Vector3[] Data => verticies;
 
@@ -22,6 +22,7 @@ namespace Equilibrium
         private FixedTicks fixedTicks;
         private Vector3[] verticies;
         private bool hasChanged;
+        private BaseTerrain baseTerrain;
 
         private void Awake()
         {
@@ -40,10 +41,22 @@ namespace Equilibrium
             {
                 if (Input.GetKey(KeyCode.Mouse0) && !Input.GetKey(KeyCode.Mouse1))
                     DoRaycast();
+
+                if (Input.GetKey(KeyCode.UpArrow))
+                    Move(8f);
+
+                if (Input.GetKey(KeyCode.DownArrow))
+                    Move(-8f);
             }
 
             if (Input.GetKeyDown(KeyCode.F))
                 Fill();
+
+            /*if (Input.GetKey(KeyCode.UpArrow))
+                Move(8f);
+
+            if (Input.GetKey(KeyCode.DownArrow))
+                Move(-8f);*/
 
             if (!hasChanged)
                 return;
@@ -89,10 +102,12 @@ namespace Equilibrium
                 {
                     Utils.SetVector2(ref offset, x, z);
 
-                    if (Vector2.Distance(Vector2.zero, offset) > brushSize)
+                    float dist = Vector2.Distance(Vector2.zero, offset);
+
+                    if (dist > brushSize)
                         continue;
 
-                    if (!Utils.TryGetIndexFromPos(Mathf.FloorToInt(point.x + x), Mathf.FloorToInt(point.z + z),
+                    if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x) + x, Mathf.RoundToInt(point.z) + z,
                         terrainable.GetSize(), terrainable.GetSize(), out int index))
                         continue;
 
@@ -100,7 +115,15 @@ namespace Equilibrium
                         terrainable.GetSize(), terrainable.GetSize(), out int index))
                         continue;*/
 
-                    Terraform(index, brushStrength * brushInterval * (Input.GetKey(KeyCode.LeftShift) ? -1f : 1f));
+                    // can we move this into the scirpt meme?
+                    if (baseTerrain.biome == Biome.Mesa)
+                    {
+                        dist = 1f - (dist / brushSize);
+                        dist *= 1.5f;
+                    }
+                    else { dist = 1f; }
+
+                    Terraform(index, dist * brushStrength * brushInterval * (Input.GetKey(KeyCode.LeftShift) ? -1f : 1f));
                     hasChanged = true;
                 }
             }
@@ -111,6 +134,18 @@ namespace Equilibrium
             //verticies[index].y = data.ClampTerrainHeight(verticies[index].y + upwardsMeters);
             verticies[index].y = terrainable.GetHeightAtPoint(verticies[index].x, verticies[index].y + upwardsMeters, verticies[index].z);
         }
+
+        private void Move(float amount) 
+        {
+            for (int i = 0; i < verticies.Length; i++)
+            {
+                Terraform(i, amount * brushInterval);
+            }
+
+            hasChanged = true;
+        }
+
+        public void Write(BaseTerrain obj) => this.baseTerrain = obj;
 
         /*private void Flatten(int index, float y)
         {

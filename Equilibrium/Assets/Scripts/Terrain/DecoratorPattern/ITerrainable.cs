@@ -13,6 +13,8 @@ namespace Equilibrium
     {
         /// <summary>
         /// This will mean we have to do some memes
+        /// 
+        /// Maybe use REF y pos instead of return ??
         /// </summary>
         float GetHeightAtPoint(float x, float y, float z);
 

@@ -91,6 +91,7 @@ namespace Equilibrium
 
         public void SetTitleWithMessage(string message) 
         {
+            print(message);
             standard.message = message;
             EnqueueTitle(standard);
         }

@@ -20,6 +20,8 @@ namespace Equilibrium
         [SerializeField] private float outreach = default;
         [SerializeField] private bool visible = default;
 
+        private readonly List<GameObject> previous = new();
+
         /// <summary>
         /// Classic example of my current style of coding:
         /// have some data and then have behaviour that always works
@@ -28,6 +30,13 @@ namespace Equilibrium
         /// </summary>
         private void Spawn(ITerrainable terrainable)
         {
+            for (int i = 0; i < previous.Count; i++)
+            {
+                Destroy(previous[i]);
+            }
+
+            previous.Clear();
+            
             // LOLOLOLOL, now this is what i would like to call a hack fix guys.
             float meshCeilingHeight = terrainable.GetHeightAtPoint(0f, MAX_CONTAINER_VERTICAL_EXTENT, 0f);
             float meshFloorHeight = terrainable.GetHeightAtPoint(0f, -MAX_CONTAINER_VERTICAL_EXTENT, 0f);
@@ -35,6 +44,8 @@ namespace Equilibrium
             // Water.
             GameObject water = Instantiate(waterPrefab, Vector3.up * terrainable.GetWaterHeight(), Quaternion.identity);
             water.transform.localScale = new Vector3(terrainable.GetSize() * waterScaleFactor, 1f, terrainable.GetSize() * waterScaleFactor);
+
+            previous.Add(water);
 
             // Ceiling.
             SetupCube(new Vector3(terrainable.GetSize() + horizontalContainerMargin, 1f, terrainable.GetSize() + horizontalContainerMargin),
@@ -79,6 +90,8 @@ namespace Equilibrium
             GameObject cube = Instantiate(wallPrefab, pos, Quaternion.identity);
             cube.transform.localScale = scale;
             cube.GetComponent<MeshRenderer>().enabled = visible;
+
+            previous.Add(cube);
         }
 
         public void Write(ITerrainable obj) => Spawn(obj);

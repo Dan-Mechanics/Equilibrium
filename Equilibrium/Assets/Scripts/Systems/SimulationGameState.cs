@@ -50,6 +50,7 @@ namespace Equilibrium
         {
             base.ExitState();
 
+            print(timer.Value);
             onNewTimerText?.Invoke(string.Empty);
             playButton.SetActive(true);
             stopButton.SetActive(!playButton.activeSelf);
