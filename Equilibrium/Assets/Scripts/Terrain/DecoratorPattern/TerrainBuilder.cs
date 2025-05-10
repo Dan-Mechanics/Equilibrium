@@ -46,12 +46,17 @@ namespace Equilibrium
             EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
                     new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, maps[currentMap].baseTerrain.iconicColor, false));
 
-            for (int i = maps[currentMap].decorators.Length - 1; i >= 0; i--)
+            for (int i = 0; i < maps[currentMap].decorators.Length; i++)
             {
                 terrainable = maps[currentMap].decorators[i].Decorate(terrainable);
             }
 
-            for (int i = maps[currentMap].colorDecorators.Length - 1; i >= 0; i--)
+            /*for (int i = maps[currentMap].decorators.Length - 1; i >= 0; i--)
+            {
+                terrainable = maps[currentMap].decorators[i].Decorate(terrainable);
+            }*/
+
+            for (int i = 0; i < maps[currentMap].colorDecorators.Length; i++)
             {
                 colorable = maps[currentMap].colorDecorators[i].Decorate(colorable);
             }

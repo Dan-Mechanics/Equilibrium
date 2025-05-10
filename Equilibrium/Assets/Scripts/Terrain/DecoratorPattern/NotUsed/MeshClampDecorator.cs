@@ -10,7 +10,7 @@ namespace Equilibrium
         public ConstraintType constraintType;
         public float height;
 
-        public override void SetHeightAtPoint(float x, ref float y, float z)
+        public override void SetHeightTerraform(float x, ref float y, float z)
         {
             switch (constraintType)
             {

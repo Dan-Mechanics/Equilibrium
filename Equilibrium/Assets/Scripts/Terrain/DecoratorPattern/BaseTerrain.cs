@@ -23,7 +23,7 @@ namespace Equilibrium
         /// <summary>
         /// Base layer.
         /// </summary>
-        public void SetHeightAtPoint(float x, ref float y, float z) { }
+        //public void SetHeightAtPoint(float x, ref float y, float z) { }
 
         /// <summary>
         /// idk how i feel about this but whatever.
@@ -39,6 +39,10 @@ namespace Equilibrium
         }
 
         public Texture2D GetTexture() => null;
+
+        public void SetHeightStartup(float x, ref float y, float z) { }
+
+        public void SetHeightTerraform(float x, ref float y, float z) { }
 
         //public Color GetIntroductionColor() => Color.clear;
     }

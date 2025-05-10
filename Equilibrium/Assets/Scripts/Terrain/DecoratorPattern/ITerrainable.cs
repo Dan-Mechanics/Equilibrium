@@ -18,8 +18,8 @@ namespace Equilibrium
         /// 
         /// Maybe use REF y pos instead of return ??
         /// </summary>
-        void SetHeightAtPoint(float x, ref float height, float z);
-
+        void SetHeightStartup(float x, ref float y, float z);
+        void SetHeightTerraform(float x, ref float y, float z);
         int GetSize();
         float GetWaterHeight();
         //Biome GetBiome();

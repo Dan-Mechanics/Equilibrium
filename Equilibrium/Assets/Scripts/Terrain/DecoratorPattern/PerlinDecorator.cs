@@ -11,8 +11,10 @@ namespace Equilibrium
         [Min(0f)] public float noiseScale;
         public float offsetX, offsetZ;
 
-        public override void SetHeightAtPoint(float x, ref float y, float z)
+        public override void SetHeightStartup(float x, ref float y, float z)
         {
+            base.SetHeightStartup(x, ref y, z);
+
             float perlinX = x + offsetX;
             float perlinZ = z + offsetZ;
 

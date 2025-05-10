@@ -80,16 +80,7 @@ namespace Equilibrium
 
         private void Fill() 
         {
-            //float height = 1000f;
-            
-            for (int i = 0; i < verticies.Length; i++)
-            {
-                float height = 1000f;
-                //verticies[i].y = terrainable.GetHeightAtPoint(verticies[i].x, 1000f, verticies[i].z);
-                terrainable.SetHeightAtPoint(verticies[i].x, ref height, verticies[i].z);
-            }
-
-            hasChanged = true;
+            Move(1000f);
         }
 
         // need tools for this ish.
@@ -133,7 +124,7 @@ namespace Equilibrium
                     else { dist = 1f; }
 
                     Terraform(index, dist * brushStrength * brushInterval * (Input.GetKey(KeyCode.LeftShift) ? -1f : 1f));
-                    hasChanged = true;
+                    //hasChanged = true;
                 }
             }
         }
@@ -141,7 +132,9 @@ namespace Equilibrium
         private void Terraform(int index, float upwardsMeters)
         {
             verticies[index].y += upwardsMeters;
-            terrainable.SetHeightAtPoint(verticies[index].x, ref verticies[index].y, verticies[index].z);
+            terrainable.SetHeightTerraform(verticies[index].x, ref verticies[index].y, verticies[index].z);
+
+            hasChanged = true;
         }
 
         private void Move(float amount) 
@@ -150,8 +143,6 @@ namespace Equilibrium
             {
                 Terraform(i, amount * brushInterval);
             }
-
-            hasChanged = true;
         }
 
         public void Write(BaseTerrain obj) => this.baseTerrain = obj;

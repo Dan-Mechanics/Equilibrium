@@ -9,7 +9,7 @@ namespace Equilibrium
     {
         public float verticalOffset;
 
-        public override void SetHeightAtPoint(float x, ref float y, float z)
+        public override void SetHeightTerraform(float x, ref float y, float z)
         {
             y += verticalOffset;
         }

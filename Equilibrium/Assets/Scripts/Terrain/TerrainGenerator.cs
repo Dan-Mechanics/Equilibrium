@@ -53,16 +53,17 @@ namespace Equilibrium
         private Vector3[] GenerateMesh(ITerrainable terrainable)
         {
             Vector3[] verticies = new Vector3[(terrainable.GetSize() + 1) * (terrainable.GetSize() + 1)];
-
             int i = 0;
+            float height = 0f;
+
             for (int z = 0; z <= terrainable.GetSize(); z++)
             {
                 for (int x = 0; x <= terrainable.GetSize(); x++)
                 {
-                    float height = 0f;
-                    terrainable.SetHeightAtPoint(x, ref height, z);
-                    
+                    terrainable.SetHeightStartup(x, ref height, z);
                     verticies[i] = new Vector3(x, height, z);
+
+                    height = 0f;
                     i++;
                 }
             }

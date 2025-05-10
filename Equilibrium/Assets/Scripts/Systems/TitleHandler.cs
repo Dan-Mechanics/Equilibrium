@@ -50,7 +50,13 @@ namespace Equilibrium
         }
 
         private void EnqueueTitle(TitleMessage message) 
-        {   
+        {
+            bool ble = current != null && !current.priority && !message.priority;
+            if (ble)
+                message.priority = true;
+                //return;
+            // or make current massage have prioity.
+
             if (message.duration <= 0f)
                 message.duration = introductionTime;
 
@@ -59,7 +65,7 @@ namespace Equilibrium
 
             if (message.priority)
             {
-                if (current != null && !current.priority)
+                if (current != null && !current.priority && !ble)
                     pendingTitleMessages.Enqueue(current);
 
                 SetCurrentMessage(message);

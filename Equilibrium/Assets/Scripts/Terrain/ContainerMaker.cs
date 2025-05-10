@@ -41,8 +41,8 @@ namespace Equilibrium
             float meshCeilingHeight = MAX_CONTAINER_VERTICAL_EXTENT;
             float meshFloorHeight = -MAX_CONTAINER_VERTICAL_EXTENT;
 
-            terrainable.SetHeightAtPoint(0f, ref meshCeilingHeight, 0f);
-            terrainable.SetHeightAtPoint(0f, ref meshFloorHeight, 0f);
+            terrainable.SetHeightStartup(0f, ref meshCeilingHeight, 0f);
+            terrainable.SetHeightStartup(0f, ref meshFloorHeight, 0f);
 
             // Water.
             GameObject water = Instantiate(waterPrefab, Vector3.up * terrainable.GetWaterHeight(), Quaternion.identity);

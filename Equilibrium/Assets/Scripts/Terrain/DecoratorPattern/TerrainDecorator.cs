@@ -37,14 +37,10 @@ namespace Equilibrium
             return this;
         }
 
-        public virtual void SetHeightAtPoint(float x, ref float y, float z) => terrainable.SetHeightAtPoint(x, ref y, z);
-        /*public virtual float GetColorFloor(float min) => terrainable.GetColorFloor(min);
-        public virtual float GetColorCeiling(float max) => terrainable.GetColorCeiling(max);
-        public virtual Texture2D GetTexture() => terrainable.GetTexture();*/
+        //public void SetNext(ITerrainable) { }
 
-        // can make these virtual in the future.
-        // im not that good about future specfualtion
-       // public Biome GetBiome() => terrainable.GetBiome();
+        public virtual void SetHeightTerraform(float x, ref float y, float z) => terrainable.SetHeightTerraform(x, ref y, z);
+        public virtual void SetHeightStartup(float x, ref float y, float z) => terrainable.SetHeightStartup(x, ref y, z);
         public int GetSize() => terrainable.GetSize();
         public float GetWaterHeight() => terrainable.GetWaterHeight();
     }

@@ -1733,12 +1733,13 @@ PrefabInstance:
         type: 3}
       propertyPath: maps.Array.data[0].decorators.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: d460fe113ee0649499b69f4fddb46fc9,
+        type: 2}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
       propertyPath: maps.Array.data[0].decorators.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: e6b7d84b44aaf8d4a8b77b255c353ea2,
+      objectReference: {fileID: 11400000, guid: 69d8c3cc0598a5944abbc45d2b847b36,
         type: 2}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
