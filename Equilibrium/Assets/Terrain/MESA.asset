@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MESA
   m_EditorClassIdentifier: 
   biome: 0
-  waterHeight: -0.1
+  waterHeight: -3
   iconicColor: {r: 0.6792453, g: 0.14989251, b: 0, a: 1}
   backgroundColor: {r: 0.90588236, g: 0.6745098, b: 0.5921569, a: 1}
   size: 100

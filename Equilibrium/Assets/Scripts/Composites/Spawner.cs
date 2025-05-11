@@ -59,5 +59,6 @@ namespace Equilibrium
         }
 
         public Transform[] Spawn(SpawnData spawnData) => SpawnWithData(Vector3.zero, spawnData);
+        public Transform SpawnSingle(SpawnData spawnData) => SpawnSingleWithData(Vector3.zero, spawnData);
     }
 }

@@ -34,8 +34,10 @@ namespace Equilibrium
 
         private void Refresh()
         {
-            if (currentMap < 0 || currentMap >= maps.Length)
-                return;
+            /*if (currentMap < 0 || currentMap >= maps.Length)
+                return;*/
+
+            currentMap = Mathf.Clamp(currentMap, 0, maps.Length - 1);
 
             onRefresh?.Invoke();
             baseListeners.ForEach(x => x.attached.Write(maps[currentMap].baseTerrain));
@@ -71,6 +73,7 @@ namespace Equilibrium
         public void GoPreviousMap()
         {
             currentMap--;
+
             Refresh();
         }
 

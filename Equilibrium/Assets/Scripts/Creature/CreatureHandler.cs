@@ -20,9 +20,10 @@ namespace Equilibrium
     public class CreatureHandler : MonoBehaviour, IDieCallback, IClaimCallback, IUpdatable, IWritable<float>, IWritable<ITerrainable>
     {
         [SerializeField] private CreatureData creatureData = default;
-        [SerializeField] private Spawner spawner = default;
+        //[SerializeField] private Spawner spawner = default;
         [SerializeField] private SpawnData spawnData = default;
         [SerializeField] private InspectorInterface<IDataGettable<Vector3[]>> terrainReader = default;
+        [SerializeField] private InspectorInterface<ISpawnable> spawner = default;  
         [SerializeField] private List<InspectorInterface<IPassable<int[]>>> factionsTallyListeners = default;
 
         private FixedTicks fixedTicks;
@@ -36,6 +37,7 @@ namespace Equilibrium
             terrainReader.Setup();
             factionsTallyListeners.ForEach(x => x.Setup());
             factionsTally = new int[creatureData.factionsCount];
+            spawner.Setup();
         }
 
         private void Start() => SendTally();
@@ -119,7 +121,7 @@ namespace Equilibrium
         {
             for (int i = 0; i < creatureData.creatureSpawnCount; i++)
             {
-                Creature creature = spawner.SpawnSingleWithData(Vector3.zero, spawnData).GetComponent<Creature>();
+                Creature creature = spawner.attached.SpawnSingle(spawnData).GetComponent<Creature>();
                 creature.Setup(this, this);
                 creatures.Add(creature);
             }

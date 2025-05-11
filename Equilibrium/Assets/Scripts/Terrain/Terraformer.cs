@@ -119,8 +119,8 @@ namespace Equilibrium
                     if (baseTerrain.biome == Biome.Mesa)
                     {
                         dist = 1f - (dist / brushSize);
-                        //dist *= 1.5f;
-                        dist *= 2f;
+                        dist *= 1.5f;
+                        //dist *= 2f;
                     }
                     else { dist = 1f; }
 
