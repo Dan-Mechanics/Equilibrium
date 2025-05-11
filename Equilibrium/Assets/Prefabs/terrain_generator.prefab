@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5744338712120552899}
   - component: {fileID: 548365537834939499}
   - component: {fileID: 5880837752575788866}
-  - component: {fileID: 7723378074022821824}
   - component: {fileID: 4754152451730490575}
   m_Layer: 0
   m_Name: terrain_generator
@@ -108,19 +107,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &7723378074022821824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 884172099228372118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e46b4d81ce32cb549a1a80a031fdaf42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: fa4f417138a9d6548a99185861316df8, type: 2}
 --- !u!114 &4754152451730490575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,7 +124,7 @@ MonoBehaviour:
   cameraPivot:
     monoBehaviour: {fileID: 0}
   terrainMaterial:
-    monoBehaviour: {fileID: 7723378074022821824}
+    monoBehaviour: {fileID: 0}
   listeners:
   - monoBehaviour: {fileID: 0}
   - monoBehaviour: {fileID: 0}

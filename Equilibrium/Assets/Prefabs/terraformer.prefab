@@ -54,6 +54,6 @@ MonoBehaviour:
     mask:
       serializedVersion: 2
       m_Bits: 1
-  brushSize: 8
-  brushStrength: 30
+  brushSize: 10
+  brushStrength: 35
   brushInterval: 0.025

@@ -8,7 +8,7 @@ namespace Equilibrium
     /// 
     /// Vibe: make this work with some interfaces? / clean the logic a little ?
     /// </summary>
-    public class Spawner : MonoBehaviour
+    public class Spawner : MonoBehaviour, ISpawnable
     {
         //public SpawnData SpawnData => spawnData;
 
@@ -57,5 +57,7 @@ namespace Equilibrium
         {
             return SpawnSingleWithData(pos, spawnData);
         }
+
+        public Transform[] Spawn(SpawnData spawnData) => SpawnWithData(Vector3.zero, spawnData);
     }
 }

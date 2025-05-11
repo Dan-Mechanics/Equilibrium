@@ -7,14 +7,19 @@ namespace Equilibrium
     /// Maybe try make this class mor general ?? Open and closed vibes.
     /// NOTE: this script will prolly not work for changing sizes of the terrain.
     /// </summary>
-    public class DecorationHandler : MonoBehaviour, IPassable<Vector3[]>, IWritable<ITerrainable>, IWritable<BaseTerrain>
+    public class DecorationHandler : MonoBehaviour, IPassable<Vector3[]>, IWritable<BaseTerrain>, IWritable<ITerrainable>
     {
-        [SerializeField] private Spawner spawner = default;
-        [SerializeField] private bool spawnDecorations = default;
+        [SerializeField] private InspectorInterface<ISpawnable> spawner = default;
+        [SerializeField] private bool hasDecorations = default;
 
         private readonly List<Decoration> decorations = new();
         private ITerrainable terrainable;
         private BaseTerrain baseTerrain;
+
+        private void Awake()
+        {
+            spawner.Setup();
+        }
 
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
         public void Pass(ref Vector3[] verts) => TryPlaceAll(ref verts);
@@ -32,7 +37,7 @@ namespace Equilibrium
             if (baseTerrain == null)
                 return;
 
-            if (!spawnDecorations)
+            if (!hasDecorations)
                 return;
 
             // Make sure to write <= instead of <.
@@ -49,7 +54,7 @@ namespace Equilibrium
         {
             for (int i = 0; i < baseTerrain.spawnDatas.Length; i++)
             {
-                Transform[] transforms = spawner.SpawnWithData(Vector3.zero, baseTerrain.spawnDatas[i]);
+                Transform[] transforms = spawner.attached.Spawn(baseTerrain.spawnDatas[i]);
 
                 for (int j = 0; j < transforms.Length; j++)
                 {

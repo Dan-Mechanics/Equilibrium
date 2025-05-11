@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93615d2f331f8cb49ba77d56c81378b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 0962818c2764e2f449a5a698f2fbff49, type: 2}
-  spawners:
-  - {fileID: 5957460663004307806}
+  spawner:
+    monoBehaviour: {fileID: 5957460663004307806}
+  hasDecorations: 1
 --- !u!114 &5957460663004307806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,8 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fromStart: 0
   spawnData:
-    prefab: {fileID: 4967717938370507359, guid: 26935a16622aa5f42af3cd12be319b78,
-      type: 3}
-    count: 50
-    spawnOffset: {x: 0, y: -0.3, z: 0}
-    randomRot: 1
+    prefab: {fileID: 0}
+    count: 0
+    spawnOffset: {x: 0, y: 0, z: 0}
+    randomRot: 0

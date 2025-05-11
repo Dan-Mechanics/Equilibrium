@@ -66,7 +66,7 @@ namespace Equilibrium
                 /*Die();
                 return;*/
 
-                if (Random.value > 0.5)
+                if (Utils.RandomBool())
                 {
                     Die();
                     return;

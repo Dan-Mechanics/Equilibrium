@@ -24,6 +24,11 @@ namespace Equilibrium
             vec.y = y;
         }
 
+        public static bool RandomBool() 
+        {
+            return Random.value < 0.5f;
+        }
+
         public static void GiveRandomUpwardsRotation(Transform transform)
         {
             transform.Rotate(Vector3.up * Random.Range(0f, 360f), Space.World);
