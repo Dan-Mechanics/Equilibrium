@@ -39,7 +39,7 @@ namespace Equilibrium
 
             currentMap = Mathf.Clamp(currentMap, 0, maps.Length - 1);
 
-            onRefresh?.Invoke();
+            
             baseListeners.ForEach(x => x.attached.Write(maps[currentMap].baseTerrain));
 
             terrainable = maps[currentMap].baseTerrain;
@@ -66,8 +66,8 @@ namespace Equilibrium
             // the order of these is important !!
             colorListeners.ForEach(x => x.attached.Write(colorable));
             terrainListeners.ForEach(x => x.attached.Write(terrainable));
-            
-            
+
+            onRefresh?.Invoke();
         }
 
         public void GoPreviousMap()

@@ -20,14 +20,14 @@ namespace Equilibrium
         {
             if (monoBehaviour == null)
             {
-                Debug.LogError($"please assign monoBehaviour");
+                Debug.LogWarning($"please assign monoBehaviour");
                 return;
             }
 
             attached = monoBehaviour.GetComponent<T>();
 
             if (attached == null)
-                Debug.LogError($"if (attached == null), on {GetType()}");
+                Debug.LogWarning($"if (attached == null), on {GetType()}");
         }
     }
 }

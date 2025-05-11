@@ -29,6 +29,9 @@ namespace Equilibrium
             /*if (idealVelocity == Vector3.zero)
                 return;*/
 
+            if (dragValue == 0f)
+                dragValue = 15f;
+
             rb.AddForce(idealVelocity - Utils.Flatten(rb.velocity, rb.velocity.y / dragValue), ForceMode.VelocityChange);
         }
 

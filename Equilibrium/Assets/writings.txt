@@ -32,6 +32,12 @@ random idea: interface with action or unity event in it.
  i fukcing hate these prototypes and i dont want to make them but im kinda
  running out of shit to do here.
 
+ rename creatuer speedwrite for drag lore.
+ or just about making the whole thing make more sense in geenral.
+ dragWriter more like.
+
+ Can you improve creature code some more ??
+
 ===
 
 tomorrow (28) or after i wanna:

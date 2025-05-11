@@ -10,12 +10,12 @@ namespace Equilibrium
 
         private void Update()
         {
-            current.DoUpdate();
+            current?.DoUpdate();
         }
 
         private void FixedUpdate()
         {
-            current.DoFixedUpdate();
+            current?.DoFixedUpdate();
         }
 
         public void TransitionTo(GameState newState) 
@@ -31,7 +31,7 @@ namespace Equilibrium
                 return;
             }*/
 
-            current.ExitState();
+            current?.ExitState();
             current = newState;
             current.EnterState();
         }

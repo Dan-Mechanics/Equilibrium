@@ -94,6 +94,10 @@ namespace Equilibrium
                 runVelocity = data.runBias * data.GetSpeed(speedOffset) * Utils.Flatten(transform.position - closestDanger.transform.position).normalized;
             }
 
+            // NEW NEW N NEWENWE E !!!
+            if (idealVelocityWriter.attached == null)
+                return;
+
             Vector3 idealVelocity = chaseVelocity + runVelocity;
             idealVelocityWriter.attached.Write(idealVelocity);
 
@@ -142,7 +146,7 @@ namespace Equilibrium
 
         public int ResetCreature()
         {
-            int faction = UnityEngine.Random.Range(0, data.factionsCount);
+            int faction = Random.Range(0, data.factionsCount);
             Claim(faction);
             gameObject.SetActive(true);
             SetDieTime();
@@ -169,7 +173,7 @@ namespace Equilibrium
 
         private void MakeAsleep()
         {
-            speedOffset = UnityEngine.Random.value * data.randomSpeedIncrease;
+            speedOffset = Random.value * data.randomSpeedIncrease;
             //speedWriter.attached.Write(data.dragValue);
             awakeTime = Time.time + data.asleepTime;
         }
