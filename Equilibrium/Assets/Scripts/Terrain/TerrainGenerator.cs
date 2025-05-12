@@ -12,8 +12,11 @@ namespace Equilibrium
         [SerializeField] private MeshFilter filter = default;
         [SerializeField] private MeshCollider coll = default;
 
+        // Or we could abstract these two into onle list.
         [SerializeField] private InspectorInterface<IWritable<Vector3>> cameraPivot = default;
         [SerializeField] private InspectorInterface<IWritable<float, float>> terrainMaterial = default;
+        // Or we could abstract these two into onle list.
+
         [SerializeField] private List<InspectorInterface<IPassable<Vector3[]>>> listeners = default;
 
         private Mesh mesh;
@@ -47,7 +50,7 @@ namespace Equilibrium
 
             // You need to make sure this happens after terraianble has been referenced for this.
             //if (!keepUpdatingShader)
-                terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
+            terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
         }
 
         private Vector3[] GenerateMesh(ITerrainable terrainable)
@@ -112,7 +115,7 @@ namespace Equilibrium
             //terrainMaterial.attached.Write(terrainable, mesh);
 
             //if (keepUpdatingShader)
-            terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
+            //terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
         }
     }
 }

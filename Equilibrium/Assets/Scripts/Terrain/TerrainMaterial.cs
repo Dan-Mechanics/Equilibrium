@@ -9,22 +9,22 @@ namespace Equilibrium
     public class TerrainMaterial : MonoBehaviour, IWritable<ITerrainableColorable>, IWritable<float, float>
     {
         [SerializeField] private Material material = default;
-        [SerializeField] private Renderer _renderer = default;
-        [SerializeField] private bool keepUpdatingShader = default;
+        [SerializeField] private Renderer terrainRenderer = default;
+        //[SerializeField] private bool keepUpdatingShader = default;
 
         private ITerrainableColorable colorable;
-        private bool hasBeenUpdated;
+      //  private bool hasBeenUpdated;
 
-        private void Awake() => _renderer.material = material;
+        private void Awake() => terrainRenderer.material = material;
 
-        public void Write(ITerrainableColorable terrainable)
+        public void Write(ITerrainableColorable colorable)
         {
-            this.colorable = terrainable;
+            this.colorable = colorable;
             UpdateShaderTexture();
-            UpdateShaderBounds();
+            //UpdateShaderBounds(colorable);
         }
 
-        public void Write(float min, float max) => UpdateShaderBounds(min, max);
+        public void Write(float min, float max) => UpdateShaderBounds(min, max, colorable);
 
         private void UpdateShaderTexture() 
         {
@@ -36,18 +36,10 @@ namespace Equilibrium
             material.SetTexture("_Texture", texture);
         }
 
-        private void UpdateShaderBounds(float min, float max) 
+        private void UpdateShaderBounds(float min, float max, ITerrainableColorable colorable) 
         {
-            if (!keepUpdatingShader && hasBeenUpdated)
-                return;
-
-            hasBeenUpdated = true;
-
             min = colorable.GetColorFloor(min);
             max = colorable.GetColorCeiling(max);
-
-            /*print(min);
-            print(max);*/
 
             material.SetFloat("_WorldFloorHeight", min);
             material.SetFloat("_WorldCeilingHeight", max);
