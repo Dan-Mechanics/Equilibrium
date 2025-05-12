@@ -112,7 +112,7 @@ namespace Equilibrium
             //terrainMaterial.attached.Write(terrainable, mesh);
 
             //if (keepUpdatingShader)
-                terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
+            terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
         }
     }
 }

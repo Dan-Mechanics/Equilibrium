@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Equilibrium
 {
@@ -17,6 +18,7 @@ namespace Equilibrium
         [SerializeField] private int brushSize = default;
         [SerializeField] private float brushStrength = default;
         [SerializeField] private float brushInterval = default;
+        [SerializeField] private UnityEvent<Vector3> onClickSomehwere = default;
 
         private ITerrainable terrainable;
         private FixedTicks fixedTicks;
@@ -92,6 +94,8 @@ namespace Equilibrium
         /// <param name="point"></param>
         private void TryChangeTerrain(Vector3 point) 
         {
+            onClickSomehwere?.Invoke(point);
+            
             // because we want mesh space.
             point -= filter.transform.position;
             Vector2 offset = Vector2.zero;
@@ -146,7 +150,7 @@ namespace Equilibrium
             }
         }
 
-        public void Write(BaseTerrain obj) => this.baseTerrain = obj;
+        public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
 
         /*private void Flatten(int index, float y)
         {

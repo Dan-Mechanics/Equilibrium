@@ -21,6 +21,7 @@ namespace Equilibrium
         {
             this.colorable = terrainable;
             UpdateShaderTexture();
+            UpdateShaderBounds();
         }
 
         public void Write(float min, float max) => UpdateShaderBounds(min, max);

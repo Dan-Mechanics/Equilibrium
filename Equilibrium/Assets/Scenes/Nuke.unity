@@ -782,6 +782,21 @@ PrefabInstance:
       objectReference: {fileID: 2135685228}
     - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
         type: 3}
+      propertyPath: brushSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: brushInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: brushStrength
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
       propertyPath: listeners.Array.data[0].monoBehaviour
       value: 
       objectReference: {fileID: 2135685229}
@@ -790,6 +805,36 @@ PrefabInstance:
       propertyPath: listeners.Array.data[1].monoBehaviour
       value: 
       objectReference: {fileID: 1848321846}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1658847001}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Write
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Equilibrium.Spawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -825,7 +870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &250823181
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1533,7 +1578,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1110074324}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09f8e0bdc1d2bef4b9992081928d6043, type: 3}
   m_Name: 
@@ -1598,6 +1643,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
+      propertyPath: maps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
       propertyPath: maps.Array.data[0].baseTerrain
       value: 
       objectReference: {fileID: 11400000, guid: 5e0224b7551a2164f908df64fc469bae,
@@ -1614,6 +1664,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 314fe03b14b48144692749472375d1a3,
         type: 2}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
+      propertyPath: maps.Array.data[0].decorators.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
       propertyPath: baseListeners.Array.data[0].monoBehaviour
@@ -1637,6 +1692,12 @@ PrefabInstance:
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
       propertyPath: maps.Array.data[0].decorators.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e6b7d84b44aaf8d4a8b77b255c353ea2,
+        type: 2}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
+      propertyPath: maps.Array.data[0].decorators.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: dd98b1d45ea3728419338974038ca064,
         type: 2}
@@ -1715,9 +1776,34 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
+      propertyPath: onRefresh.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
       propertyPath: onRefresh.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 747860301}
+      objectReference: {fileID: 1211737383}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
+      propertyPath: onRefresh.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TransitionTo
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
+      propertyPath: onRefresh.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Equilibrium.GameStateMachine, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
+      propertyPath: onRefresh.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1655427240}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
+      propertyPath: onRefresh.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Equilibrium.GameState, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4226330559645307706, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
       propertyPath: m_Name
@@ -2122,6 +2208,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5031660396926063911, guid: a3c2f2c4a4177654fa4d01be68a24bd9,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031660396926063911, guid: a3c2f2c4a4177654fa4d01be68a24bd9,
+        type: 3}
       propertyPath: listeners.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -2287,7 +2378,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1359728363}
-  - component: {fileID: 1359728361}
   - component: {fileID: 1359728364}
   - component: {fileID: 1359728365}
   m_Layer: 0
@@ -2297,46 +2387,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1359728361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1359728360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47a5bd04e961a754da490af6ddc7a8fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventType: 2
-  onReceive:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1211737383}
-        m_TargetAssemblyTypeName: Equilibrium.GameStateMachine, Assembly-CSharp
-        m_MethodName: TransitionTo
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 460171540}
-          m_ObjectArgumentAssemblyTypeName: Equilibrium.GameState, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1359728365}
-        m_TargetAssemblyTypeName: Equilibrium.TimerEvent, Assembly-CSharp
-        m_MethodName: SetTimer
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 2.5
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!4 &1359728363
 Transform:
   m_ObjectHideFlags: 0
@@ -2389,24 +2439,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1359728360}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73a694d6963824e47b43a48797743e32, type: 3}
+  m_Script: {fileID: 11500000, guid: 47a5bd04e961a754da490af6ddc7a8fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDone:
+  eventType: 2
+  onReceive:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1885297341}
-        m_TargetAssemblyTypeName: Equilibrium.TerrainBuilder, Assembly-CSharp
-        m_MethodName: GoNextMap
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1211737383}
         m_TargetAssemblyTypeName: Equilibrium.GameStateMachine, Assembly-CSharp
         m_MethodName: TransitionTo
@@ -2436,7 +2475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1428089758
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2571,7 +2610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1560893109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2914,6 +2953,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7102961404993922062, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3115,6 +3159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updatables:
   - monoBehaviour: {fileID: 747860301}
+  - monoBehaviour: {fileID: 249153634}
   fixedUpdatables: []
   timeHandler: {fileID: 687402575}
   hyperSpeedScale: 3
@@ -3147,6 +3192,57 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1658847000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1658847002}
+  - component: {fileID: 1658847001}
+  m_Layer: 0
+  m_Name: nuke_spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1658847001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658847000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ccd44477d5e23b4b8900f6978510b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fromStart: 0
+  spawnData:
+    prefab: {fileID: 1585406422535107826, guid: 3182615d6e0990a4abf50acb6a86c06e,
+      type: 3}
+    count: 1
+    spawnOffset: {x: 0, y: 0, z: 0}
+    randomRot: 0
+--- !u!4 &1658847002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658847000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 21.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3228,7 +3324,19 @@ MonoBehaviour:
   fixedUpdatables: []
   onEnterState:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1211737383}
+        m_TargetAssemblyTypeName: Equilibrium.GameStateMachine, Assembly-CSharp
+        m_MethodName: TransitionTo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1655427240}
+          m_ObjectArgumentAssemblyTypeName: Equilibrium.GameState, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1871595744
 Transform:
   m_ObjectHideFlags: 0
@@ -3244,18 +3352,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1885297341 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-    type: 3}
-  m_PrefabInstance: {fileID: 738120710}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d9be7c696fd05e4bb0e36a8a7994f60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2051255576 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 229751120036161737, guid: 81aa6d4f58b11ff45b9bbbb66962e073,
@@ -4012,3 +4108,4 @@ SceneRoots:
   - {fileID: 1566245760}
   - {fileID: 1560893112}
   - {fileID: 200909043}
+  - {fileID: 1658847002}

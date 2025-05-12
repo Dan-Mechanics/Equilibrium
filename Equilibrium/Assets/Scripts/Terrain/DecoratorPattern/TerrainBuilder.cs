@@ -17,8 +17,8 @@ namespace Equilibrium
         [SerializeField] private List<InspectorInterface<IWritable<BaseTerrain>>> baseListeners = default;
         [SerializeField] private UnityEvent onRefresh = default;
 
-        private ITerrainable terrainable;
-        private ITerrainableColorable colorable;
+        // private ITerrainable terrainable;
+        // private ITerrainableColorable colorable;
 
         private void Awake()
         {
@@ -39,11 +39,11 @@ namespace Equilibrium
 
             currentMap = Mathf.Clamp(currentMap, 0, maps.Length - 1);
 
-            
-            baseListeners.ForEach(x => x.attached.Write(maps[currentMap].baseTerrain));
+            BaseTerrain baseTerrain = maps[currentMap].baseTerrain;
+            baseListeners.ForEach(x => x.attached.Write(baseTerrain));
 
-            terrainable = maps[currentMap].baseTerrain;
-            colorable = maps[currentMap].baseTerrain;
+            ITerrainable terrainable = baseTerrain;
+            ITerrainableColorable colorable = baseTerrain;
 
             EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
                     new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, maps[currentMap].baseTerrain.iconicColor, false));
@@ -66,6 +66,8 @@ namespace Equilibrium
             // the order of these is important !!
             colorListeners.ForEach(x => x.attached.Write(colorable));
             terrainListeners.ForEach(x => x.attached.Write(terrainable));
+
+            print(colorable.GetColorCeiling(10f));
 
             onRefresh?.Invoke();
         }

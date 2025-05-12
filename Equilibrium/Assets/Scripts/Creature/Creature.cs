@@ -25,6 +25,7 @@ namespace Equilibrium
         [SerializeField] private InspectorInterface<IWritable<Vector3>> idealVelocityWriter = default;
         [SerializeField] private InspectorInterface<IWritable<float>> speedWriter = default;
         [SerializeField] private Material[] materials = default;
+        // [SerializeField] private bool updateRotation = default;
 
         private float speedOffset;
         private LayerMask foodMask;
@@ -63,9 +64,6 @@ namespace Equilibrium
             // note: if it doesnt work, here is why:
             if (Utils.IsTime(dieTime)) 
             {
-                /*Die();
-                return;*/
-
                 if (Utils.RandomBool())
                 {
                     Die();

@@ -29,7 +29,7 @@ namespace Equilibrium
         /// </summary>
         /// <param name="obj"></param>
         public void Write(Vector3 obj) 
-        { 
+        {
             /*speed = obj.magnitude;
             if (speed <= 0f)
                 speed = 6f;*/
