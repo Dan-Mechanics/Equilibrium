@@ -5,6 +5,12 @@ namespace Equilibrium
 {
     public static class Utils
     {
+        public static float Root(float value) 
+        {
+            return Mathf.Pow(Mathf.Pow(value, 2f) + Mathf.Pow(value, 2f), 0.5f);
+        }
+        
+        
         public static Vector3 Flatten(Vector3 vec, float y = 0f)
         {
             vec.y = y;

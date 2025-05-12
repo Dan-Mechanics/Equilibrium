@@ -94,7 +94,7 @@ namespace Equilibrium
         /// <param name="point"></param>
         private void TryChangeTerrain(Vector3 point) 
         {
-            onClickSomehwere?.Invoke(point);
+           // onClickSomehwere?.Invoke(point);
             
             // because we want mesh space.
             point -= filter.transform.position;
@@ -106,32 +106,56 @@ namespace Equilibrium
                 {
                     Utils.SetVector2(ref offset, x, z);
 
-                    float dist = Vector2.Distance(Vector2.zero, offset);
-
-                    if (dist > brushSize)
-                        continue;
-
-                    if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x) + x, Mathf.RoundToInt(point.z) + z,
-                        terrainable.GetSize(), terrainable.GetSize(), out int index))
-                        continue;
-
-                    /*if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x + x), Mathf.RoundToInt(point.z + z),
-                        terrainable.GetSize(), terrainable.GetSize(), out int index))
-                        continue;*/
-
-                    // can we move this into the scirpt meme?
-                    if (baseTerrain.biome == Biome.Mesa)
+                    switch (baseTerrain.biome)
                     {
-                        dist = 1f - (dist / brushSize);
-                        dist *= 1.5f;
-                        //dist *= 2f;
+                        case Biome.Mesa:
+                            DoMesa(offset, point, x, z);
+                            break;
+                        case Biome.Icey:
+                            DoNormal(offset, point, x, z);
+                            break;
+                        case Biome.Serene:
+                            DoNormal(offset, point, x, z);
+                            break;
+                        default:
+                            break;
                     }
-                    else { dist = 1f; }
-
-                    Terraform(index, dist * brushStrength * brushInterval * (Input.GetKey(KeyCode.LeftShift) ? -1f : 1f));
-                    //hasChanged = true;
                 }
             }
+        }
+
+        /// <summary>
+        /// We could move this into the decorator
+        /// </summary>
+        private void DoNormal(Vector2 offset, Vector3 point, int x, int z) 
+        {
+            float dist = Vector2.Distance(Vector2.zero, offset);
+
+            if (dist > brushSize)
+                return;
+
+            if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x) + x, Mathf.RoundToInt(point.z) + z,
+                terrainable.GetSize(), terrainable.GetSize(), out int index))
+                return;
+
+            Terraform(index, brushStrength * brushInterval * (Input.GetKey(KeyCode.LeftShift) ? -1f : 1f));
+        }
+
+        private void DoMesa(Vector2 offset, Vector3 point, int x, int z)
+        {
+            float dist = Vector2.Distance(Vector2.zero, offset);
+
+            if (dist > brushSize)
+                return;
+
+            if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x) + x, Mathf.RoundToInt(point.z) + z,
+                terrainable.GetSize(), terrainable.GetSize(), out int index))
+                return;
+
+            dist = 1f - (dist / Utils.Root(brushSize));
+            dist *= 1.5f;
+            
+            Terraform(index, dist * brushStrength * brushInterval * (Input.GetKey(KeyCode.LeftShift) ? -1f : 1f));
         }
 
         private void Terraform(int index, float upwardsMeters)

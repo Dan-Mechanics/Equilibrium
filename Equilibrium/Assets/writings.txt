@@ -1,3 +1,10 @@
+these are the things i wanna add next:
+refacot naming better button to onselect and ondeselect
+and add interactable bool
+custom cursor and keep track of state.
+i want to add a "clean slate" button.
+and i maybe want the ice map to play a bit differently. i mgiht also increase the hyperspeed.
+
 i shoud prolly pivot the system away from having not-full crunch memes.
 and then disable the "update while playing" shader thing.
 also, what would happen if i removed the clamp from the color thing ? would that break everything LOL??
