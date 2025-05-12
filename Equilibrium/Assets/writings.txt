@@ -1,3 +1,5 @@
+NOTE: the nuke effect doesnt work becausei  disabled it for lag reasons.
+
 these are the things i wanna add next:
 refacot naming better button to onselect and ondeselect
 and add interactable bool

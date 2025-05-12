@@ -1,57 +1,65 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using TMPro;
+using System;
 
 namespace Equilibrium
 {
+    /// <summary>
+    /// Working on: make it have 1 button and make it use interactable and make the cursor system.
+    /// </summary>
     public class BetterButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
+        public event Action OnClick = default;
+        
         [SerializeField] private KeyCode key = KeyCode.Mouse0;
+        [SerializeField] private TMP_Text text = default;
 
         [SerializeField] private UnityEvent onClick = default;
-        [SerializeField] private UnityEvent onHighlight = default;
-        [SerializeField] private UnityEvent onLowlight = default;
-        
-        private bool isHighlighted;
+        [SerializeField] private UnityEvent onSelect = default;
+        [SerializeField] private UnityEvent onDeslect = default;
 
-        private void Start() => Low();
+        public bool interactable;
+
+        private bool isSelected;
+
+        private void Start() => Deselect();
 
         private void Update()
         {
-            if (isHighlighted && Input.GetKeyDown(key))
-                onClick?.Invoke();
-        }
-
-        //public void DoClick() => onClick?.Invoke();
-
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            if (isHighlighted)
-                return;
-            
-            High();
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            if (!isHighlighted)
+            if (!isSelected)
                 return;
 
-            Low();
+            if (!Input.GetKeyDown(key))
+                return;
+
+            OnClick?.Invoke();
+            onClick?.Invoke();
         }
 
-        private void High() 
+        public void OnPointerEnter(PointerEventData eventData) => Select();
+        public void OnPointerExit(PointerEventData eventData) => Deselect();
+        private void OnDisable() => Deselect();
+
+        private void Select() 
         {
-            isHighlighted = true;
-            onHighlight?.Invoke();
+            if (isSelected)
+                return;
+
+            isSelected = true;
+            onSelect?.Invoke();
         }
 
-        private void Low() 
+        private void Deselect() 
         {
-            isHighlighted = false;
-            onLowlight?.Invoke();
+            if (!isSelected)
+                return;
+
+            isSelected = false;
+            onDeslect?.Invoke();
         }
 
-        private void OnDisable() => Low();
+        public void SetText(string writing) => text.text = writing;
     }
 }

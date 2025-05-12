@@ -107,11 +107,11 @@ MonoBehaviour:
           m_StringArgument: simu
           m_BoolArgument: 1
         m_CallState: 2
-  onHighlight:
+  onSelect:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6176819029368520195}
-        m_TargetAssemblyTypeName: OuterWilds.ColorSetter, Assembly-CSharp
+        m_TargetAssemblyTypeName: Equilibrium.ColorSetter, Assembly-CSharp
         m_MethodName: Set
         m_Mode: 3
         m_Arguments:
@@ -123,7 +123,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 2735259118395754146}
-        m_TargetAssemblyTypeName: OuterWilds.Destroyer, Assembly-CSharp
+        m_TargetAssemblyTypeName: Equilibrium.Destroyer, Assembly-CSharp
         m_MethodName: Destroy
         m_Mode: 1
         m_Arguments:
@@ -134,11 +134,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onLowlight:
+  onDeslect:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6176819029368520195}
-        m_TargetAssemblyTypeName: OuterWilds.ColorSetter, Assembly-CSharp
+        m_TargetAssemblyTypeName: Equilibrium.ColorSetter, Assembly-CSharp
         m_MethodName: Set
         m_Mode: 3
         m_Arguments:
@@ -149,6 +149,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactable: 0
 --- !u!114 &6176819029368520195
 MonoBehaviour:
   m_ObjectHideFlags: 0
