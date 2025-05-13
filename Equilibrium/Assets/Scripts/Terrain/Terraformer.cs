@@ -37,7 +37,7 @@ namespace Equilibrium
 
         public void DoUpdate()
         {
-            hasChanged = false;
+            
 
             for (int i = 0; i < fixedTicks.GetTicksCount(Time.deltaTime); i++)
             {
@@ -65,6 +65,8 @@ namespace Equilibrium
 
             // so now we're yapping to the generator and decorations.
             listeners.ForEach(x => x.attached.Pass(ref verticies));
+
+            hasChanged = false;
         }
 
         /// <summary>
@@ -80,7 +82,7 @@ namespace Equilibrium
                 TryChangeTerrain(hit.point);
         }
 
-        private void Fill() 
+        private void Fill()
         {
             Move(1000f);
         }
@@ -92,10 +94,10 @@ namespace Equilibrium
         /// Make this part of terraform object??
         /// </summary>
         /// <param name="point"></param>
-        private void TryChangeTerrain(Vector3 point) 
+        private void TryChangeTerrain(Vector3 point)
         {
-           // onClickSomehwere?.Invoke(point);
-            
+            // onClickSomehwere?.Invoke(point);
+
             // because we want mesh space.
             point -= filter.transform.position;
             Vector2 offset = Vector2.zero;
@@ -127,7 +129,7 @@ namespace Equilibrium
         /// <summary>
         /// We could move this into the decorator
         /// </summary>
-        private void DoNormal(Vector2 offset, Vector3 point, int x, int z) 
+        private void DoNormal(Vector2 offset, Vector3 point, int x, int z)
         {
             float dist = Vector2.Distance(Vector2.zero, offset);
 
@@ -154,7 +156,7 @@ namespace Equilibrium
 
             dist = 1f - (dist / Utils.Root(brushSize));
             dist *= 1.5f;
-            
+
             Terraform(index, dist * brushStrength * brushInterval * (Input.GetKey(KeyCode.LeftShift) ? -1f : 1f));
         }
 
@@ -166,12 +168,25 @@ namespace Equilibrium
             hasChanged = true;
         }
 
-        private void Move(float amount) 
+        private void Move(float amount)
         {
             for (int i = 0; i < verticies.Length; i++)
             {
                 Terraform(i, amount * brushInterval);
             }
+        }
+
+        [ContextMenu(nameof(WipeClean))]
+        public void WipeClean() 
+        {
+            print(nameof(WipeClean));
+
+            for (int i = 0; i < verticies.Length; i++)
+            {
+                verticies[i].y = 0f;
+            }
+
+            hasChanged = true;
         }
 
         public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;

@@ -14,21 +14,25 @@ namespace Equilibrium
         public event Action OnClick = default;
         
         [SerializeField] private KeyCode key = KeyCode.Mouse0;
+        [SerializeField] private bool interactable = default;
         [SerializeField] private TMP_Text text = default;
+        [SerializeField] private GameObject interactableGraphic = default;
 
         [SerializeField] private UnityEvent onClick = default;
         [SerializeField] private UnityEvent onSelect = default;
         [SerializeField] private UnityEvent onDeslect = default;
 
-        public bool interactable;
-
         private bool isSelected;
 
-        private void Start() => Deselect();
+        private void Start() 
+        {
+            Deselect();
+            SetInteractable(interactable);
+        }
 
         private void Update()
         {
-            if (!isSelected)
+            if (!isSelected || !interactable)
                 return;
 
             if (!Input.GetKeyDown(key))
@@ -58,6 +62,12 @@ namespace Equilibrium
 
             isSelected = false;
             onDeslect?.Invoke();
+        }
+
+        public void SetInteractable(bool value) 
+        {
+            interactable = value;
+            interactableGraphic.SetActive(!value);
         }
 
         public void SetText(string writing) => text.text = writing;

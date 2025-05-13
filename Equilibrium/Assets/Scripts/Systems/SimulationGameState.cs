@@ -15,6 +15,7 @@ namespace Equilibrium
         [SerializeField] private GameObject playButton = default;
         [SerializeField] private GameObject stopButton = default;
         [SerializeField] private float simulationTime = default;
+        [SerializeField] private BetterButton wipeCleanButton = default;
         [SerializeField] private UnityEvent<string> onNewTimerText = default;
 
         private readonly Timer timer = new();
@@ -29,6 +30,8 @@ namespace Equilibrium
             creatureHandler.Respawn();
             timeHandler.SetTimeScale(hyperSpeedScale);
             timer.SetValue(simulationTime);
+
+            wipeCleanButton.SetInteractable(false);
 
             EventManager.RaiseEvent(EventManager.EventType.ROUND_START);
         }
@@ -54,6 +57,8 @@ namespace Equilibrium
             onNewTimerText?.Invoke(string.Empty);
             playButton.SetActive(true);
             stopButton.SetActive(!playButton.activeSelf);
+
+            wipeCleanButton.SetInteractable(true);
 
             timeHandler.BackToNormal();
             creatureHandler.Stop();
