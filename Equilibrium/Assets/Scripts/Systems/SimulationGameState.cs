@@ -7,15 +7,15 @@ namespace Equilibrium
 {
     public class SimulationGameState : GameState
     {
-        //[SerializeField] private GameStateMachine gameStateMachine = default;
         [SerializeField] private TimeHandler timeHandler = default;
-        [SerializeField] private float hyperSpeedScale = default;
-        //[SerializeField] private TerraformingGameState terraforming = default;
         [SerializeField] private CreatureHandler creatureHandler = default;
-        [SerializeField] private GameObject playButton = default;
-        [SerializeField] private GameObject stopButton = default;
+        [SerializeField] private float hyperSpeedScale = default;
         [SerializeField] private float simulationTime = default;
-        [SerializeField] private BetterButton wipeCleanButton = default;
+
+      //  [SerializeField] private ButtonSwapper playSwapper = default;
+        /*[SerializeField] private BetterButton waterMountainButton = default; 
+        [SerializeField] private BetterButton wipeCleanButton = default;*/
+
         [SerializeField] private UnityEvent<string> onNewTimerText = default;
 
         private readonly Timer timer = new();
@@ -24,14 +24,16 @@ namespace Equilibrium
         {
             base.EnterState();
 
-            playButton.SetActive(false);
-            stopButton.SetActive(!playButton.activeSelf);
-
+            /*playButton.SetActive(false);
+            stopButton.SetActive(!playButton.activeSelf);*/
+           // playSwapper.SetAs(false);
+            //playSwapper.BetterButton.GiveCooldown(0.5f);
             creatureHandler.Respawn();
             timeHandler.SetTimeScale(hyperSpeedScale);
             timer.SetValue(simulationTime);
 
-            wipeCleanButton.SetInteractable(false);
+          //  waterMountainButton.SetInteractable(false);
+          //  wipeCleanButton.SetInteractable(false);
 
             EventManager.RaiseEvent(EventManager.EventType.ROUND_START);
         }
@@ -55,10 +57,12 @@ namespace Equilibrium
 
             print(timer.Value);
             onNewTimerText?.Invoke(string.Empty);
-            playButton.SetActive(true);
-            stopButton.SetActive(!playButton.activeSelf);
 
-            wipeCleanButton.SetInteractable(true);
+         //   playSwapper.SetAs(true);
+          //  playSwapper.BetterButton.GiveCooldown(0.5f);
+
+         //   waterMountainButton.SetInteractable(true);
+         //   wipeCleanButton.SetInteractable(true);
 
             timeHandler.BackToNormal();
             creatureHandler.Stop();

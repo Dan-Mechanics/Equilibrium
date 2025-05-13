@@ -10,15 +10,12 @@ namespace Equilibrium
     public class TerrainBuilder : MonoBehaviour
     {
         [SerializeField] private int currentMap = default;
-        //[SerializeField] private float introductionTime = default;
         [SerializeField] private DecoratedTerrain[] maps = default;
+
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainable>>> terrainListeners = default;
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainableColorable>>> colorListeners = default;
         [SerializeField] private List<InspectorInterface<IWritable<BaseTerrain>>> baseListeners = default;
         [SerializeField] private UnityEvent onRefresh = default;
-
-        // private ITerrainable terrainable;
-        // private ITerrainableColorable colorable;
 
         private void Awake()
         {
@@ -30,13 +27,10 @@ namespace Equilibrium
             IWritable<ITerrainable>[] terrainables = FindObjectsByType<IWritable<ITerrainable>>(FindObjectsSortMode.None);*/
         }
 
-        private void Start() => Refresh();
+       // private void Start() => Refresh();
 
         private void Refresh()
         {
-            /*if (currentMap < 0 || currentMap >= maps.Length)
-                return;*/
-
             currentMap = Mathf.Clamp(currentMap, 0, maps.Length - 1);
 
             BaseTerrain baseTerrain = maps[currentMap].baseTerrain;
@@ -53,21 +47,15 @@ namespace Equilibrium
                 terrainable = maps[currentMap].decorators[i].Decorate(terrainable);
             }
 
-            /*for (int i = maps[currentMap].decorators.Length - 1; i >= 0; i--)
-            {
-                terrainable = maps[currentMap].decorators[i].Decorate(terrainable);
-            }*/
 
             for (int i = 0; i < maps[currentMap].colorDecorators.Length; i++)
             {
                 colorable = maps[currentMap].colorDecorators[i].Decorate(colorable);
             }
 
-            // the order of these is important !!
+            // The order of these is important !!
             colorListeners.ForEach(x => x.attached.Write(colorable));
             terrainListeners.ForEach(x => x.attached.Write(terrainable));
-
-            print(colorable.GetColorCeiling(10f));
 
             onRefresh?.Invoke();
         }

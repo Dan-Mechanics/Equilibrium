@@ -4,13 +4,18 @@ using UnityEngine.Events;
 
 namespace Equilibrium
 {
+    /// <summary>
+    /// This class is getting too big.
+    /// 
+    /// Please refactor with smallstate and other memes.
+    /// </summary>
     public class Terraformer : MonoBehaviour, IPassable<Vector3[]>, IDataGettable<Vector3[]>, IUpdatable, IWritable<ITerrainable>, IWritable<BaseTerrain>
     {
         public Vector3[] Data => verticies;
 
         [SerializeField] private MeshFilter filter = default;
         [SerializeField] private Camera cam = default;
-        //[SerializeField] private TerrainData data = default;
+        [SerializeField] private InspectorInterface<IDataGettable<State>> state = default;
         [SerializeField] private List<InspectorInterface<IPassable<Vector3[]>>> listeners = default;
 
         [Header("Settings")]
@@ -29,6 +34,7 @@ namespace Equilibrium
         private void Awake()
         {
             listeners.ForEach(x => x.Setup());
+            state.Setup();
             fixedTicks = new FixedTicks(brushInterval);
         }
 
@@ -37,13 +43,15 @@ namespace Equilibrium
 
         public void DoUpdate()
         {
-            
-
             for (int i = 0; i < fixedTicks.GetTicksCount(Time.deltaTime); i++)
             {
-                if (Input.GetKey(KeyCode.Mouse0) && !Input.GetKey(KeyCode.Mouse1))
+                if (state.attached.Data == State.Dragging)
+                    continue;
+                
+                if (Input.GetKey(KeyCode.Mouse0))
                     DoRaycast();
 
+                // this too.
                 if (Input.GetKey(KeyCode.UpArrow))
                     Move(8f);
 
@@ -51,14 +59,9 @@ namespace Equilibrium
                     Move(-8f);
             }
 
-            if (Input.GetKeyDown(KeyCode.F))
+            // this is for debug.
+            if (Input.GetKeyDown(KeyCode.F) && state.attached.Data != State.Dragging)
                 Fill();
-
-            /*if (Input.GetKey(KeyCode.UpArrow))
-                Move(8f);
-
-            if (Input.GetKey(KeyCode.DownArrow))
-                Move(-8f);*/
 
             if (!hasChanged)
                 return;
@@ -79,7 +82,7 @@ namespace Equilibrium
 
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, raycastSettings.range, raycastSettings.mask, QueryTriggerInteraction.Ignore))
-                TryChangeTerrain(hit.point);
+                TryChangeTerrain(hit.point, state.attached.Data == State.Mountain ? 1f : -1f);
         }
 
         private void Fill()
@@ -94,7 +97,7 @@ namespace Equilibrium
         /// Make this part of terraform object??
         /// </summary>
         /// <param name="point"></param>
-        private void TryChangeTerrain(Vector3 point)
+        private void TryChangeTerrain(Vector3 point, float dir)
         {
             // onClickSomehwere?.Invoke(point);
 
@@ -111,13 +114,13 @@ namespace Equilibrium
                     switch (baseTerrain.biome)
                     {
                         case Biome.Mesa:
-                            DoMesa(offset, point, x, z);
+                            DoMesa(offset, point, x, z, dir);
                             break;
                         case Biome.Icey:
-                            DoNormal(offset, point, x, z);
+                            DoNormal(offset, point, x, z, dir);
                             break;
                         case Biome.Serene:
-                            DoNormal(offset, point, x, z);
+                            DoNormal(offset, point, x, z, dir);
                             break;
                         default:
                             break;
@@ -129,7 +132,7 @@ namespace Equilibrium
         /// <summary>
         /// We could move this into the decorator
         /// </summary>
-        private void DoNormal(Vector2 offset, Vector3 point, int x, int z)
+        private void DoNormal(Vector2 offset, Vector3 point, int x, int z, float dir)
         {
             float dist = Vector2.Distance(Vector2.zero, offset);
 
@@ -140,10 +143,10 @@ namespace Equilibrium
                 terrainable.GetSize(), terrainable.GetSize(), out int index))
                 return;
 
-            Terraform(index, brushStrength * brushInterval * (Input.GetKey(KeyCode.LeftShift) ? -1f : 1f));
+            Terraform(index, brushStrength * brushInterval * dir);
         }
 
-        private void DoMesa(Vector2 offset, Vector3 point, int x, int z)
+        private void DoMesa(Vector2 offset, Vector3 point, int x, int z, float dir)
         {
             float dist = Vector2.Distance(Vector2.zero, offset);
 
@@ -157,7 +160,7 @@ namespace Equilibrium
             dist = 1f - (dist / Utils.Root(brushSize));
             dist *= 1.5f;
 
-            Terraform(index, dist * brushStrength * brushInterval * (Input.GetKey(KeyCode.LeftShift) ? -1f : 1f));
+            Terraform(index, dist * brushStrength * brushInterval * dir);
         }
 
         private void Terraform(int index, float upwardsMeters)

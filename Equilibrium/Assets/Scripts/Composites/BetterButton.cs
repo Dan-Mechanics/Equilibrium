@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 namespace Equilibrium
 {
@@ -11,11 +12,12 @@ namespace Equilibrium
     /// </summary>
     public class BetterButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        public event Action OnClick = default;
+        public event Action OnClick;
         
         [SerializeField] private KeyCode key = KeyCode.Mouse0;
         [SerializeField] private bool interactable = default;
         [SerializeField] private TMP_Text text = default;
+        [SerializeField] private Image image = default;
         [SerializeField] private GameObject interactableGraphic = default;
 
         [SerializeField] private UnityEvent onClick = default;
@@ -32,14 +34,17 @@ namespace Equilibrium
 
         private void Update()
         {
-            if (!isSelected || !interactable)
-                return;
-
-            if (!Input.GetKeyDown(key))
+            if (!GetHasClicked())
                 return;
 
             OnClick?.Invoke();
             onClick?.Invoke();
+        }
+
+        private bool GetHasClicked() 
+        {
+            return interactable && isSelected &&
+                gameObject.activeInHierarchy && Input.GetKeyDown(key);
         }
 
         public void OnPointerEnter(PointerEventData eventData) => Select();
@@ -70,6 +75,20 @@ namespace Equilibrium
             interactableGraphic.SetActive(!value);
         }
 
+        /// <summary>
+        /// HAKC FIX !!
+        /// </summary>
+        /// <param name="value"></param>
+        public void GiveCooldown(float value) 
+        {
+            if (!TryGetComponent(out TimerEvent timer))
+                return;
+
+            interactable = false;
+            timer.SetTimer(value);
+        }
+
         public void SetText(string writing) => text.text = writing;
+        public void SetSprite(Sprite sprite) => image.sprite = sprite;
     }
 }
