@@ -25,6 +25,7 @@ namespace Equilibrium
         [SerializeField] private UnityEvent onDeslect = default;
 
         private bool isSelected;
+        private float? interactableAgainTime;
 
         private void Start() 
         {
@@ -34,6 +35,16 @@ namespace Equilibrium
 
         private void Update()
         {
+            if (interactableAgainTime != null) 
+            {
+                float nextTime = (float)interactableAgainTime;
+                if (Time.time >= nextTime)
+                {
+                    SetInteractable(true);
+                    //interactableAgainTime = null;
+                }
+            }
+            
             if (!GetHasClicked())
                 return;
 
@@ -73,19 +84,13 @@ namespace Equilibrium
         {
             interactable = value;
             interactableGraphic.SetActive(!value);
+            interactableAgainTime = null;
         }
 
-        /// <summary>
-        /// HAKC FIX !!
-        /// </summary>
-        /// <param name="value"></param>
         public void GiveCooldown(float value) 
         {
-            if (!TryGetComponent(out TimerEvent timer))
-                return;
-
-            interactable = false;
-            timer.SetTimer(value);
+            SetInteractable(false);
+            interactableAgainTime = Time.time + value;
         }
 
         public void SetText(string writing) => text.text = writing;

@@ -63,7 +63,6 @@ namespace Equilibrium
         public void GoPreviousMap()
         {
             currentMap--;
-
             Refresh();
         }
 

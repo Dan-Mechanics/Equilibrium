@@ -16,8 +16,8 @@ namespace Equilibrium
 
         private void Start()
         {
-            a.Go(betterButton, false);
-            isPrimary = true;
+            Swap();
+            //isPrimary = true;
         }
 
         public void Swap() 
@@ -34,7 +34,7 @@ namespace Equilibrium
             }
         }
 
-        public void SetAs(bool value) 
+        /*public void SetAs(bool value) 
         {
             isPrimary = value;
 
@@ -46,7 +46,7 @@ namespace Equilibrium
             {
                 b.Go(betterButton, false);
             }
-        }
+        }*/
 
         [System.Serializable]
         public class SwapButton 
@@ -55,14 +55,13 @@ namespace Equilibrium
             public Sprite sprite;
             public UnityEvent onEnter;
 
-            public void Go(BetterButton betterButton, bool invoke = true) 
+            public void Go(BetterButton betterButton) 
             {
                 betterButton.SetText(message);
                 if (sprite != null)
                     betterButton.SetSprite(sprite);
 
-                if (invoke)
-                    onEnter?.Invoke();
+                onEnter?.Invoke();
             }
         }
     }
