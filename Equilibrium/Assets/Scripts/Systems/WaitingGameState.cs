@@ -7,6 +7,7 @@ namespace Equilibrium
     {
         [SerializeField] private float waitTime = default;
         [SerializeField] private GameStateMachine machine = default;
+        [SerializeField] private bool wdwd = false;
         [SerializeField] private TerrainBuilder builder = default;
         private readonly Timer timer = new Timer();
 
@@ -16,7 +17,9 @@ namespace Equilibrium
 
             if (timer.Tick(Time.fixedDeltaTime)) 
             {
-                machine.TransitionTo(typeof(TerraformingGameState));
+                if (!wdwd)
+                    machine.TransitionTo(typeof(TerraformingGameState));
+                else { machine.TransitionTo(typeof(SimulationGameState)); }
             }
         }
 

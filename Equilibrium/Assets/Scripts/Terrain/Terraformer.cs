@@ -99,7 +99,7 @@ namespace Equilibrium
         /// <param name="point"></param>
         private void TryChangeTerrain(Vector3 point, float dir)
         {
-            // onClickSomehwere?.Invoke(point);
+            onClickSomehwere?.Invoke(point);
 
             // because we want mesh space.
             point -= filter.transform.position;
