@@ -17,8 +17,6 @@ namespace Equilibrium
         [SerializeField] private List<InspectorInterface<IWritable<BaseTerrain>>> baseListeners = default;
         [SerializeField] private UnityEvent onRefresh = default;
 
-        public bool onStart;
-
         private void Awake()
         {
             terrainListeners.ForEach(x => x.Setup());
@@ -29,13 +27,7 @@ namespace Equilibrium
             IWritable<ITerrainable>[] terrainables = FindObjectsByType<IWritable<ITerrainable>>(FindObjectsSortMode.None);*/
         }
 
-        private void Start()
-        {
-            if (!onStart)
-                return;
-
-            Refresh();
-        }
+       // private void Start() => Refresh();
 
         private void Refresh()
         {

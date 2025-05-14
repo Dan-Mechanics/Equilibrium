@@ -26,7 +26,7 @@ namespace Equilibrium
         [SerializeField] private InspectorInterface<ISpawnable> spawner = default;  
         [SerializeField] private List<InspectorInterface<IPassable<int[]>>> factionsTallyListeners = default;
 
-        private FixedTicks fixedTicks = new FixedTicks(0.02f);
+        private FixedTicks fixedTicks;
         private readonly List<Creature> creatures = new List<Creature>();
         private int[] factionsTally;
         private bool hasChangedThisFrame;
