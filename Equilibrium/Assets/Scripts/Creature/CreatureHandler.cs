@@ -20,7 +20,6 @@ namespace Equilibrium
     public class CreatureHandler : MonoBehaviour, IDieCallback, IClaimCallback, IUpdatable, IWritable<float>, IWritable<ITerrainable>
     {
         [SerializeField] private CreatureData creatureData = default;
-        //[SerializeField] private Spawner spawner = default;
         [SerializeField] private SpawnData spawnData = default;
         [SerializeField] private InspectorInterface<IDataGettable<Vector3[]>> terrainReader = default;
         [SerializeField] private InspectorInterface<ISpawnable> spawner = default;  
@@ -151,10 +150,6 @@ namespace Equilibrium
             hasChangedThisFrame = true;
         }
 
-        /// <summary>
-        /// Or do this with eventmanager shit ??
-        /// </summary>
-        /// <param name="timeScale"></param>
         public void Write(float timeScale)
         {
             fixedTicks = new FixedTicks(creatureData.processInterval * timeScale);

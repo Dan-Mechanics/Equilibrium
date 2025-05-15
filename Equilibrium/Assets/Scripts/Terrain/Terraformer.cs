@@ -23,7 +23,6 @@ namespace Equilibrium
         [SerializeField] private int brushSize = default;
         [SerializeField] private float brushStrength = default;
         [SerializeField] private float brushInterval = default;
-        [SerializeField] private UnityEvent<Vector3> onClickSomehwere = default;
 
         private ITerrainable terrainable;
         private FixedTicks fixedTicks;
@@ -99,9 +98,7 @@ namespace Equilibrium
         /// <param name="point"></param>
         private void TryChangeTerrain(Vector3 point, float dir)
         {
-            // onClickSomehwere?.Invoke(point);
-
-            // because we want mesh space.
+            // Because we want mesh space.
             point -= filter.transform.position;
             Vector2 offset = Vector2.zero;
 
