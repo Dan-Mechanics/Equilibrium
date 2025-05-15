@@ -538,6 +538,16 @@ PrefabInstance:
       objectReference: {fileID: 2135685228}
     - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
         type: 3}
+      propertyPath: brushInterval
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: brushStrength
+      value: -35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
       propertyPath: state.monoBehaviour
       value: 
       objectReference: {fileID: 1629665987}
@@ -551,6 +561,36 @@ PrefabInstance:
       propertyPath: listeners.Array.data[1].monoBehaviour
       value: 
       objectReference: {fileID: 1848321846}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1693736959}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Write
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Equilibrium.Spawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
+        type: 3}
+      propertyPath: onClickSomehwere.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3290,6 +3330,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e17bb42b43c19c43b7e70536d06832d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1693736958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1693736960}
+  - component: {fileID: 1693736959}
+  m_Layer: 0
+  m_Name: nuke_spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1693736959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693736958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ccd44477d5e23b4b8900f6978510b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fromStart: 0
+  spawnData:
+    prefab: {fileID: 1585406422535107826, guid: 3182615d6e0990a4abf50acb6a86c06e,
+      type: 3}
+    count: 1
+    spawnOffset: {x: 0, y: 0, z: 0}
+    randomRot: 0
+--- !u!4 &1693736960
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693736958}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 21.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1848321846 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5754473356495963624, guid: bf0a8c0b75d3da34a9eba2f228ffd740,
@@ -3364,11 +3455,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updatables:
   - monoBehaviour: {fileID: 249153634}
+  - monoBehaviour: {fileID: 747860301}
   fixedUpdatables: []
   statePanel: {fileID: 745902671}
   onEnterState:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 747860301}
+        m_TargetAssemblyTypeName: Equilibrium.CreatureHandler, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1871595744
 Transform:
   m_ObjectHideFlags: 0
@@ -4461,4 +4565,5 @@ SceneRoots:
   - {fileID: 996699469}
   - {fileID: 1560893112}
   - {fileID: 1566245760}
+  - {fileID: 1693736960}
   - {fileID: 107074900}

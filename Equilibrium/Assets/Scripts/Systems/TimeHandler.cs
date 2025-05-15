@@ -24,7 +24,7 @@ namespace Equilibrium
             listeners.ForEach(x => x.attached.Write(speed));
         }
 
-        public void BackToNormal() => SetTimeScale(1f);
+        public void BackToNormal() => SetTimeScale(2f);
 
         public void Write(float t) => SetTimeScale(t);
     }

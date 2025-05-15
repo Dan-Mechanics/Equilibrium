@@ -656,6 +656,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: 225, z: 0}
+--- !u!1 &139486730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 139486731}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &139486731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139486730}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &200909041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1190,7 +1221,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   updatables: []
   fixedUpdatables: []
-  playButton: {fileID: 778071814}
+  statePanel: {fileID: 1211737380}
+  waitTime: 1
+  machine: {fileID: 1211737383}
+  builder: {fileID: 708265558}
 --- !u!1001 &531591681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1578,9 +1612,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1110074324}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 09f8e0bdc1d2bef4b9992081928d6043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &708265558 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+    type: 3}
+  m_PrefabInstance: {fileID: 738120710}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9be7c696fd05e4bb0e36a8a7994f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &738120710
@@ -2209,7 +2255,7 @@ PrefabInstance:
     - target: {fileID: 5031660396926063911, guid: a3c2f2c4a4177654fa4d01be68a24bd9,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5031660396926063911, guid: a3c2f2c4a4177654fa4d01be68a24bd9,
         type: 3}
@@ -2368,7 +2414,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c19d0b6e16b7ab428c53d3edade7013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current: {fileID: 1871595743}
+  startingState: {fileID: 460171540}
+  states:
+  - {fileID: 1871595743}
+  - {fileID: 1655427240}
+  - {fileID: 460171540}
 --- !u!1 &1359728360
 GameObject:
   m_ObjectHideFlags: 0
@@ -3161,11 +3211,10 @@ MonoBehaviour:
   - monoBehaviour: {fileID: 747860301}
   - monoBehaviour: {fileID: 249153634}
   fixedUpdatables: []
+  statePanel: {fileID: 139486730}
   timeHandler: {fileID: 687402575}
-  hyperSpeedScale: 3
   creatureHandler: {fileID: 747860301}
-  playButton: {fileID: 778071814}
-  stopButton: {fileID: 208073482}
+  hyperSpeedScale: 3
   simulationTime: 50
   onNewTimerText:
     m_PersistentCalls:
@@ -3322,6 +3371,7 @@ MonoBehaviour:
   updatables:
   - monoBehaviour: {fileID: 249153634}
   fixedUpdatables: []
+  statePanel: {fileID: 139486730}
   onEnterState:
     m_PersistentCalls:
       m_Calls:
@@ -3747,6 +3797,11 @@ PrefabInstance:
       propertyPath: _renderer
       value: 
       objectReference: {fileID: 2135685232}
+    - target: {fileID: 5003525933538287075, guid: b69c3c81475996e46b803897dc590745,
+        type: 3}
+      propertyPath: terrainRenderer
+      value: 
+      objectReference: {fileID: 2135685232}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4109,3 +4164,4 @@ SceneRoots:
   - {fileID: 1560893112}
   - {fileID: 200909043}
   - {fileID: 1658847002}
+  - {fileID: 139486731}

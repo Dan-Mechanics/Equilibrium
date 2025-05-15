@@ -27,7 +27,7 @@ namespace Equilibrium
             IWritable<ITerrainable>[] terrainables = FindObjectsByType<IWritable<ITerrainable>>(FindObjectsSortMode.None);*/
         }
 
-       // private void Start() => Refresh();
+        private void Start() => Refresh();
 
         private void Refresh()
         {
