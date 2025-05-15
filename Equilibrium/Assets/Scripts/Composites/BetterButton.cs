@@ -15,7 +15,7 @@ namespace Equilibrium
         public event Action OnClick;
         
         [SerializeField] private KeyCode key = KeyCode.Mouse0;
-        [SerializeField] private bool interactable = default;
+      //  [SerializeField] private bool interactable = default;
         [SerializeField] private TMP_Text text = default;
         [SerializeField] private Image image = default;
         [SerializeField] private GameObject interactableGraphic = default;
@@ -25,31 +25,29 @@ namespace Equilibrium
         [SerializeField] private UnityEvent onDeslect = default;
 
         private bool isSelected;
-        private float? interactableAgainTime;
+        private float interactableAgainTime;
+        private bool interactable;
 
         private void Start() 
         {
             Deselect();
-            SetInteractable(interactable);
+           // SetInteractable(interactable);
         }
-
         private void Update()
         {
-            if (interactableAgainTime != null) 
-            {
-                float nextTime = (float)interactableAgainTime;
-                if (Time.time >= nextTime)
-                {
-                    SetInteractable(true);
-                    //interactableAgainTime = null;
-                }
-            }
-            
+            interactable = Time.realtimeSinceStartup >= interactableAgainTime;
+           // interactableGraphic.SetActive(!interactable);
+
             if (!GetHasClicked())
                 return;
 
             OnClick?.Invoke();
             onClick?.Invoke();
+        }
+
+        private void FixedUpdate()
+        {
+            interactableGraphic.SetActive(!interactable);
         }
 
         private bool GetHasClicked() 
@@ -80,17 +78,17 @@ namespace Equilibrium
             onDeslect?.Invoke();
         }
 
-        public void SetInteractable(bool value) 
+        /*public void SetInteractable(bool value) 
         {
             interactable = value;
             interactableGraphic.SetActive(!value);
             interactableAgainTime = null;
-        }
+        }*/
 
         public void GiveCooldown(float value) 
         {
-            SetInteractable(false);
-            interactableAgainTime = Time.time + value;
+           // SetInteractable(false);
+            interactableAgainTime = Time.realtimeSinceStartup + value;
         }
 
         public void SetText(string writing) => text.text = writing;
