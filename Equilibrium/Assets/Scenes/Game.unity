@@ -1861,7 +1861,7 @@ MonoBehaviour:
   betterButton: {fileID: 1547329754}
   a:
     message: 
-    sprite: {fileID: 21300000, guid: 765e4c93e99562d4f8379e52d7806255, type: 3}
+    sprite: {fileID: 21300000, guid: 8dafd28bc6a75b14cbde5d095cdf972e, type: 3}
     onEnter:
       m_PersistentCalls:
         m_Calls:
@@ -3442,7 +3442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rect: {fileID: 1573724062}
-  isGame: 0
+  isGame: 1
 --- !u!1001 &1644760246
 PrefabInstance:
   m_ObjectHideFlags: 0

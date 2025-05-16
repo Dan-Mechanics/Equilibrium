@@ -9,7 +9,7 @@ namespace Equilibrium
 
         private void Start()
         {
-            if(isGame)
+            if (isGame)
                 Cursor.visible = false;
         }
 
