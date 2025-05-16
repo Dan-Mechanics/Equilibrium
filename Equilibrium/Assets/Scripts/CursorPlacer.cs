@@ -4,20 +4,23 @@ namespace Equilibrium
 {
     public class CursorPlacer : MonoBehaviour
     {
-        [SerializeField] private RectTransform rect = null;
+        [SerializeField] private RectTransform rect = default;
+        [SerializeField] private bool isGame = default;
 
         private void Start()
         {
-            Cursor.visible = false;
+            if(isGame)
+                Cursor.visible = false;
         }
 
         private void Update() => PlaceCursor();
 
         private void PlaceCursor()
         {
-            Cursor.visible = !Application.isFocused;
+            //Cursor.visible = !Application.isFocused;
             
             Vector2 cursorPosition = Input.mousePosition;
+
             cursorPosition.x -= Screen.width / 2f;
             cursorPosition.y -= Screen.height / 2f;
 

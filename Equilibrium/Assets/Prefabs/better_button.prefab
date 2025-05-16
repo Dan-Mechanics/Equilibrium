@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   key: 323
-  interactable: 1
   text: {fileID: 2133734757865620155}
   image: {fileID: 7102961404993922062}
   interactableGraphic: {fileID: 3520337429558847700}
@@ -436,7 +435,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5427576985662922188
 RectTransform:
   m_ObjectHideFlags: 0

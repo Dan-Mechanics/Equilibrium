@@ -10,7 +10,8 @@ namespace Equilibrium
         [SerializeField] private float hyperSpeedScale = default;
         [SerializeField] private float simulationTime = default;
 
-        [SerializeField] private UnityEvent<float> onNewTimerText = default;
+        [SerializeField] private UnityEvent<float> onPercentage = default;
+        [SerializeField] private UnityEvent<float> onWhole = default;
 
         private readonly Timer timer = new();
 
@@ -35,7 +36,8 @@ namespace Equilibrium
                 return;
             }
 
-            onNewTimerText?.Invoke(Mathf.Round(timer.Value));
+            onPercentage?.Invoke(timer.Value / simulationTime);
+            onWhole?.Invoke(Mathf.Floor(timer.Value));
         }
 
         public override void ExitState()
@@ -45,7 +47,7 @@ namespace Equilibrium
             print(timer.Value);
 
             // ??
-            onNewTimerText?.Invoke(0f);
+            //onNewTimerValue?.Invoke(0f);
 
             timeHandler.BackToNormal();
             creatureHandler.Stop();

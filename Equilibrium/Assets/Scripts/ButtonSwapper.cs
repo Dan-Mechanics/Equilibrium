@@ -14,11 +14,7 @@ namespace Equilibrium
 
         private bool isPrimary;
 
-        private void Start()
-        {
-            Swap();
-            //isPrimary = true;
-        }
+        private void Start() => Swap();
 
         public void Swap() 
         {
@@ -33,20 +29,6 @@ namespace Equilibrium
                 b.Go(betterButton);
             }
         }
-
-        /*public void SetAs(bool value) 
-        {
-            isPrimary = value;
-
-            if (isPrimary)
-            {
-                a.Go(betterButton, false);
-            }
-            else
-            {
-                b.Go(betterButton, false);
-            }
-        }*/
 
         [System.Serializable]
         public class SwapButton 

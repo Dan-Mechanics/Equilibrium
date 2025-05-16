@@ -13,9 +13,8 @@ namespace Equilibrium
     public class BetterButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public event Action OnClick;
-        
+
         [SerializeField] private KeyCode key = KeyCode.Mouse0;
-        [SerializeField] private bool interactable = default;
         [SerializeField] private TMP_Text text = default;
         [SerializeField] private Image image = default;
         [SerializeField] private GameObject interactableGraphic = default;
@@ -25,26 +24,17 @@ namespace Equilibrium
         [SerializeField] private UnityEvent onDeslect = default;
 
         private bool isSelected;
-        private float? interactableAgainTime;
+        private float interactableAgainTime;
+        private bool interactable;
 
-        private void Start() 
+        private void Start()
         {
             Deselect();
-            SetInteractable(interactable);
         }
-
         private void Update()
         {
-            if (interactableAgainTime != null) 
-            {
-                float nextTime = (float)interactableAgainTime;
-                if (Time.time >= nextTime)
-                {
-                    SetInteractable(true);
-                    //interactableAgainTime = null;
-                }
-            }
-            
+            interactable = Time.realtimeSinceStartup >= interactableAgainTime;
+
             if (!GetHasClicked())
                 return;
 
@@ -52,7 +42,12 @@ namespace Equilibrium
             onClick?.Invoke();
         }
 
-        private bool GetHasClicked() 
+        private void FixedUpdate()
+        {
+            interactableGraphic.SetActive(!interactable);
+        }
+
+        private bool GetHasClicked()
         {
             return interactable && isSelected &&
                 gameObject.activeInHierarchy && Input.GetKeyDown(key);
@@ -62,7 +57,7 @@ namespace Equilibrium
         public void OnPointerExit(PointerEventData eventData) => Deselect();
         private void OnDisable() => Deselect();
 
-        private void Select() 
+        private void Select()
         {
             if (isSelected)
                 return;
@@ -71,7 +66,7 @@ namespace Equilibrium
             onSelect?.Invoke();
         }
 
-        private void Deselect() 
+        private void Deselect()
         {
             if (!isSelected)
                 return;
@@ -80,20 +75,19 @@ namespace Equilibrium
             onDeslect?.Invoke();
         }
 
-        public void SetInteractable(bool value) 
+        public void GiveCooldown(float value)
         {
-            interactable = value;
-            interactableGraphic.SetActive(!value);
-            interactableAgainTime = null;
+            interactableAgainTime = Time.realtimeSinceStartup + value;
         }
 
-        public void GiveCooldown(float value) 
+        public void SetText(string writing) 
         {
-            SetInteractable(false);
-            interactableAgainTime = Time.time + value;
+            if (text == null)
+                return;
+
+            text.text = writing;
         }
 
-        public void SetText(string writing) => text.text = writing;
         public void SetSprite(Sprite sprite) => image.sprite = sprite;
     }
 }
