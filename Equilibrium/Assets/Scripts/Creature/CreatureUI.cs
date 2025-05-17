@@ -15,6 +15,11 @@ namespace Equilibrium
         [SerializeField] private Transform barsHolder = default;
         [SerializeField] private CreatureData creatureData = default;
 
+        [SerializeField] private TMP_Text yapText = default;
+        [SerializeField] private TMP_Text referenceText = default;
+
+        private readonly Color[] colors = { Color.red, Color.green, Color.blue };
+        private readonly string[] colorNames = { "red", "green", "blue" };
         // agian, could use interfaces for this...
         //[SerializeField] private CreatureHandler handler = default;
 
@@ -43,6 +48,11 @@ namespace Equilibrium
 
                 displays[i].boss.SetActive(displays[i].image.fillAmount > 0f);
             }
+
+            int smallest = Utils.GetSmallestFloat(factionsTally);
+
+            yapText.color = colors[smallest];
+            yapText.text = $"you want {colorNames[smallest]} to survive for {referenceText.text}".ToUpper();
         }
 
         [Serializable]

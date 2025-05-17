@@ -73,6 +73,23 @@ namespace Equilibrium
             rb.AddForce(-vel, ForceMode.VelocityChange);
         }*/
 
+        public static int GetSmallestFloat(int[] array) 
+        {
+            int index = 0;
+            int value = array[index];
+
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i] < value)
+                {
+                    index = i;
+                    value = array[index];
+                }
+            }
+
+            return index;
+        }
+
         public static bool TryGetIndexFromPos(int x, int z, int maxX, int maxZ, out int index)
         {
             index = 0;

@@ -42,25 +42,8 @@ namespace Equilibrium
 
         public void ProcessFixedFrame()
         {
-            // note: if it doesnt work, here is why:
-            if (Utils.IsTime(dieTime)) 
-            {
-                if (Utils.RandomBool())
-                {
-                    Die();
-                    return;
-                }
-                else
-                {
-                    SetDieTime();
-                }
-            }
-            
-            if (transform.position.y <= data.deathPitHeight)
-            {
-                Die();
+            if (CheckDeath())
                 return;
-            }
 
             if (TryFindClosestOfMask(foodMask, data.foodSeeingRange, out Utils.ClosestPair closestFood))
             {
@@ -77,13 +60,49 @@ namespace Equilibrium
 
             Vector3 idealVelocity = chaseVelocity + runVelocity;
 
-            if (biome == Biome.Icey)
-                idealVelocity *= 0.5f;
+            /*switch (biome)
+            {
+                case Biome.Mesa:
+                    idealVelocity *= 0.5f;
+                    break;
+                case Biome.Icey:
+                    idealVelocity *= 1.5f;
+                    break;
+                case Biome.Serene:
+                    break;
+                default:
+                    break;
+            }*/
 
             idealVelocityWriter.attached.Write(idealVelocity);
 
             if (idealVelocity != Vector3.zero)
                 transform.forward = idealVelocity;
+        }
+
+        private bool CheckDeath() 
+        {
+            // note: if it doesnt work, here is why:
+            if (Utils.IsTime(dieTime))
+            {
+                if (Utils.RandomBool())
+                {
+                    Die();
+                    return true;
+                }
+                else
+                {
+                    SetDieTime();
+                }
+            }
+
+            if (transform.position.y <= data.deathPitHeight)
+            {
+                Die();
+                return true;
+            }
+
+            return false;
         }
 
         private void TryEat(ref Utils.ClosestPair closestFood)
@@ -118,7 +137,6 @@ namespace Equilibrium
         private void ClaimByCreature(int factionIndex)
         {
             Claim(factionIndex);
-
             claimCallback.ClaimCallback(factionIndex);
         }
 

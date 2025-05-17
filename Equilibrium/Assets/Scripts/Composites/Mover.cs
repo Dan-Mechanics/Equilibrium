@@ -34,8 +34,8 @@ namespace Equilibrium
 
             velocity.y /= fallingSpeed;
 
-            rb.AddForce(-velocity);
-            rb.AddForce(idealVelocity, ForceMode.VelocityChange);
+            //rb.AddForce(-velocity);
+            rb.AddForce(idealVelocity - velocity, ForceMode.VelocityChange);
         }
 
         private void OnEnable()
