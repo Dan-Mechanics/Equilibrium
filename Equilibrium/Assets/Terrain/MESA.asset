@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biome: 0
   waterHeight: -0.1
+  brush: {fileID: 11400000, guid: f25b0f001ea1b294da862ae04f07dfbe, type: 2}
   iconicColor: {r: 0.6792453, g: 0.14989251, b: 0, a: 1}
   backgroundColor: {r: 0.90588236, g: 0.6745098, b: 0.5921569, a: 1}
   size: 100

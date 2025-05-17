@@ -10,8 +10,8 @@ namespace Equilibrium
 
         public void Write(BaseTerrain terrain) 
         {
-            if (terrain.backgroundColor.a < 1f)
-                Debug.LogWarning("if (terrain.backgroundColor.a < 1f)");
+            /*if (terrain.backgroundColor.a < 1f)
+                Debug.LogWarning("if (terrain.backgroundColor.a < 1f)");*/
             
             cam.backgroundColor = terrain.backgroundColor;
             RenderSettings.fogColor = terrain.backgroundColor;

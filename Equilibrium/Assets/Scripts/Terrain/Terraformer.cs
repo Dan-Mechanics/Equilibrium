@@ -76,9 +76,7 @@ namespace Equilibrium
         /// </summary>
         private void DoRaycast()
         {
-            /*if (!Input.GetKey(KeyCode.Mouse0))
-                return;*/
-
+            //Debug.Log("hello");
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, raycastSettings.range, raycastSettings.mask, QueryTriggerInteraction.Ignore))
                 TryChangeTerrain(hit.point, state.attached.Data == State.Mountain ? 1f : -1f);
@@ -89,15 +87,10 @@ namespace Equilibrium
             Move(1000f);
         }
 
-        // need tools for this ish.
-        // maybe state machine esque object.
-
-        /// <summary>
-        /// Make this part of terraform object??
-        /// </summary>
-        /// <param name="point"></param>
         private void TryChangeTerrain(Vector3 point, float dir)
         {
+           // Debug.Log("hello");
+
             // Because we want mesh space.
             point -= filter.transform.position;
             Vector2 offset = Vector2.zero;
@@ -108,56 +101,18 @@ namespace Equilibrium
                 {
                     Utils.SetVector2(ref offset, x, z);
 
-                    switch (baseTerrain.biome)
-                    {
-                        case Biome.Mesa:
-                            DoMesa(offset, point, x, z, dir);
-                            break;
-                        case Biome.Icey:
-                            DoNormal(offset, point, x, z, dir);
-                            break;
-                        case Biome.Serene:
-                            DoNormal(offset, point, x, z, dir);
-                            break;
-                        default:
-                            break;
-                    }
+                    float dist = Vector2.Distance(Vector2.zero, offset);
+
+                    if (dist > brushSize)
+                        continue;
+
+                    if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x) + x, Mathf.RoundToInt(point.z) + z,
+                        terrainable.GetSize(), terrainable.GetSize(), out int index))
+                        continue;
+
+                    Terraform(index, brushStrength * baseTerrain.brush.GetBrushMod(dist, brushSize) * brushInterval * dir);
                 }
             }
-        }
-
-        /// <summary>
-        /// We could move this into the decorator
-        /// </summary>
-        private void DoNormal(Vector2 offset, Vector3 point, int x, int z, float dir)
-        {
-            float dist = Vector2.Distance(Vector2.zero, offset);
-
-            if (dist > brushSize)
-                return;
-
-            if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x) + x, Mathf.RoundToInt(point.z) + z,
-                terrainable.GetSize(), terrainable.GetSize(), out int index))
-                return;
-
-            Terraform(index, brushStrength * brushInterval * dir);
-        }
-
-        private void DoMesa(Vector2 offset, Vector3 point, int x, int z, float dir)
-        {
-            float dist = Vector2.Distance(Vector2.zero, offset);
-
-            if (dist > brushSize)
-                return;
-
-            if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x) + x, Mathf.RoundToInt(point.z) + z,
-                terrainable.GetSize(), terrainable.GetSize(), out int index))
-                return;
-
-            dist = 1f - (dist / Utils.Root(brushSize));
-            dist *= 1.5f;
-
-            Terraform(index, dist * brushStrength * brushInterval * dir);
         }
 
         private void Terraform(int index, float upwardsMeters)
