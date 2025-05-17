@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Equilibrium
 {
@@ -8,6 +9,8 @@ namespace Equilibrium
         [SerializeField] private List<InspectorInterface<IUpdatable>> updatables = default;
         [SerializeField] private List<InspectorInterface<IFixedUpdatable>> fixedUpdatables = default;
         [SerializeField] private GameObject statePanel = default;
+        [SerializeField] private UnityEvent onEnter = default;
+        [SerializeField] private UnityEvent onExit = default;
 
         public virtual void Awake() 
         {
@@ -30,11 +33,13 @@ namespace Equilibrium
         public virtual void EnterState() 
         {
             statePanel.SetActive(true);
+            onEnter?.Invoke();
         }
 
         public virtual void ExitState() 
         {
             statePanel.SetActive(false);
+            onExit?.Invoke();
         }
     }
 }

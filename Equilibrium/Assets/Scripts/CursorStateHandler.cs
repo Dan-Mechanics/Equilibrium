@@ -5,7 +5,7 @@ using System;
 
 namespace Equilibrium
 {
-    public enum State { Mountain = 0, Water = 1, Dragging = 2 }
+    public enum State { Mountain = 0, Water = 1, Dragging = 2, Simulating = 3}
 
     /// <summary>
     /// This code does not seem very scalable.
@@ -19,6 +19,7 @@ namespace Equilibrium
 
         [SerializeField] private bool isMountain = default;
         [SerializeField] private bool isDragging = default;
+        [SerializeField] private bool isSimulating = default;
 
         private void Awake()
         {
@@ -39,6 +40,12 @@ namespace Equilibrium
             RefreshState();
         }
 
+        public void SetSimulating(bool value)
+        {
+            isSimulating = value;
+            RefreshState();
+        }
+
         private void RefreshState()
         {
             state = CalculateState();
@@ -49,6 +56,9 @@ namespace Equilibrium
         {
             if (isDragging)
                 return State.Dragging;
+
+            if (isSimulating)
+                return State.Simulating;
 
             return isMountain ? State.Mountain : State.Water;
         }

@@ -17,7 +17,7 @@ namespace Equilibrium
     /// This code is a little bit overengineerd i think.
     /// i think i can make some conrete interfaces like IClaimCallback and IDieCallback or something
     /// </summary>
-    public class CreatureHandler : MonoBehaviour, IDieCallback, IClaimCallback, IUpdatable, IWritable<float>, IWritable<ITerrainable>
+    public class CreatureHandler : MonoBehaviour, IDieCallback, IClaimCallback, IUpdatable, IWritable<float>, IWritable<ITerrainable>, IWritable<BaseTerrain>
     {
         [SerializeField] private CreatureData creatureData = default;
         [SerializeField] private SpawnData spawnData = default;
@@ -30,6 +30,7 @@ namespace Equilibrium
         private int[] factionsTally;
         private bool hasChangedThisFrame;
         private ITerrainable terrainable;
+        private BaseTerrain baseTerrain;
 
         private void Awake()
         {
@@ -40,6 +41,13 @@ namespace Equilibrium
         }
 
         private void Start() => SendTally();
+
+        public void Write(float timeScale)
+        {
+            fixedTicks = new FixedTicks(creatureData.processInterval * timeScale);
+        }
+        public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
+        public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
 
         public void DoUpdate() 
         {
@@ -71,9 +79,7 @@ namespace Equilibrium
                 {
                     if (factionsTally[i] <= 0)
                     {
-                        //onLoseRound?.Invoke();
                         EventManager.RaiseEvent(EventManager.EventType.ROUND_LOSE);
-                        //print("L ...");
                         return;
                     }
                 }
@@ -129,7 +135,7 @@ namespace Equilibrium
         private void ResetCreature(Creature creature, ref Vector3[] verts)
         {
             creature.transform.position = Utils.GetRandomVertexWorldSpace(ref verts, terrainable) + spawnData.spawnOffset;
-            TallyFaction(creature.ResetCreature(), 1); // use the int here.
+            TallyFaction(creature.ResetCreature(baseTerrain.biome), 1); // use the int here.
         }
 
         public void DieCallback(int faction) => TallyFaction(faction, -1);
@@ -149,12 +155,5 @@ namespace Equilibrium
 
             hasChangedThisFrame = true;
         }
-
-        public void Write(float timeScale)
-        {
-            fixedTicks = new FixedTicks(creatureData.processInterval * timeScale);
-        }
-
-        public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
     }
 }

@@ -18,7 +18,7 @@ MonoBehaviour:
   eatingRange: 2
   asleepTime: 0.15
   size: 1
-  dragValue: 15
+  fallingSpeed: 15
   factionsCount: 3
   creatureSpawnCount: 100
   randomSpeedIncrease: 3

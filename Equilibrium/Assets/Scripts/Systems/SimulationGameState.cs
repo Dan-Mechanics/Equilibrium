@@ -46,9 +46,6 @@ namespace Equilibrium
 
             print(timer.Value);
 
-            // ??
-            //onNewTimerValue?.Invoke(0f);
-
             timeHandler.BackToNormal();
             creatureHandler.Stop();
         }

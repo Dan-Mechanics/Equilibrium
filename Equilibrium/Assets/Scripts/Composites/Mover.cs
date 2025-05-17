@@ -6,38 +6,42 @@ namespace Equilibrium
     {
         [SerializeField] private Rigidbody rb = default;
 
+        private Vector3 velocity;
         private Vector3 idealVelocity;
-        private float dragValue;
+        private float fallingSpeed;
 
         private void Start()
         {
             rb.sleepThreshold = 0f;
         }
 
-        public void Write(Vector3 velocity)
+        public void Write(Vector3 idealVelocity) 
         {
-            idealVelocity = velocity;
+            idealVelocity.y = 0f;
+            this.idealVelocity = idealVelocity;
         }
 
-        public void Write(float dragValue) 
+        public void Write(float dragValue) => this.fallingSpeed = dragValue;
+
+        private void FixedUpdate() => Move();
+
+        private void Move()
         {
-            this.dragValue = dragValue;
-        }
+            velocity = rb.velocity;
 
-        private void FixedUpdate()
-        {
-            /*if (idealVelocity == Vector3.zero)
-                return;*/
+            /*if (fallingSpeed < 1f)
+                fallingSpeed = 1f;*/
 
-            if (dragValue == 0f)
-                dragValue = 15f;
+            velocity.y /= fallingSpeed;
 
-            rb.AddForce(idealVelocity - Utils.Flatten(rb.velocity, rb.velocity.y / dragValue), ForceMode.VelocityChange);
+            rb.AddForce(-velocity);
+            rb.AddForce(idealVelocity, ForceMode.VelocityChange);
         }
 
         private void OnEnable()
         {
             rb.velocity = Vector3.zero;
+            idealVelocity = Vector3.zero;
         }
     }
 }

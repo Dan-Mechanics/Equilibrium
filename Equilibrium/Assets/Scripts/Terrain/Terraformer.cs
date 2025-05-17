@@ -94,7 +94,7 @@ namespace Equilibrium
             // Because we want mesh space.
             point -= filter.transform.position;
             Vector2 offset = Vector2.zero;
-
+            
             for (int x = -brushSize; x <= brushSize; x++)
             {
                 for (int z = -brushSize; z <= brushSize; z++)
@@ -106,9 +106,13 @@ namespace Equilibrium
                     if (dist > brushSize)
                         continue;
 
-                    if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x) + x, Mathf.RoundToInt(point.z) + z,
+                    if (!Utils.TryGetIndexFromPos((int)point.x + x, (int)point.z + z,
                         terrainable.GetSize(), terrainable.GetSize(), out int index))
                         continue;
+
+                    /*if (!Utils.TryGetIndexFromPos(baseTerrain.brush.GetRound(point.x, x), baseTerrain.brush.GetRound(point.z, z),
+                        terrainable.GetSize(), terrainable.GetSize(), out int index))
+                        continue;*/
 
                     Terraform(index, brushStrength * baseTerrain.brush.GetBrushMod(dist, brushSize) * brushInterval * dir);
                 }

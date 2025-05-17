@@ -1,3 +1,17 @@
+    /// <summary>
+    /// Note: use interfaces for beter performance prolly.
+    /// 
+    /// Improvements:
+    /// interfaces 
+    /// proper object pooling system ish
+    /// maybe working with spawner is a little more intuative but its fine.
+    /// 
+    /// Tally update is a little better.
+    /// 
+    /// 
+    /// YOU COULd perchance implemenet something which limits the vertical speed of the thing.
+    /// </summary>
+
 i wanan add somethinh that makes the cursor less anoyying to mess with.
 
 it could be a smart idea to assign the player to the blue color

@@ -21,7 +21,7 @@ namespace Equilibrium
         private void Start()
         {
             creature.Setup(this, creatureHandler);
-            creature.ResetCreature();
+            creature.ResetCreature(Biome.Mesa);
         }
 
         /// <summary>

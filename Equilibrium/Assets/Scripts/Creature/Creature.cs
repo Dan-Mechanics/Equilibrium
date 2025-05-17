@@ -2,19 +2,6 @@ using UnityEngine;
 
 namespace Equilibrium
 {
-    /// <summary>
-    /// Note: use interfaces for beter performance prolly.
-    /// 
-    /// Improvements:
-    /// interfaces 
-    /// proper object pooling system ish
-    /// maybe working with spawner is a little more intuative but its fine.
-    /// 
-    /// Tally update is a little better.
-    /// 
-    /// 
-    /// YOU COULd perchance implemenet something which limits the vertical speed of the thing.
-    /// </summary>
     public class Creature : MonoBehaviour
     {
         private bool IsAwake => Utils.IsTime(awakeTime);
@@ -23,9 +10,8 @@ namespace Equilibrium
         [SerializeField] private MeshRenderer rend = default;
         [SerializeField] private int firstLayerIndex = default;
         [SerializeField] private InspectorInterface<IWritable<Vector3>> idealVelocityWriter = default;
-        [SerializeField] private InspectorInterface<IWritable<float>> speedWriter = default;
+        [SerializeField] private InspectorInterface<IWritable<float>> fallingSpeedWriter = default;
         [SerializeField] private Material[] materials = default;
-        // [SerializeField] private bool updateRotation = default;
 
         private float speedOffset;
         private LayerMask foodMask;
@@ -34,26 +20,21 @@ namespace Equilibrium
         private float awakeTime;
         private Vector3 runVelocity;
         private Vector3 chaseVelocity;
-        //private FixedTicks fixedTicks;
         private IDieCallback dieCallback;
         private IClaimCallback claimCallback;
         private float dieTime;
+        private Biome biome;
 
-        /// <summary>
-        /// USE INTERFACE !!!
-        /// </summary>
-        /// <param name="handler"></param>
         public void Setup(IDieCallback dieCallback, IClaimCallback claimCallback)
         {
             idealVelocityWriter.Setup();
-            speedWriter.Setup();
+            fallingSpeedWriter.Setup();
 
-            //fixedTicks = new FixedTicks(data.processInterval);
             transform.localScale = Vector3.one * data.size;
             this.dieCallback = dieCallback;
             this.claimCallback = claimCallback;
 
-            speedWriter.attached.Write(data.dragValue);
+            fallingSpeedWriter.attached.Write(data.fallingSpeed);
 
             if (materials.Length != data.factionsCount)
                 Debug.LogError("if(materials.Length != data.factionsCount)");
@@ -88,15 +69,17 @@ namespace Equilibrium
             }
 
             if (TryFindClosestOfMask(dangerMask, data.dangerSeeingRange, out Utils.ClosestPair closestDanger))
-            {
                 runVelocity = data.runBias * data.GetSpeed(speedOffset) * Utils.Flatten(transform.position - closestDanger.transform.position).normalized;
-            }
 
             // NEW NEW N NEWENWE E !!!
-            if (idealVelocityWriter.attached == null)
-                return;
+            /*if (idealVelocityWriter.attached == null)
+                return;*/
 
             Vector3 idealVelocity = chaseVelocity + runVelocity;
+
+            if (biome == Biome.Icey)
+                idealVelocity *= 0.5f;
+
             idealVelocityWriter.attached.Write(idealVelocity);
 
             if (idealVelocity != Vector3.zero)
@@ -134,20 +117,18 @@ namespace Equilibrium
 
         private void ClaimByCreature(int factionIndex)
         {
-            /*if (!IsAwake)
-                return;*/
-
             Claim(factionIndex);
 
             claimCallback.ClaimCallback(factionIndex);
         }
 
-        public int ResetCreature()
+        public int ResetCreature(Biome biome)
         {
             int faction = Random.Range(0, data.factionsCount);
             Claim(faction);
             gameObject.SetActive(true);
             SetDieTime();
+            this.biome = biome;
 
             return faction;
         }
@@ -172,7 +153,6 @@ namespace Equilibrium
         private void MakeAsleep()
         {
             speedOffset = Random.value * data.randomSpeedIncrease;
-            //speedWriter.attached.Write(data.dragValue);
             awakeTime = Time.time + data.asleepTime;
         }
 

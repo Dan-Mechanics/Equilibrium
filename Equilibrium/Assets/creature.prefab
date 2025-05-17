@@ -322,7 +322,7 @@ MonoBehaviour:
   firstLayerIndex: 6
   idealVelocityWriter:
     monoBehaviour: {fileID: 6091088694263051008}
-  speedWriter:
+  fallingSpeedWriter:
     monoBehaviour: {fileID: 6091088694263051008}
   materials:
   - {fileID: 2100000, guid: 2c8943fc8c3140842a683f34995b662a, type: 2}
@@ -354,7 +354,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 749251271216906692}
-  topSpeed: 0
 --- !u!1 &8665525649546845872
 GameObject:
   m_ObjectHideFlags: 0
