@@ -21,6 +21,6 @@ MonoBehaviour:
   spawnDatas:
   - prefab: {fileID: 3837364881763130312, guid: 80db7dd53e2b6ff4facc93f7c1d1b8d3,
       type: 3}
-    count: 50
+    count: 25
     spawnOffset: {x: 0, y: 1.48, z: 0}
     randomRot: 1
