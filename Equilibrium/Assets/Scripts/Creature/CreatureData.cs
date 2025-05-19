@@ -21,9 +21,26 @@ namespace Equilibrium
         [Min(0.02f)] public float aliveTimeWithoutFood;
         [Min(0.02f)] public float processInterval;
 
-        public float GetSpeed(float speedOffset) 
+        public float GetSpeed(Biome biome) 
         {
-            return baseSpeed + speedOffset;
+            float speed = baseSpeed + Random.value * randomSpeedIncrease;
+
+            // Or something idk.
+            switch (biome)
+            {
+                case Biome.Mesa:
+                    speed *= 0.75f;
+                    break;
+                case Biome.Icey:
+                    speed *= 1.25f;
+                    break;
+                case Biome.Serene:
+                    break;
+                default:
+                    break;
+            }
+
+            return speed;
         }
     }
 }
