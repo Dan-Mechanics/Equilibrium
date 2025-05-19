@@ -8,9 +8,14 @@ namespace Equilibrium
         [SerializeField] private EventManager.EventType eventType = default;
         [SerializeField] private UnityEvent onReceive = default;
 
-        private void Awake()
+        private void OnEnable()
         {
             EventManager.AddListener(eventType, Receive);
+        }
+
+        private void OnDisable()
+        {
+            EventManager.RemoveListener(eventType, Receive);
         }
 
         private void Receive(EventManager.EventType eventType) => onReceive?.Invoke();

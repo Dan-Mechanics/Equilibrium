@@ -13,9 +13,8 @@ namespace Equilibrium
     public class BetterButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public event Action OnClick;
-        
+
         [SerializeField] private KeyCode key = KeyCode.Mouse0;
-      //  [SerializeField] private bool interactable = default;
         [SerializeField] private TMP_Text text = default;
         [SerializeField] private Image image = default;
         [SerializeField] private GameObject interactableGraphic = default;
@@ -28,15 +27,13 @@ namespace Equilibrium
         private float interactableAgainTime;
         private bool interactable;
 
-        private void Start() 
+        private void Start()
         {
             Deselect();
-           // SetInteractable(interactable);
         }
         private void Update()
         {
             interactable = Time.realtimeSinceStartup >= interactableAgainTime;
-           // interactableGraphic.SetActive(!interactable);
 
             if (!GetHasClicked())
                 return;
@@ -50,7 +47,7 @@ namespace Equilibrium
             interactableGraphic.SetActive(!interactable);
         }
 
-        private bool GetHasClicked() 
+        private bool GetHasClicked()
         {
             return interactable && isSelected &&
                 gameObject.activeInHierarchy && Input.GetKeyDown(key);
@@ -60,7 +57,7 @@ namespace Equilibrium
         public void OnPointerExit(PointerEventData eventData) => Deselect();
         private void OnDisable() => Deselect();
 
-        private void Select() 
+        private void Select()
         {
             if (isSelected)
                 return;
@@ -69,7 +66,7 @@ namespace Equilibrium
             onSelect?.Invoke();
         }
 
-        private void Deselect() 
+        private void Deselect()
         {
             if (!isSelected)
                 return;
@@ -78,20 +75,19 @@ namespace Equilibrium
             onDeslect?.Invoke();
         }
 
-        /*public void SetInteractable(bool value) 
+        public void GiveCooldown(float value)
         {
-            interactable = value;
-            interactableGraphic.SetActive(!value);
-            interactableAgainTime = null;
-        }*/
-
-        public void GiveCooldown(float value) 
-        {
-           // SetInteractable(false);
             interactableAgainTime = Time.realtimeSinceStartup + value;
         }
 
-        public void SetText(string writing) => text.text = writing;
+        public void SetText(string writing) 
+        {
+            if (text == null)
+                return;
+
+            text.text = writing;
+        }
+
         public void SetSprite(Sprite sprite) => image.sprite = sprite;
     }
 }

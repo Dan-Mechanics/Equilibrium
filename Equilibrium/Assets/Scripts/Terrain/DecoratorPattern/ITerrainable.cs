@@ -22,6 +22,5 @@ namespace Equilibrium
         void SetHeightTerraform(float x, ref float y, float z);
         int GetSize();
         float GetWaterHeight();
-        //Biome GetBiome();
     }
 }

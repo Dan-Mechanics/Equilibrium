@@ -11,7 +11,7 @@ namespace Equilibrium
         [Min(0f)] public float eatingRange;
         [Min(0f)] public float asleepTime;
         [Min(0f)] public float size;
-        [Min(0f)] public float dragValue;
+        [Min(1f)] public float fallingSpeed;
         [Min(1)] public int factionsCount;
         [Min(1)] public int creatureSpawnCount;
         public float randomSpeedIncrease;
@@ -21,17 +21,9 @@ namespace Equilibrium
         [Min(0.02f)] public float aliveTimeWithoutFood;
         [Min(0.02f)] public float processInterval;
 
-        /// <summary>
-        /// prolly should move these to utils.
-        /// </summary>
         public float GetSpeed(float speedOffset) 
         {
             return baseSpeed + speedOffset;
-        }
-
-        public void OnValidate()
-        {
-            //eatingRange = Mathf.Pow(Mathf.Pow(size + 0.1f, 2f) + Mathf.Pow(size + 0.1f, 2f), 0.5f) + 0.1f;
         }
     }
 }

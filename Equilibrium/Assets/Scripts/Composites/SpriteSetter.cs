@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace Equilibrium
 {
     [RequireComponent(typeof(Image))]
-    public class SpriteSetter : MonoBehaviour
+    public class SpriteSetter : MonoBehaviour, IWritable<int>
     {
         [SerializeField] private Sprite[] sprites = default;
         
@@ -19,5 +19,7 @@ namespace Equilibrium
 
             image.sprite = sprites[index];
         }
+
+        public void Write(int obj) => Set(obj);
     }
 }

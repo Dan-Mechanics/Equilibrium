@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.Events;
 
 namespace Equilibrium
@@ -12,11 +10,8 @@ namespace Equilibrium
         [SerializeField] private float hyperSpeedScale = default;
         [SerializeField] private float simulationTime = default;
 
-      //  [SerializeField] private ButtonSwapper playSwapper = default;
-        /*[SerializeField] private BetterButton waterMountainButton = default; 
-        [SerializeField] private BetterButton wipeCleanButton = default;*/
-
-        [SerializeField] private UnityEvent<string> onNewTimerText = default;
+        [SerializeField] private UnityEvent<float> onPercentage = default;
+        [SerializeField] private UnityEvent<float> onWhole = default;
 
         private readonly Timer timer = new();
 
@@ -24,16 +19,9 @@ namespace Equilibrium
         {
             base.EnterState();
 
-            /*playButton.SetActive(false);
-            stopButton.SetActive(!playButton.activeSelf);*/
-           // playSwapper.SetAs(false);
-            //playSwapper.BetterButton.GiveCooldown(0.5f);
             creatureHandler.Respawn();
             timeHandler.SetTimeScale(hyperSpeedScale);
             timer.SetValue(simulationTime);
-
-          //  waterMountainButton.SetInteractable(false);
-          //  wipeCleanButton.SetInteractable(false);
 
             EventManager.RaiseEvent(EventManager.EventType.ROUND_START);
         }
@@ -48,7 +36,8 @@ namespace Equilibrium
                 return;
             }
 
-            onNewTimerText?.Invoke(Mathf.Round(timer.Value).ToString());
+            onPercentage?.Invoke(timer.Value / simulationTime);
+            onWhole?.Invoke(Mathf.Floor(timer.Value));
         }
 
         public override void ExitState()
@@ -56,13 +45,6 @@ namespace Equilibrium
             base.ExitState();
 
             print(timer.Value);
-            onNewTimerText?.Invoke(string.Empty);
-
-         //   playSwapper.SetAs(true);
-          //  playSwapper.BetterButton.GiveCooldown(0.5f);
-
-         //   waterMountainButton.SetInteractable(true);
-         //   wipeCleanButton.SetInteractable(true);
 
             timeHandler.BackToNormal();
             creatureHandler.Stop();

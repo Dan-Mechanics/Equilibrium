@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   biome: 1
   waterHeight: -0.1
+  brush: {fileID: 11400000, guid: 8e8caee6fe12c7043a7637e956f65cab, type: 2}
   iconicColor: {r: 0.6933962, g: 0.9023749, b: 1, a: 1}
   backgroundColor: {r: 0.65281236, g: 0.8107596, b: 0.8490566, a: 1}
   size: 100
   spawnDatas:
-  - prefab: {fileID: 919132149155446097, guid: 5b1014fb87e698843ba68edc3778ec4d, type: 3}
+  - prefab: {fileID: 7788512137081495790, guid: 5be191654d162394789ed49cae3a64bc,
+      type: 3}
     count: 25
     spawnOffset: {x: 0, y: -0.3, z: 0}
     randomRot: 1
