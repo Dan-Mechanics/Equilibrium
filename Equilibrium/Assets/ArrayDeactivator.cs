@@ -11,7 +11,7 @@ namespace Equilibrium
         {
             for (int i = 0; i < array.Length; i++)
             {
-                gameObject.SetActive(i == onIndex);
+                array[i].SetActive(i == onIndex);
             }
         }
     }
