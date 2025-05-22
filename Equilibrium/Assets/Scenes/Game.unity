@@ -1052,7 +1052,7 @@ MonoBehaviour:
   onExit:
     m_PersistentCalls:
       m_Calls: []
-  waitTime: 0.3
+  waitTime: 0.1
   machine: {fileID: 1211737383}
   builder: {fileID: 1885297341}
 --- !u!1 &495357997
