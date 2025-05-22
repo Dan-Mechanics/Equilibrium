@@ -148,3 +148,43 @@ maps met kleuren
 
 10 mei:
 2 uur decorator logic verbeteren en title handler logic.
+
+11 mei:
+3 uur doelgroep aanscherpen en fps game protype maken.
+
+12 mei:
+nuke prototype maken en environment color height fixen
+en buttons verbeteren
+
+12 + 1 mei:
+2 uur 30 min buttons beter maken / gameflow.
+
+14 mei:
+5 uur playtest gedaan.
+
+15:
+2 uur 40 min custom cursor, playtest samenvatting, denken over richitng game, code opschonen, 
+
+16 mei:
+
+2 uur 24 min buttons maken etc
+30 mins meer buttons maken
+
+17 mei:
+2.5 uur meer buttons, cursor logic, newiwe text, doel communcaite, betere code
+
+18 mei:
+2 uur tutorial maken, town map, design
+40 min eindpresi slides maken.
+
+19 mei:
+2.5 uur presi maken, poster maken, system aanscherpen, town map editen, etc etc
+
+20 mei:
+2 uur en 50 min eidnpresi maken.
+
+21 mei:
+2.5 uur eidnpreis maken en peergroep overleg.
+
+22 mei:
+2.5 uur eindpresi, itch.io, eindscherm, polish
