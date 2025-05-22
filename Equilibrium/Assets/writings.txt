@@ -1,3 +1,11 @@
+stuff still to do for
+outer wilds:
+playtest printen, herontwerp beschrijven, meer werken aan implementatie playtest
+shit printen, itch.io maken et c etc etc, video maken, build maken en die uploaden, presi uploaden, oefenen etc etc.
+pmi shit afronden, shit op ithc.io zettne, eindscherm eindscherm tekeken.
+
+nu: you won screen final, fix town color introdctions name
+
 for next:
 fix water
 make you win screen.

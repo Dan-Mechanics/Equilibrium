@@ -15,7 +15,7 @@ MonoBehaviour:
   biome: 2
   waterHeight: -0.1
   brush: {fileID: 11400000, guid: 4474416cb0953264db9fe53d63a01adc, type: 2}
-  iconicColor: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+  iconicColor: {r: 0, g: 0, b: 0, a: 1}
   backgroundColor: {r: 0.514151, g: 0.8441272, b: 1, a: 1}
   size: 100
   spawnDatas:
