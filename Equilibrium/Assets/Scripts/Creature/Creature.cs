@@ -13,7 +13,7 @@ namespace Equilibrium
         [SerializeField] private InspectorInterface<IWritable<float>> fallingSpeedWriter = default;
         [SerializeField] private Material[] materials = default;
 
-        private float speedOffset;
+        private float speed;
         private LayerMask foodMask;
         private LayerMask dangerMask;
         private int factionIndex;
@@ -23,7 +23,7 @@ namespace Equilibrium
         private IDieCallback dieCallback;
         private IClaimCallback claimCallback;
         private float dieTime;
-        private Biome biome;
+        private Biome currentBiome;
 
         public void Setup(IDieCallback dieCallback, IClaimCallback claimCallback)
         {
@@ -47,32 +47,14 @@ namespace Equilibrium
 
             if (TryFindClosestOfMask(foodMask, data.foodSeeingRange, out Utils.ClosestPair closestFood))
             {
-                chaseVelocity = data.chaseBias * data.GetSpeed(speedOffset) * Utils.Flatten(closestFood.transform.position - transform.position).normalized;
+                chaseVelocity = data.chaseBias * speed * Utils.Flatten(closestFood.transform.position - transform.position).normalized;
                 TryEat(ref closestFood);
             }
 
             if (TryFindClosestOfMask(dangerMask, data.dangerSeeingRange, out Utils.ClosestPair closestDanger))
-                runVelocity = data.runBias * data.GetSpeed(speedOffset) * Utils.Flatten(transform.position - closestDanger.transform.position).normalized;
-
-            // NEW NEW N NEWENWE E !!!
-            /*if (idealVelocityWriter.attached == null)
-                return;*/
+                runVelocity = data.runBias * speed * Utils.Flatten(transform.position - closestDanger.transform.position).normalized;
 
             Vector3 idealVelocity = chaseVelocity + runVelocity;
-
-            /*switch (biome)
-            {
-                case Biome.Mesa:
-                    idealVelocity *= 0.5f;
-                    break;
-                case Biome.Icey:
-                    idealVelocity *= 1.5f;
-                    break;
-                case Biome.Serene:
-                    break;
-                default:
-                    break;
-            }*/
 
             idealVelocityWriter.attached.Write(idealVelocity);
 
@@ -85,6 +67,10 @@ namespace Equilibrium
             // note: if it doesnt work, here is why:
             if (Utils.IsTime(dieTime))
             {
+                // CHANGE CHANGE CHANGE HERE !!!
+                /*Die();
+                return true;*/
+
                 if (Utils.RandomBool())
                 {
                     Die();
@@ -116,7 +102,7 @@ namespace Equilibrium
             SetDieTime();
 
             closestFood.component.GetComponent<Creature>().ClaimByCreature(factionIndex);
-            MakeAsleep();
+            Refresh();
         }
 
         private bool TryFindClosestOfMask(LayerMask mask, float seeingRange, out Utils.ClosestPair closest)
@@ -140,17 +126,20 @@ namespace Equilibrium
             claimCallback.ClaimCallback(factionIndex);
         }
 
-        public int ResetCreature(Biome biome)
+        public int ResetCreature(Biome currentBiome)
         {
             int faction = Random.Range(0, data.factionsCount);
             Claim(faction);
             gameObject.SetActive(true);
             SetDieTime();
-            this.biome = biome;
+            this.currentBiome = currentBiome;
 
             return faction;
         }
 
+        /// <summary>
+        /// This should be called when we are eaten also.
+        /// </summary>
         private void SetDieTime()
         {
             dieTime = Time.time + data.aliveTimeWithoutFood;
@@ -165,13 +154,16 @@ namespace Equilibrium
             foodMask = 1 << (firstLayerIndex + Utils.WrapIndex(factionIndex, 1, materials.Length));
             dangerMask = 1 << (firstLayerIndex + Utils.WrapIndex(factionIndex, 2, materials.Length));
 
-            MakeAsleep();
+            Refresh();
         }
 
-        private void MakeAsleep()
+        private void Refresh()
         {
-            speedOffset = Random.value * data.randomSpeedIncrease;
+            speed = data.GetSpeed(currentBiome);
             awakeTime = Time.time + data.asleepTime;
+
+            // NEW NEW NEW.
+            //SetDieTime();
         }
 
         /// <summary>

@@ -6,6 +6,11 @@ namespace Equilibrium
 {
     /// <summary>
     /// TEMP NAME
+    /// There's nothing more permanent than a temporary name.
+    /// 
+    /// This class's responsiblitties are a little large lol XD.
+    /// But then it means i would need to make a new class that is like 
+    /// an intermediary and that takes too much time i think right about now but maybe thats exactly what i need tho.
     /// </summary>
     public class TerrainBuilder : MonoBehaviour
     {
@@ -16,6 +21,7 @@ namespace Equilibrium
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainableColorable>>> colorListeners = default;
         [SerializeField] private List<InspectorInterface<IWritable<BaseTerrain>>> baseListeners = default;
         [SerializeField] private UnityEvent onRefresh = default;
+        [SerializeField] private UnityEvent onUpperLimitReached = default;
 
         private void Awake()
         {
@@ -27,11 +33,17 @@ namespace Equilibrium
             IWritable<ITerrainable>[] terrainables = FindObjectsByType<IWritable<ITerrainable>>(FindObjectsSortMode.None);*/
         }
 
-        private void Start() => Refresh();
-
         private void Refresh()
         {
-            currentMap = Mathf.Clamp(currentMap, 0, maps.Length - 1);
+            if (currentMap < 0)
+                currentMap = 0;
+
+            if (currentMap >= maps.Length) 
+            {
+                onUpperLimitReached?.Invoke();
+                currentMap = maps.Length - 1;
+                return;
+            }
 
             BaseTerrain baseTerrain = maps[currentMap].baseTerrain;
             baseListeners.ForEach(x => x.attached.Write(baseTerrain));
@@ -46,7 +58,6 @@ namespace Equilibrium
             {
                 terrainable = maps[currentMap].decorators[i].Decorate(terrainable);
             }
-
 
             for (int i = 0; i < maps[currentMap].colorDecorators.Length; i++)
             {
