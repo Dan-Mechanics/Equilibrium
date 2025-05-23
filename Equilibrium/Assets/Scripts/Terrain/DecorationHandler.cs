@@ -16,11 +16,7 @@ namespace Equilibrium
         private ITerrainable terrainable;
         private BaseTerrain baseTerrain;
 
-        private void Awake()
-        {
-            spawner.Setup();
-        }
-
+        private void Awake() => spawner.Setup();
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
         public void Pass(ref Vector3[] verts) => TryPlaceAll(ref verts);
 
