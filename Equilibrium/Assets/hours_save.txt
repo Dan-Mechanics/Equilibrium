@@ -188,3 +188,9 @@ en buttons verbeteren
 
 22 mei:
 2.5 uur eindpresi, itch.io, eindscherm, polish
+
+23 mei:
+3.5 uur itch.io, presi, texture, UI, project cleanup, water texture, building, peergroep overleg
+
+24 mei:
+3 uur werken aan eindpresi, tooltips, build maken, sensitivity adjustment
