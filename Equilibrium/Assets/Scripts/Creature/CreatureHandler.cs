@@ -26,7 +26,7 @@ namespace Equilibrium
         [SerializeField] private List<InspectorInterface<IPassable<int[]>>> factionsTallyListeners = default;
 
         private FixedTicks fixedTicks;
-        private readonly List<Creature> creatures = new List<Creature>();
+        private readonly List<CreatureBehaviour> creatures = new List<CreatureBehaviour>();
         private int[] factionsTally;
         private bool hasChangedThisFrame;
         private ITerrainable terrainable;
@@ -130,13 +130,13 @@ namespace Equilibrium
         {
             for (int i = 0; i < creatureData.creatureSpawnCount; i++)
             {
-                Creature creature = spawner.attached.SpawnSingle(spawnData).GetComponent<Creature>();
+                CreatureBehaviour creature = spawner.attached.SpawnSingle(spawnData).GetComponent<CreatureBehaviour>();
                 creature.Setup(this, this);
                 creatures.Add(creature);
             }
         }
 
-        private void ResetCreature(Creature creature, ref Vector3[] verts)
+        private void ResetCreature(CreatureBehaviour creature, ref Vector3[] verts)
         {
             creature.transform.position = Utils.GetRandomVertexWorldSpace(ref verts, terrainable) + spawnData.spawnOffset;
             TallyFaction(creature.ResetCreature(baseTerrain.biome), 1); // use the int here.

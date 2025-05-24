@@ -5,7 +5,7 @@ namespace Equilibrium
     /// <summary>
     /// AKA creature behaviour
     /// </summary>
-    public class Creature : MonoBehaviour
+    public class CreatureBehaviour : MonoBehaviour
     {
         private bool IsAwake => Utils.IsTime(awakeTime);
 
@@ -104,7 +104,7 @@ namespace Equilibrium
 
             SetDieTime();
 
-            closestFood.component.GetComponent<Creature>().ClaimByCreature(factionIndex);
+            closestFood.component.GetComponent<CreatureBehaviour>().ClaimByCreature(factionIndex);
             Refresh();
         }
 
