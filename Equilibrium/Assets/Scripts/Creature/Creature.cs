@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Equilibrium
 {
+    /// <summary>
+    /// AKA creature behaviour
+    /// </summary>
     public class Creature : MonoBehaviour
     {
         private bool IsAwake => Utils.IsTime(awakeTime);

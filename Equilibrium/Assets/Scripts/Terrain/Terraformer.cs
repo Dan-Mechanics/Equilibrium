@@ -49,25 +49,16 @@ namespace Equilibrium
                 
                 if (Input.GetKey(KeyCode.Mouse0))
                     DoRaycast();
-
-                // this too.
-                if (Input.GetKey(KeyCode.UpArrow))
-                    Move(8f);
-
-                if (Input.GetKey(KeyCode.DownArrow))
-                    Move(-8f);
             }
 
-            // this is for debug.
-            if (Input.GetKeyDown(KeyCode.F) && state.attached.Data != State.Dragging)
-                Fill();
+            if (Input.GetKey(KeyCode.LeftShift))
+                DoDebug();
 
             if (!hasChanged)
                 return;
 
             // so now we're yapping to the generator and decorations.
             listeners.ForEach(x => x.attached.Pass(ref verticies));
-
             hasChanged = false;
         }
 
@@ -76,22 +67,26 @@ namespace Equilibrium
         /// </summary>
         private void DoRaycast()
         {
-            //Debug.Log("hello");
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, raycastSettings.range, raycastSettings.mask, QueryTriggerInteraction.Ignore))
                 TryChangeTerrain(hit.point, state.attached.Data == State.Mountain ? 1f : -1f);
         }
 
-        private void Fill()
+        private void DoDebug() 
         {
-            Move(1000f);
+            if (Input.GetKeyDown(KeyCode.F))
+                Move(1000f);
+
+            // this too.
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+                Move(50f);
+
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+                Move(-50f);
         }
 
         private void TryChangeTerrain(Vector3 point, float dir)
         {
-           // Debug.Log("hello");
-
-            // Because we want mesh space.
             point -= filter.transform.position;
             Vector2 offset = Vector2.zero;
             

@@ -40,7 +40,11 @@ namespace Equilibrium
             spawner.Setup();
         }
 
-        private void Start() => SendTally();
+        private void Start() 
+        {
+            SendTally();
+            UnityEngine.Random.InitState(0);
+        }
 
         public void Write(float timeScale)
         {
