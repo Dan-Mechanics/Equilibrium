@@ -32,10 +32,10 @@ namespace Equilibrium
             rotation.x = Mathf.Clamp(rotation.x, minAngle, maxAngle);
             transform.localRotation = Quaternion.Euler(rotation);
 
-            if (Input.GetKey(KeyCode.LeftShift))
-                return;
+            /*if (Input.GetKey(KeyCode.LeftShift))
+                return;*/
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            /*if (Input.GetKeyDown(KeyCode.UpArrow))
             {
                 sensitivity *= 2f;
                 onSensChange?.Invoke(sensitivity);
@@ -45,7 +45,13 @@ namespace Equilibrium
             {
                 sensitivity /= 2f;
                 onSensChange?.Invoke(sensitivity);
-            }
+            }*/
+        }
+
+        public void ModifySens(float value) 
+        {
+            sensitivity *= value;
+            onSensChange?.Invoke(sensitivity);
         }
     }
 }
