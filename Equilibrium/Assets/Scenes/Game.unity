@@ -5934,6 +5934,11 @@ PrefabInstance:
       propertyPath: referenceText
       value: 
       objectReference: {fileID: 250823182}
+    - target: {fileID: 8211612423830256730, guid: fc4e4c334155e764b80e7541a7b49d55,
+        type: 3}
+      propertyPath: winConditonTimer
+      value: 
+      objectReference: {fileID: 459015136}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

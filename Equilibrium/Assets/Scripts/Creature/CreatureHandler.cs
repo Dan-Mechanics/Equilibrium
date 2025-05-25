@@ -50,6 +50,7 @@ namespace Equilibrium
         {
             fixedTicks = new FixedTicks(creatureData.processInterval * timeScale);
         }
+
         public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
 
