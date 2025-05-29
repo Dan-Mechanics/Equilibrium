@@ -10,11 +10,11 @@ namespace Equilibrium
     /// <summary>
     /// This code does not seem very scalable.
     /// </summary>
-    public class CursorStateHandler : MonoBehaviour, IDataGettable<State>
+    public class CursorStateHandler : MonoBehaviour, IGetter<State>
     {
         [SerializeField] private InspectorInterface<IWritable<int>> spriteSetter = default;
 
-        public State Data => state;
+        //public State Data => state;
         private State state;
 
         [SerializeField] private bool isMountain = default;
@@ -63,5 +63,6 @@ namespace Equilibrium
             return isMountain ? State.Mountain : State.Water;
         }
 
+        public State Get() => state;
     }
 }

@@ -17,11 +17,11 @@ namespace Equilibrium
     /// This code is a little bit overengineerd i think.
     /// i think i can make some conrete interfaces like IClaimCallback and IDieCallback or something
     /// </summary>
-    public class CreatureHandler : MonoBehaviour, IDieCallback, IClaimCallback, IUpdatable, IWritable<float>, IWritable<ITerrainable>, IWritable<BaseTerrain>
+    public class CreatureHandler : MonoBehaviour, ICreatureCallbacks, IUpdatable, IWritable<float>, IWritable<ITerrainable>, IWritable<BaseTerrain>
     {
         [SerializeField] private CreatureData data = default;
         [SerializeField] private SpawnData spawnData = default;
-        [SerializeField] private InspectorInterface<IDataGettable<Vector3[]>> terrainReader = default;
+        [SerializeField] private InspectorInterface<IGetter<Vector3[]>> terrainReader = default;
         [SerializeField] private InspectorInterface<ISpawnable> spawner = default;  
         [SerializeField] private List<InspectorInterface<IWritable<int[]>>> factionsTallyListeners = default;
 
@@ -103,7 +103,7 @@ namespace Equilibrium
                 factionsTally[i] = 0;
             }
 
-            Vector3[] verts = terrainReader.attached.Data;
+            Vector3[] verts = terrainReader.attached.Get();
             for (int i = 0; i < creatures.Length; i++)
             {
                 ResetCreature(creatures[i], verts);
@@ -112,7 +112,6 @@ namespace Equilibrium
             SendTally();
         }
 
-        //[ContextMenu(nameof(Stop))]
         public void Stop()
         {
             if (creatures == null || creatures.Length <= 0 || creatures[0] == null)
@@ -143,7 +142,7 @@ namespace Equilibrium
             for (int i = 0; i < creatures.Length; i++)
             {
                 CreatureBehaviour newCreature = spawner.attached.SpawnSingle(spawnData).GetComponent<CreatureBehaviour>();
-                newCreature.Setup(this, this);
+                newCreature.Setup(this);
                 creatures[i] = newCreature;
             }
         }
@@ -154,7 +153,8 @@ namespace Equilibrium
         private void ResetCreature(CreatureBehaviour creature, Vector3[] verts)
         {
             creature.transform.position = Utils.GetRandomVertexWorldSpace(verts, terrainable) + spawnData.spawnOffset;
-            TallyFaction(creature.ResetCreature(baseTerrain.biome), 1); // use the int here.
+
+            TallyFaction(creature.ResetCreature(baseTerrain), 1); // use the int here.
         }
 
         public void DieCallback(int faction) => TallyFaction(faction, -1);

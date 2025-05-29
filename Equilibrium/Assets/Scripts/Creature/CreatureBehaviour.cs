@@ -18,10 +18,7 @@ namespace Equilibrium
         /// </summary>
         [SerializeField] private InspectorInterface<IWritable<Vector3>> idealVelocityWriter = default;
         [SerializeField] private InspectorInterface<IWritable<float>> fallingSpeedWriter = default;
-        //[SerializeField] private Material[] materials = default;
 
-
-        //private Collider[] foundColliders;
         private float speed;
         private LayerMask foodMask;
         private LayerMask dangerMask;
@@ -29,28 +26,21 @@ namespace Equilibrium
         private float awakeTime;
         private Vector3 runVelocity;
         private Vector3 chaseVelocity;
-        private IDieCallback dieCallback;
-        private IClaimCallback claimCallback;
+        private ICreatureCallbacks creatureCallback;
         private float dieTime;
-        private Biome currentBiome;
+        private BaseTerrain baseTerrain;
         private Vector3 idealVelocity;
         private Utils.ClosestPair closest;
 
-        public void Setup(IDieCallback dieCallback, IClaimCallback claimCallback)
+        public void Setup(ICreatureCallbacks creatureCallback)
         {
-            //data.foundColliders = new Collider[data.creatureSearchBufferSize];
-
             idealVelocityWriter.Setup();
             fallingSpeedWriter.Setup();
 
             transform.localScale = Vector3.one * data.size;
-            this.dieCallback = dieCallback;
-            this.claimCallback = claimCallback;
+            this.creatureCallback = creatureCallback;
 
             fallingSpeedWriter.attached.Write(data.fallingSpeed);
-
-            /*if (data.materials.Length != data.factionsCount)
-                Debug.LogError("if(materials.Length != data.factionsCount)");*/
         }
 
         public void ProcessFixedFrame()
@@ -129,16 +119,17 @@ namespace Equilibrium
         private void ClaimByCreature(int factionIndex)
         {
             Claim(factionIndex);
-            claimCallback.ClaimCallback(factionIndex);
+            creatureCallback.ClaimCallback(factionIndex);
         }
 
-        public int ResetCreature(Biome currentBiome)
+        public int ResetCreature(BaseTerrain baseTerrain)
         {
+            this.baseTerrain = baseTerrain;
+
             int faction = Random.Range(0, data.factionsCount);
             Claim(faction);
             gameObject.SetActive(true);
             SetDieTime();
-            this.currentBiome = currentBiome;
 
             return faction;
         }
@@ -165,7 +156,7 @@ namespace Equilibrium
 
         private void Refresh()
         {
-            speed = data.GetSpeed(currentBiome);
+            speed = data.GetSpeed(baseTerrain.speedMod);
             awakeTime = Time.time + data.asleepTime;
 
             // NEW NEW NEW.
@@ -178,7 +169,7 @@ namespace Equilibrium
         private void Die() 
         {
             gameObject.SetActive(false);
-            dieCallback.DieCallback(factionIndex);
+            creatureCallback.DieCallback(factionIndex);
         }
     }
 }

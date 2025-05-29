@@ -31,24 +31,10 @@ namespace Equilibrium
         /// <summary>
         /// Consider removing this and just giving the environment a base speed thing.
         /// </summary>
-        public float GetSpeed(Biome biome) 
+        public float GetSpeed(float speedMod) 
         {
             float speed = baseSpeed + Random.value * randomSpeedIncrease;
-
-            // Or something idk.
-            switch (biome)
-            {
-                case Biome.Mesa:
-                    speed *= 0.75f;
-                    break;
-                case Biome.Icey:
-                    speed *= 1.25f;
-                    break;
-                case Biome.Serene:
-                    break;
-                default:
-                    break;
-            }
+            speed *= speedMod;
 
             return speed;
         }

@@ -6,7 +6,8 @@ namespace Equilibrium
     public class BaseTerrain : ScriptableObject, ITerrainable, ITerrainableColorable
     {
         [Header("Terrain")]
-        public Biome biome;
+        //public Biome biome;
+        public float speedMod;
         public float waterHeight;
         public BaseBrush brush;
         public Color iconicColor; 

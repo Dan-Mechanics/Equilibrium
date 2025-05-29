@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed88d3ebad106a49b93e2f82d6f60b4, type: 3}
   m_Name: ICEY
   m_EditorClassIdentifier: 
-  biome: 1
+  speedMod: 1.25
   waterHeight: -0.1
   brush: {fileID: 11400000, guid: 461f49776e92974478dd9ee719475a27, type: 2}
   iconicColor: {r: 0.6933962, g: 0.9023749, b: 1, a: 1}

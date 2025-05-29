@@ -9,13 +9,11 @@ namespace Equilibrium
     /// 
     /// Please refactor with smallstate and other memes.
     /// </summary>
-    public class Terraformer : MonoBehaviour, IWritable<Vector3[]>, IDataGettable<Vector3[]>, IUpdatable, IWritable<ITerrainable>, IWritable<BaseTerrain>
+    public class Terraformer : MonoBehaviour, IWritable<Vector3[]>, IGetter<Vector3[]>, IUpdatable, IWritable<ITerrainable>, IWritable<BaseTerrain>
     {
-        public Vector3[] Data => verticies;
-
         [SerializeField] private MeshFilter filter = default;
         [SerializeField] private Camera cam = default;
-        [SerializeField] private InspectorInterface<IDataGettable<State>> state = default;
+        [SerializeField] private InspectorInterface<IGetter<State>> state = default;
         [SerializeField] private List<InspectorInterface<IWritable<Vector3[]>>> listeners = default;
 
         [Header("Settings")]
@@ -39,10 +37,12 @@ namespace Equilibrium
 
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
         public void Write(Vector3[] verts) => verticies = verts;
+        public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
+        public Vector3[] Get() => verticies;
 
         public void DoUpdate()
         {
-            if (state.attached.Data == State.Dragging)
+            if (state.attached.Get() == State.Dragging)
                 return;
 
             for (int i = 0; i < fixedTicks.GetTicksCount(Time.deltaTime); i++)
@@ -69,7 +69,7 @@ namespace Equilibrium
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, raycastSettings.range, raycastSettings.mask, QueryTriggerInteraction.Ignore))
-                TryChangeTerrain(hit.point, state.attached.Data == State.Mountain ? 1f : -1f);
+                TryChangeTerrain(hit.point, state.attached.Get() == State.Mountain ? 1f : -1f);
         }
 
         private void DoDebug() 
@@ -135,7 +135,5 @@ namespace Equilibrium
 
             hasChanged = true;
         }
-
-        public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
     }
 }
