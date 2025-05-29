@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 8171498796991992907}
   - component: {fileID: 749251271216906692}
   - component: {fileID: 8805197571556557963}
-  - component: {fileID: 6091088694263051008}
+  - component: {fileID: 1927454600933384110}
   m_Layer: 9
   m_Name: creature
   m_TagString: Untagged
@@ -320,10 +320,10 @@ MonoBehaviour:
   rend: {fileID: 8417072742981633920}
   firstLayerIndex: 6
   idealVelocityWriter:
-    monoBehaviour: {fileID: 6091088694263051008}
+    monoBehaviour: {fileID: 1927454600933384110}
   fallingSpeedWriter:
-    monoBehaviour: {fileID: 6091088694263051008}
---- !u!114 &6091088694263051008
+    monoBehaviour: {fileID: 1927454600933384110}
+--- !u!114 &1927454600933384110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

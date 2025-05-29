@@ -21,7 +21,7 @@ namespace Equilibrium
             this.idealVelocity = idealVelocity;
         }
 
-        public void Write(float dragValue) => this.fallingSpeed = dragValue;
+        public void Write(float fallingSpeed) => this.fallingSpeed = fallingSpeed;
 
         private void FixedUpdate() => Move();
 
