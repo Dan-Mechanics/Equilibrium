@@ -108,42 +108,25 @@ namespace Equilibrium
         /// One could make this non-alloc.
         /// One could remvoe the guard clauses and it would might be better.
         /// </summary>
-        public static bool GetClosest(Component[] components, Vector3 toPoint, out ClosestPair closest)
+        public static void GetClosest(Component[] components, int length, Vector3 toPoint, out ClosestPair closest)
         {
-            /*if (components.Length <= 0)
-            {
-                closest = default;
-                return false;
-            }*/
-
-            //closest = new ClosestPair(components[0], Vector3.Distance(toPoint, components[0].transform.position));
-
-            // return early.
-            /*if (components.Length == 1)
-                return true;*/
+            float tempDist = Vector3.Distance(toPoint, components[0].transform.position);
+            
             closest = default;
-            float tempDist = 0f;
+            closest.Set(components[0], tempDist);
 
-            /*for (int i = 1; i < components.Length; i++)
+            for (int i = 1; i < length; i++)
             {
                 tempDist = Vector3.Distance(toPoint, components[i].transform.position);
 
-                if (tempDist < closest.distance)
+                //Debug.Log($"if ({tempDist} < {closest.distance})");
+
+                if (tempDist < closest.distance || i == 0)
+                {
+                   // Debug.Log("hello");
                     closest.Set(components[i], tempDist);
-            }*/
-
-            for (int i = 0; i < components.Length; i++)
-            {
-                if (components[i] == null)
-                    continue;
-
-                tempDist = Vector3.Distance(toPoint, components[i].transform.position);
-
-                if (tempDist < closest.distance)
-                    closest.Set(components[i], tempDist);
+                }
             }
-
-            return tempDist != 0f;
         }
 
         public static bool IsTime(float time) 
@@ -154,7 +137,7 @@ namespace Equilibrium
         public struct ClosestPair 
         {
             public Component component;
-            public Transform transform => component.transform;
+            public Transform transform => component?.transform;
             public float distance;
 
             public ClosestPair(Component component, float distance)

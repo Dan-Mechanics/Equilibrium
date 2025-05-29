@@ -32,3 +32,29 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 2c8943fc8c3140842a683f34995b662a, type: 2}
   - {fileID: 2100000, guid: 273751ff940c68b439444b141dec4cbc, type: 2}
   - {fileID: 2100000, guid: e35a6cf64b5422b45b4e52ad440bd66f, type: 2}
+  foundColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

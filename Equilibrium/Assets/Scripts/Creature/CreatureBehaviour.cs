@@ -21,7 +21,7 @@ namespace Equilibrium
         //[SerializeField] private Material[] materials = default;
 
 
-        private Collider[] found;
+        //private Collider[] foundColliders;
         private float speed;
         private LayerMask foodMask;
         private LayerMask dangerMask;
@@ -38,7 +38,7 @@ namespace Equilibrium
 
         public void Setup(IDieCallback dieCallback, IClaimCallback claimCallback)
         {
-            found = new Collider[data.creatureSearchBufferSize];
+            //data.foundColliders = new Collider[data.creatureSearchBufferSize];
 
             idealVelocityWriter.Setup();
             fallingSpeedWriter.Setup();
@@ -119,19 +119,11 @@ namespace Equilibrium
 
         private bool TryFindClosestOfMask(LayerMask mask, float seeingRange)
         {
-            //closest = default;
+            int foundCount = Physics.OverlapSphereNonAlloc(transform.position, seeingRange, data.foundColliders, mask, QueryTriggerInteraction.Ignore);
 
-            // Garbage collector GOOO !!
-            //Collider[] found = Physics.OverlapSphere(transform.position, seeingRange, mask, QueryTriggerInteraction.Ignore);
+            Utils.GetClosest(data.foundColliders, foundCount, transform.position, out closest);
 
-            Physics.OverlapSphereNonAlloc(transform.position, seeingRange, found, mask, QueryTriggerInteraction.Ignore);
-
-            /*if (found.Length <= 0)
-                return false;*/
-
-            //Utils.GetClosest(found, transform.position, out closest);
-
-            return Utils.GetClosest(found, transform.position, out closest);
+            return foundCount > 0;
         }
 
         private void ClaimByCreature(int factionIndex)

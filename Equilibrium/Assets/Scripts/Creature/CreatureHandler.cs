@@ -19,7 +19,7 @@ namespace Equilibrium
     /// </summary>
     public class CreatureHandler : MonoBehaviour, IDieCallback, IClaimCallback, IUpdatable, IWritable<float>, IWritable<ITerrainable>, IWritable<BaseTerrain>
     {
-        [SerializeField] private CreatureData creatureData = default;
+        [SerializeField] private CreatureData data = default;
         [SerializeField] private SpawnData spawnData = default;
         [SerializeField] private InspectorInterface<IDataGettable<Vector3[]>> terrainReader = default;
         [SerializeField] private InspectorInterface<ISpawnable> spawner = default;  
@@ -34,10 +34,10 @@ namespace Equilibrium
 
         private void Awake()
         {
-            creatures = new CreatureBehaviour[creatureData.creatureSpawnCount];
+            creatures = new CreatureBehaviour[data.creatureSpawnCount];
             terrainReader.Setup();
             factionsTallyListeners.ForEach(x => x.Setup());
-            factionsTally = new int[creatureData.factionsCount];
+            factionsTally = new int[data.factionsCount];
             spawner.Setup();
         }
 
@@ -47,7 +47,7 @@ namespace Equilibrium
             UnityEngine.Random.InitState(0);
         }
 
-        public void Write(float timeScale) => fixedTicks = new FixedTicks(creatureData.processInterval * timeScale);
+        public void Write(float timeScale) => fixedTicks = new FixedTicks(data.processInterval * timeScale);
         public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
 
@@ -111,10 +111,7 @@ namespace Equilibrium
         //[ContextMenu(nameof(Stop))]
         public void Stop()
         {
-            if (creatures == null)
-                return;
-
-            if (creatures[0] == null)
+            if (creatures == null || creatures.Length <= 0 || creatures[0] == null)
                 return;
 
             for (int i = 0; i < creatures.Length; i++)
@@ -137,6 +134,8 @@ namespace Equilibrium
 
         private void SpawnNewCreatures()
         {
+            data.foundColliders = new Collider[data.creatureSearchBufferSize];
+
             for (int i = 0; i < creatures.Length; i++)
             {
                 CreatureBehaviour newCreature = spawner.attached.SpawnSingle(spawnData).GetComponent<CreatureBehaviour>();
@@ -158,7 +157,7 @@ namespace Equilibrium
 
         public void ClaimCallback(int faction)
         {
-            int previousIndex = Utils.WrapIndex(faction, 1, creatureData.factionsCount);
+            int previousIndex = Utils.WrapIndex(faction, 1, data.factionsCount);
 
             TallyFaction(faction, 1);
             TallyFaction(previousIndex, -1);
@@ -167,7 +166,7 @@ namespace Equilibrium
         private void TallyFaction(int index, int direction) 
         {
             factionsTally[index] += direction;
-            factionsTally[index] = Mathf.Clamp(factionsTally[index], 0, creatureData.creatureSpawnCount);
+            factionsTally[index] = Mathf.Clamp(factionsTally[index], 0, data.creatureSpawnCount);
 
             hasChangedThisFrame = true;
         }

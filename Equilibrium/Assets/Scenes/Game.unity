@@ -6223,6 +6223,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
         type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 4128568c2c5b885469944d83587edcd3,
+        type: 2}
+    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
+        type: 3}
       propertyPath: spawner.monoBehaviour
       value: 
       objectReference: {fileID: 6666996649939385002}

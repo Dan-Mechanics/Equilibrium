@@ -24,6 +24,11 @@ namespace Equilibrium
         public Material[] materials;
 
         /// <summary>
+        /// Gotta check if this works in build tho.
+        /// </summary>
+        [HideInInspector] public Collider[] foundColliders;
+
+        /// <summary>
         /// Consider removing this and just giving the environment a base speed thing.
         /// </summary>
         public float GetSpeed(Biome biome) 
