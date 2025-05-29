@@ -21,6 +21,9 @@ namespace Equilibrium
         [Min(0.02f)] public float aliveTimeWithoutFood;
         [Min(0.02f)] public float processInterval;
 
+        /// <summary>
+        /// Consider removing this and just giving the environment a base speed thing.
+        /// </summary>
         public float GetSpeed(Biome biome) 
         {
             float speed = baseSpeed + Random.value * randomSpeedIncrease;
