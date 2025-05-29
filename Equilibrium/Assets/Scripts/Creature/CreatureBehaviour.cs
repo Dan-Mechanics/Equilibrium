@@ -12,7 +12,9 @@ namespace Equilibrium
         [SerializeField] private CreatureData data = default;
         [SerializeField] private MeshRenderer rend = default;
         [SerializeField] private int firstLayerIndex = default;
-        [SerializeField] private Mover mover = default;
+
+        [SerializeField] private InspectorInterface<IWritable<Vector3>> idealVelocityWriter = default;
+        [SerializeField] private InspectorInterface<IWritable<float>> fallingSpeedWriter = default;
 
         private float speed;
         private LayerMask foodMask;
@@ -24,20 +26,18 @@ namespace Equilibrium
         private ICreatureCallbacks creatureCallback;
         private float dieTime;
         private float speedMod;
-        //private Vector3 idealVelocity;
+        private Vector3 idealVelocity;
         private Utils.ClosestPair closest;
 
         public void Setup(ICreatureCallbacks creatureCallback)
         {
-            /*idealVelocityWriter.Setup();
-            fallingSpeedWriter.Setup();*/
+            idealVelocityWriter.Setup();
+            fallingSpeedWriter.Setup();
 
             transform.localScale = Vector3.one * data.size;
             this.creatureCallback = creatureCallback;
 
-            /*fallingSpeedWriter.attached.Write(data.fallingSpeed);
-            mover.*/
-            mover.SetFallingSpeed(data.fallingSpeed);
+            fallingSpeedWriter.attached.Write(data.fallingSpeed);
         }
 
         public void ProcessFixedFrame()
@@ -54,13 +54,11 @@ namespace Equilibrium
             if (TryFindClosestOfMask(dangerMask, data.dangerSeeingRange))
                 runVelocity = data.runBias * speed * Utils.Flatten(transform.position - closest.transform.position).normalized;
 
-            print(speed);
-            mover.SetIdealVelocity(chaseVelocity + runVelocity);
-            /*idealVelocity = chaseVelocity + runVelocity;
+            idealVelocity = chaseVelocity + runVelocity;
             idealVelocityWriter.attached.Write(idealVelocity);
 
             if (idealVelocity != Vector3.zero)
-                transform.forward = idealVelocity;*/
+                transform.forward = idealVelocity;
         }
 
         private bool CheckDeath() 

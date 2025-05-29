@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Equilibrium
 {
-    public class Mover : MonoBehaviour
+    public class Mover : MonoBehaviour, IWritable<Vector3>, IWritable<float>
     {
         [SerializeField] private Rigidbody rb = default;
 
@@ -15,16 +15,13 @@ namespace Equilibrium
             rb.sleepThreshold = 0f;
         }
 
-        public void SetIdealVelocity(Vector3 idealVelocity) 
+        public void Write(Vector3 idealVelocity)
         {
             idealVelocity.y = 0f;
-            if (idealVelocity != Vector3.zero)
-                transform.forward = idealVelocity;
-
             this.idealVelocity = idealVelocity;
         }
 
-        public void SetFallingSpeed(float fallingSpeed) => this.fallingSpeed = fallingSpeed;
+        public void Write(float dragValue) => this.fallingSpeed = dragValue;
 
         private void FixedUpdate() => Move();
 
