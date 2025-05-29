@@ -14,12 +14,14 @@ namespace Equilibrium
         [Min(1f)] public float fallingSpeed;
         [Min(1)] public int factionsCount;
         [Min(1)] public int creatureSpawnCount;
+        [Min(1)] public int creatureSearchBufferSize;
         public float randomSpeedIncrease;
         public float deathPitHeight;
         [Min(0f)] public float chaseBias;
         [Min(0f)] public float runBias;
         [Min(0.02f)] public float aliveTimeWithoutFood;
         [Min(0.02f)] public float processInterval;
+        public Material[] materials;
 
         /// <summary>
         /// Consider removing this and just giving the environment a base speed thing.

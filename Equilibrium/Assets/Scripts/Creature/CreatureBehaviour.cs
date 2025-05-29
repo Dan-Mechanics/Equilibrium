@@ -12,10 +12,16 @@ namespace Equilibrium
         [SerializeField] private CreatureData data = default;
         [SerializeField] private MeshRenderer rend = default;
         [SerializeField] private int firstLayerIndex = default;
+
+        /// <summary>
+        /// Consider making this less ass?
+        /// </summary>
         [SerializeField] private InspectorInterface<IWritable<Vector3>> idealVelocityWriter = default;
         [SerializeField] private InspectorInterface<IWritable<float>> fallingSpeedWriter = default;
-        [SerializeField] private Material[] materials = default;
+        //[SerializeField] private Material[] materials = default;
 
+
+        private Collider[] found;
         private float speed;
         private LayerMask foodMask;
         private LayerMask dangerMask;
@@ -27,9 +33,13 @@ namespace Equilibrium
         private IClaimCallback claimCallback;
         private float dieTime;
         private Biome currentBiome;
+        private Vector3 idealVelocity;
+        private Utils.ClosestPair closest;
 
         public void Setup(IDieCallback dieCallback, IClaimCallback claimCallback)
         {
+            found = new Collider[data.creatureSearchBufferSize];
+
             idealVelocityWriter.Setup();
             fallingSpeedWriter.Setup();
 
@@ -39,8 +49,8 @@ namespace Equilibrium
 
             fallingSpeedWriter.attached.Write(data.fallingSpeed);
 
-            if (materials.Length != data.factionsCount)
-                Debug.LogError("if(materials.Length != data.factionsCount)");
+            /*if (data.materials.Length != data.factionsCount)
+                Debug.LogError("if(materials.Length != data.factionsCount)");*/
         }
 
         public void ProcessFixedFrame()
@@ -48,17 +58,16 @@ namespace Equilibrium
             if (CheckDeath())
                 return;
 
-            if (TryFindClosestOfMask(foodMask, data.foodSeeingRange, out Utils.ClosestPair closestFood))
+            if (TryFindClosestOfMask(foodMask, data.foodSeeingRange))
             {
-                chaseVelocity = data.chaseBias * speed * Utils.Flatten(closestFood.transform.position - transform.position).normalized;
-                TryEat(ref closestFood);
+                chaseVelocity = data.chaseBias * speed * Utils.Flatten(closest.transform.position - transform.position).normalized;
+                TryEat();
             }
 
-            if (TryFindClosestOfMask(dangerMask, data.dangerSeeingRange, out Utils.ClosestPair closestDanger))
-                runVelocity = data.runBias * speed * Utils.Flatten(transform.position - closestDanger.transform.position).normalized;
+            if (TryFindClosestOfMask(dangerMask, data.dangerSeeingRange))
+                runVelocity = data.runBias * speed * Utils.Flatten(transform.position - closest.transform.position).normalized;
 
-            Vector3 idealVelocity = chaseVelocity + runVelocity;
-
+            idealVelocity = chaseVelocity + runVelocity;
             idealVelocityWriter.attached.Write(idealVelocity);
 
             if (idealVelocity != Vector3.zero)
@@ -94,33 +103,35 @@ namespace Equilibrium
             return false;
         }
 
-        private void TryEat(ref Utils.ClosestPair closestFood)
+        private void TryEat()
         {
             if (!IsAwake)
                 return;
 
-            if (closestFood.distance > data.eatingRange)
+            if (closest.distance > data.eatingRange)
                 return;
 
             SetDieTime();
 
-            closestFood.component.GetComponent<CreatureBehaviour>().ClaimByCreature(factionIndex);
+            closest.component.GetComponent<CreatureBehaviour>().ClaimByCreature(factionIndex);
             Refresh();
         }
 
-        private bool TryFindClosestOfMask(LayerMask mask, float seeingRange, out Utils.ClosestPair closest)
+        private bool TryFindClosestOfMask(LayerMask mask, float seeingRange)
         {
-            closest = null;
+            //closest = default;
 
             // Garbage collector GOOO !!
-            Collider[] found = Physics.OverlapSphere(transform.position, seeingRange, mask, QueryTriggerInteraction.Ignore);
+            //Collider[] found = Physics.OverlapSphere(transform.position, seeingRange, mask, QueryTriggerInteraction.Ignore);
 
-            if (found.Length <= 0)
-                return false;
+            Physics.OverlapSphereNonAlloc(transform.position, seeingRange, found, mask, QueryTriggerInteraction.Ignore);
 
-            closest = Utils.GetClosest(found, transform.position);
+            /*if (found.Length <= 0)
+                return false;*/
 
-            return true;
+            //Utils.GetClosest(found, transform.position, out closest);
+
+            return Utils.GetClosest(found, transform.position, out closest);
         }
 
         private void ClaimByCreature(int factionIndex)
@@ -151,11 +162,11 @@ namespace Equilibrium
         private void Claim(int factionIndex) 
         {
             this.factionIndex = factionIndex;
-            rend.material = materials[factionIndex];
+            rend.material = data.materials[factionIndex];
 
             gameObject.layer = firstLayerIndex + factionIndex;
-            foodMask = 1 << (firstLayerIndex + Utils.WrapIndex(factionIndex, 1, materials.Length));
-            dangerMask = 1 << (firstLayerIndex + Utils.WrapIndex(factionIndex, 2, materials.Length));
+            foodMask = 1 << (firstLayerIndex + Utils.WrapIndex(factionIndex, 1, data.materials.Length));
+            dangerMask = 1 << (firstLayerIndex + Utils.WrapIndex(factionIndex, 2, data.materials.Length));
 
             Refresh();
         }

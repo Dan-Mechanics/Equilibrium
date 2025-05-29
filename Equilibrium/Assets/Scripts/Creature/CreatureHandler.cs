@@ -25,8 +25,8 @@ namespace Equilibrium
         [SerializeField] private InspectorInterface<ISpawnable> spawner = default;  
         [SerializeField] private List<InspectorInterface<IPassable<int[]>>> factionsTallyListeners = default;
 
+        private CreatureBehaviour[] creatures;
         private FixedTicks fixedTicks;
-        private readonly List<CreatureBehaviour> creatures = new List<CreatureBehaviour>();
         private int[] factionsTally;
         private bool hasChangedThisFrame;
         private ITerrainable terrainable;
@@ -34,6 +34,7 @@ namespace Equilibrium
 
         private void Awake()
         {
+            creatures = new CreatureBehaviour[creatureData.creatureSpawnCount];
             terrainReader.Setup();
             factionsTallyListeners.ForEach(x => x.Setup());
             factionsTally = new int[creatureData.factionsCount];
@@ -46,11 +47,7 @@ namespace Equilibrium
             UnityEngine.Random.InitState(0);
         }
 
-        public void Write(float timeScale)
-        {
-            fixedTicks = new FixedTicks(creatureData.processInterval * timeScale);
-        }
-
+        public void Write(float timeScale) => fixedTicks = new FixedTicks(creatureData.processInterval * timeScale);
         public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
 
@@ -58,44 +55,43 @@ namespace Equilibrium
         {
             for (int i = 0; i < fixedTicks.GetTicksCount(Time.deltaTime); i++)
             {
-                DoFixedFrame();
+                Tick();
             }
         }
 
-        private void DoFixedFrame()
+        private void Tick()
         {
             hasChangedThisFrame = false;
-            
-            // this is more performant and also now we can add pause functionality.
-            foreach (var creature in creatures)
+
+            for (int i = 0; i < creatures.Length; i++)
             {
-                if (!creature.gameObject.activeSelf)
+                if (!creatures[i].gameObject.activeSelf)
                     continue;
 
-                creature.ProcessFixedFrame();
+                creatures[i].ProcessFixedFrame();
             }
 
             // THIS IS AN IMPORTANT EVETN AND SHOULD BE HANDLED IN THE STATE MACHINE !!
-            if (hasChangedThisFrame)
-            {
-                SendTally();
+            if (!hasChangedThisFrame)
+                return;
 
-                for (int i = 0; i < factionsTally.Length; i++)
-                {
-                    if (factionsTally[i] <= 0)
-                    {
-                        EventManager.RaiseEvent(EventManager.EventType.ROUND_LOSE);
-                        return;
-                    }
-                }
+            SendTally();
+
+            for (int i = 0; i < factionsTally.Length; i++)
+            {
+                if (factionsTally[i] > 0)
+                    continue;
+
+                EventManager.RaiseEvent(EventManager.EventType.ROUND_LOSE);
+                return;
             }
         }
 
-        [ContextMenu(nameof(Respawn))]
+        //[ContextMenu(nameof(Respawn))]
         public void Respawn() 
         {
             // We don't have anthing spawned yet !!
-            if (creatures.Count <= 0)
+            if (creatures[0] == null)
                 SpawnNewCreatures();
 
             for (int i = 0; i < factionsTally.Length; i++)
@@ -104,15 +100,27 @@ namespace Equilibrium
             }
 
             Vector3[] verts = terrainReader.attached.Data;
-            creatures.ForEach(x => ResetCreature(x, ref verts));
+            for (int i = 0; i < creatures.Length; i++)
+            {
+                ResetCreature(creatures[i], ref verts);
+            }
 
             SendTally();
         }
 
-        [ContextMenu(nameof(Stop))]
+        //[ContextMenu(nameof(Stop))]
         public void Stop()
         {
-            creatures.ForEach(x => x.gameObject.SetActive(false));
+            if (creatures == null)
+                return;
+
+            if (creatures[0] == null)
+                return;
+
+            for (int i = 0; i < creatures.Length; i++)
+            {
+                creatures[i].gameObject.SetActive(false);
+            }
 
             for (int i = 0; i < factionsTally.Length; i++)
             {
@@ -129,14 +137,17 @@ namespace Equilibrium
 
         private void SpawnNewCreatures()
         {
-            for (int i = 0; i < creatureData.creatureSpawnCount; i++)
+            for (int i = 0; i < creatures.Length; i++)
             {
-                CreatureBehaviour creature = spawner.attached.SpawnSingle(spawnData).GetComponent<CreatureBehaviour>();
-                creature.Setup(this, this);
-                creatures.Add(creature);
+                CreatureBehaviour newCreature = spawner.attached.SpawnSingle(spawnData).GetComponent<CreatureBehaviour>();
+                newCreature.Setup(this, this);
+                creatures[i] = newCreature;
             }
         }
 
+        /// <summary>
+        /// I dont really think ref is required here.
+        /// </summary>
         private void ResetCreature(CreatureBehaviour creature, ref Vector3[] verts)
         {
             creature.transform.position = Utils.GetRandomVertexWorldSpace(ref verts, terrainable) + spawnData.spawnOffset;
