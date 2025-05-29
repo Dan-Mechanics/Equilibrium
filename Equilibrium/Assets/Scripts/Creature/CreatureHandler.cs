@@ -47,6 +47,10 @@ namespace Equilibrium
             UnityEngine.Random.InitState(0);
         }
 
+        /// <summary>
+        /// This must be like this because of the different processinterval than
+        /// usual fixedupdaterate.
+        /// </summary>
         public void Write(float timeScale) => fixedTicks = new FixedTicks(data.processInterval * timeScale);
         public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
