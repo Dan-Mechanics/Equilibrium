@@ -1,17 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Equilibrium
 {
-    /// <summary>
-    /// Remove these frikcign shit.
-    /// 
-    /// Vibe: make this work with some interfaces? / clean the logic a little ?
-    /// </summary>
     public class Spawner : MonoBehaviour, ISpawnable
     {
-        //public SpawnData SpawnData => spawnData;
-
         [SerializeField] private bool fromStart = default;
         [SerializeField] private SpawnData spawnData = default;
 
@@ -28,6 +20,7 @@ namespace Equilibrium
         public Transform SpawnSingleWithData(Vector3 pos, SpawnData spawnData)
         {
             GameObject go = Instantiate(spawnData.prefab, pos + spawnData.spawnOffset, spawnData.prefab.transform.rotation);
+            go.name = spawnData.prefab.name;
 
             Utils.GiveRandomUpwardsRotation(go.transform);
             if (go.TryGetComponent(out ISetupable setupable))

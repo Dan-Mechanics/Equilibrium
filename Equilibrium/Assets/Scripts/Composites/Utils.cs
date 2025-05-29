@@ -108,27 +108,25 @@ namespace Equilibrium
         /// One could make this non-alloc.
         /// One could remvoe the guard clauses and it would might be better.
         /// </summary>
-        public static ClosestPair GetClosest(Component[] components, Vector3 toPoint)
+        public static void GetClosest(Component[] components, int length, Vector3 toPoint, out ClosestPair closest)
         {
-            if (components.Length <= 0)
-                return null;
+            float tempDist = Vector3.Distance(toPoint, components[0].transform.position);
+            
+            closest = default;
+            closest.Set(components[0], tempDist);
 
-            ClosestPair closest = new ClosestPair(components[0], Vector3.Distance(toPoint, components[0].transform.position));
-
-            if (components.Length == 1)
-                return closest;
-
-            float tempDist;
-
-            for (int i = 1; i < components.Length; i++)
+            for (int i = 1; i < length; i++)
             {
                 tempDist = Vector3.Distance(toPoint, components[i].transform.position);
 
-                if (tempDist < closest.distance)
-                    closest.Set(components[i], tempDist);
-            }
+                //Debug.Log($"if ({tempDist} < {closest.distance})");
 
-            return closest;
+                if (tempDist < closest.distance || i == 0)
+                {
+                   // Debug.Log("hello");
+                    closest.Set(components[i], tempDist);
+                }
+            }
         }
 
         public static bool IsTime(float time) 
@@ -136,15 +134,16 @@ namespace Equilibrium
             return Time.time >= time;
         }
 
-        public class ClosestPair 
+        public struct ClosestPair 
         {
             public Component component;
-            public Transform transform => component.transform;
+            public Transform transform => component?.transform;
             public float distance;
 
-            public ClosestPair(Component comp, float dist)
+            public ClosestPair(Component component, float distance)
             {
-                Set(comp, dist);
+                this.component = component;
+                this.distance = distance;
             }
 
             public void Set(Component component, float distance)

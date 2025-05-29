@@ -47,6 +47,7 @@ namespace Equilibrium
             // Water.
             GameObject water = Instantiate(waterPrefab, Vector3.up * terrainable.GetWaterHeight(), Quaternion.identity);
             water.transform.localScale = new Vector3(terrainable.GetSize() * waterScaleFactor, 1f, terrainable.GetSize() * waterScaleFactor);
+            water.name = waterPrefab.name;
 
             previous.Add(water);
 

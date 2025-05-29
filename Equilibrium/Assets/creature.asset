@@ -21,9 +21,40 @@ MonoBehaviour:
   fallingSpeed: 15
   factionsCount: 3
   creatureSpawnCount: 100
+  creatureSearchBufferSize: 100
   randomSpeedIncrease: 3
   deathPitHeight: -10
   chaseBias: 1
   runBias: 0.5
   aliveTimeWithoutFood: 24.5
   processInterval: 0.04
+  materials:
+  - {fileID: 2100000, guid: 2c8943fc8c3140842a683f34995b662a, type: 2}
+  - {fileID: 2100000, guid: 273751ff940c68b439444b141dec4cbc, type: 2}
+  - {fileID: 2100000, guid: e35a6cf64b5422b45b4e52ad440bd66f, type: 2}
+  foundColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

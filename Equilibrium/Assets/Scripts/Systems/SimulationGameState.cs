@@ -44,7 +44,7 @@ namespace Equilibrium
         {
             base.ExitState();
 
-            print(timer.Value);
+            print($"time left {timer.Value}");
 
             timeHandler.BackToNormal();
             creatureHandler.Stop();
