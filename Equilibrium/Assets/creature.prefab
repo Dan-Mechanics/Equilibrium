@@ -319,14 +319,7 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 4128568c2c5b885469944d83587edcd3, type: 2}
   rend: {fileID: 8417072742981633920}
   firstLayerIndex: 6
-  idealVelocityWriter:
-    monoBehaviour: {fileID: 6091088694263051008}
-  fallingSpeedWriter:
-    monoBehaviour: {fileID: 6091088694263051008}
-  materials:
-  - {fileID: 2100000, guid: 2c8943fc8c3140842a683f34995b662a, type: 2}
-  - {fileID: 2100000, guid: 273751ff940c68b439444b141dec4cbc, type: 2}
-  - {fileID: 2100000, guid: e35a6cf64b5422b45b4e52ad440bd66f, type: 2}
+  mover: {fileID: 6091088694263051008}
 --- !u!114 &6091088694263051008
 MonoBehaviour:
   m_ObjectHideFlags: 0

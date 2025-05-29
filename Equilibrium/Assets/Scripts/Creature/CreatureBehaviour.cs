@@ -12,12 +12,7 @@ namespace Equilibrium
         [SerializeField] private CreatureData data = default;
         [SerializeField] private MeshRenderer rend = default;
         [SerializeField] private int firstLayerIndex = default;
-
-        /// <summary>
-        /// Consider making this less ass?
-        /// </summary>
-        [SerializeField] private InspectorInterface<IWritable<Vector3>> idealVelocityWriter = default;
-        [SerializeField] private InspectorInterface<IWritable<float>> fallingSpeedWriter = default;
+        [SerializeField] private Mover mover = default;
 
         private float speed;
         private LayerMask foodMask;
@@ -28,19 +23,21 @@ namespace Equilibrium
         private Vector3 chaseVelocity;
         private ICreatureCallbacks creatureCallback;
         private float dieTime;
-        private BaseTerrain baseTerrain;
-        private Vector3 idealVelocity;
+        private float speedMod;
+        //private Vector3 idealVelocity;
         private Utils.ClosestPair closest;
 
         public void Setup(ICreatureCallbacks creatureCallback)
         {
-            idealVelocityWriter.Setup();
-            fallingSpeedWriter.Setup();
+            /*idealVelocityWriter.Setup();
+            fallingSpeedWriter.Setup();*/
 
             transform.localScale = Vector3.one * data.size;
             this.creatureCallback = creatureCallback;
 
-            fallingSpeedWriter.attached.Write(data.fallingSpeed);
+            /*fallingSpeedWriter.attached.Write(data.fallingSpeed);
+            mover.*/
+            mover.SetFallingSpeed(data.fallingSpeed);
         }
 
         public void ProcessFixedFrame()
@@ -57,11 +54,13 @@ namespace Equilibrium
             if (TryFindClosestOfMask(dangerMask, data.dangerSeeingRange))
                 runVelocity = data.runBias * speed * Utils.Flatten(transform.position - closest.transform.position).normalized;
 
-            idealVelocity = chaseVelocity + runVelocity;
+            print(speed);
+            mover.SetIdealVelocity(chaseVelocity + runVelocity);
+            /*idealVelocity = chaseVelocity + runVelocity;
             idealVelocityWriter.attached.Write(idealVelocity);
 
             if (idealVelocity != Vector3.zero)
-                transform.forward = idealVelocity;
+                transform.forward = idealVelocity;*/
         }
 
         private bool CheckDeath() 
@@ -122,9 +121,9 @@ namespace Equilibrium
             creatureCallback.ClaimCallback(factionIndex);
         }
 
-        public int ResetCreature(BaseTerrain baseTerrain)
+        public int ResetCreature(float mod)
         {
-            this.baseTerrain = baseTerrain;
+            this.speedMod = mod;
 
             int faction = Random.Range(0, data.factionsCount);
             Claim(faction);
@@ -156,7 +155,7 @@ namespace Equilibrium
 
         private void Refresh()
         {
-            speed = data.GetSpeed(baseTerrain.speedMod);
+            speed = data.GetSpeed(speedMod);
             awakeTime = Time.time + data.asleepTime;
 
             // NEW NEW NEW.

@@ -154,7 +154,7 @@ namespace Equilibrium
         {
             creature.transform.position = Utils.GetRandomVertexWorldSpace(verts, terrainable) + spawnData.spawnOffset;
 
-            TallyFaction(creature.ResetCreature(baseTerrain), 1); // use the int here.
+            TallyFaction(creature.ResetCreature(baseTerrain.speedMod), 1); // use the int here.
         }
 
         public void DieCallback(int faction) => TallyFaction(faction, -1);
