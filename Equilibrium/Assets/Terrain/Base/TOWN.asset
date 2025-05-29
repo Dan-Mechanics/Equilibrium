@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedMod: 1
   waterHeight: -0.1
-  brush: {fileID: 11400000, guid: f25b0f001ea1b294da862ae04f07dfbe, type: 2}
+  brush: {fileID: 11400000, guid: 1b7761554c7dcb34c96cf18bf7c4e562, type: 2}
   iconicColor: {r: 0, g: 0, b: 0, a: 1}
   backgroundColor: {r: 0.514151, g: 0.8441272, b: 1, a: 1}
   size: 100
