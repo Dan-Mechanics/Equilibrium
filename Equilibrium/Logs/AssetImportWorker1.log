@@ -179,3 +179,13 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 10486.277440 seconds.
+  path: Assets/Sprites/icon.png
+  artifactKey: Guid(aaf8d478ed7bd784d897707190cd12cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/icon.png using Guid(aaf8d478ed7bd784d897707190cd12cc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '76f7c71dc7e64d6ffc3d1513c15489fe') in 0.172786 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3

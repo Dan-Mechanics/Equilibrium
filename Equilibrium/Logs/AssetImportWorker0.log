@@ -189,3 +189,23 @@ Start importing Assets/creature.prefab using Guid(13aab55ef3f734248a1e07dc56ed24
  -> (artifact id: '8af11d01191199112a014a64095e9afd') in 0.378737 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 52
+========================================================================
+Received Import Request.
+  Time since last request: 30.302889 seconds.
+  path: Assets/Sprites/endscreen.png
+  artifactKey: Guid(77d01c86a5760ab41ac4a8ae7c54d458) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/endscreen.png using Guid(77d01c86a5760ab41ac4a8ae7c54d458) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '697482186c7d7e928fb066d893c8583f') in 0.105020 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Sprites/maker_endscreen.psd
+  artifactKey: Guid(b0f62d2f142e6fe449abc8e03eb265fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/maker_endscreen.psd using Guid(b0f62d2f142e6fe449abc8e03eb265fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b) [PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+ -> (artifact id: '3f574b9a3b1f1d30ecf61148c7b9491d') in 0.030756 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2

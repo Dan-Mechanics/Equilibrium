@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filter: {fileID: 0}
   cam: {fileID: 0}
+  state:
+    monoBehaviour: {fileID: 0}
   listeners:
   - monoBehaviour: {fileID: 0}
   - monoBehaviour: {fileID: 0}
@@ -55,5 +57,5 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 1
   brushSize: 10
-  brushStrength: 35
+  brushStrength: 28
   brushInterval: 0.025

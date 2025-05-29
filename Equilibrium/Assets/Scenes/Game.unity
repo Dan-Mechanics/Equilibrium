@@ -939,11 +939,6 @@ PrefabInstance:
       objectReference: {fileID: 2135685228}
     - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
         type: 3}
-      propertyPath: brushStrength
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 8540247421704845549, guid: d856175988e4a89448905f578c56f70e,
-        type: 3}
       propertyPath: state.monoBehaviour
       value: 
       objectReference: {fileID: 1629665987}
@@ -4659,39 +4654,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6179738720916800745, guid: 092772b0498319a4db85762db6b090e0,
         type: 3}
-      propertyPath: onSensChange.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179738720916800745, guid: 092772b0498319a4db85762db6b090e0,
-        type: 3}
       propertyPath: onSensChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2128790247}
     - target: {fileID: 6179738720916800745, guid: 092772b0498319a4db85762db6b090e0,
         type: 3}
-      propertyPath: onSensChange.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179738720916800745, guid: 092772b0498319a4db85762db6b090e0,
-        type: 3}
       propertyPath: onChangeDragging.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1629665987}
-    - target: {fileID: 6179738720916800745, guid: 092772b0498319a4db85762db6b090e0,
-        type: 3}
-      propertyPath: onSensChange.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Write
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179738720916800745, guid: 092772b0498319a4db85762db6b090e0,
-        type: 3}
-      propertyPath: onSensChange.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Equilibrium.EasyTextWriter, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 6179738720916800745, guid: 092772b0498319a4db85762db6b090e0,
-        type: 3}
-      propertyPath: onSensChange.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 7262091485824694134, guid: 092772b0498319a4db85762db6b090e0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6223,17 +6193,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
         type: 3}
-      propertyPath: data
-      value: 
-      objectReference: {fileID: 11400000, guid: 4128568c2c5b885469944d83587edcd3,
-        type: 2}
-    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
-      propertyPath: spawner.monoBehaviour
-      value: 
-      objectReference: {fileID: 6666996649939385002}
-    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
-        type: 3}
       propertyPath: terrainReader.monoBehaviour
       value: 
       objectReference: {fileID: 249153634}
@@ -6247,18 +6206,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4592990b2ea1c64a87a08866ed6aed0, type: 3}
---- !u!114 &6666996649939385002 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2342203196600901853, guid: e4592990b2ea1c64a87a08866ed6aed0,
-    type: 3}
-  m_PrefabInstance: {fileID: 6666996649939385001}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ccd44477d5e23b4b8900f6978510b3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7066030776202982583
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6457,41 +6404,6 @@ PrefabInstance:
       propertyPath: title
       value: 
       objectReference: {fileID: 1428089759}
-    - target: {fileID: 999740152742602582, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
-        type: 3}
-      propertyPath: standard.priority
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 999740152742602582, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
-        type: 3}
-      propertyPath: titleMessages.Array.data[0].message
-      value: the ecosystem failed
-      objectReference: {fileID: 0}
-    - target: {fileID: 999740152742602582, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
-        type: 3}
-      propertyPath: titleMessages.Array.data[1].message
-      value: you found balance
-      objectReference: {fileID: 0}
-    - target: {fileID: 999740152742602582, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
-        type: 3}
-      propertyPath: titleMessages.Array.data[0].priority
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 999740152742602582, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
-        type: 3}
-      propertyPath: titleMessages.Array.data[1].priority
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 999740152742602582, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
-        type: 3}
-      propertyPath: titleMessages.Array.data[2].priority
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 999740152742602582, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
-        type: 3}
-      propertyPath: titleMessages.Array.data[3].priority
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7555238847946941337, guid: 8805cfaae6cff994ca3c2d3ec61714ee,
         type: 3}
       propertyPath: m_Name

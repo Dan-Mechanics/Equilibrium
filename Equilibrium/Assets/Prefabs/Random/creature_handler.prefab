@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a877c0fff138534439e6e30d5cb043a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creatureData: {fileID: 11400000, guid: 4128568c2c5b885469944d83587edcd3, type: 2}
-  spawner: {fileID: 2342203196600901853}
+  data: {fileID: 11400000, guid: 4128568c2c5b885469944d83587edcd3, type: 2}
   spawnData:
     prefab: {fileID: 8485628854282705234, guid: 13aab55ef3f734248a1e07dc56ed249b,
       type: 3}
@@ -55,6 +54,8 @@ MonoBehaviour:
     randomRot: 1
   terrainReader:
     monoBehaviour: {fileID: 0}
+  spawner:
+    monoBehaviour: {fileID: 2342203196600901853}
   factionsTallyListeners:
   - monoBehaviour: {fileID: 0}
 --- !u!114 &2342203196600901853
