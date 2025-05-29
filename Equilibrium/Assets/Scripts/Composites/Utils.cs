@@ -161,14 +161,14 @@ namespace Equilibrium
             return new Vector2Int(x, z);
         }
 
-        public static Vector3 GetVertexWorldSpace(int index, ref Vector3[] verts, ITerrainable terrainable)
+        public static Vector3 GetVertexWorldSpace(int index, Vector3[] verts, ITerrainable terrainable)
         {
             return verts[index] + new Vector3(-terrainable.GetSize() / 2f, 0f, -terrainable.GetSize() / 2f);
         }
 
-        public static Vector3 GetRandomVertexWorldSpace(ref Vector3[] verts, ITerrainable terrainable)
+        public static Vector3 GetRandomVertexWorldSpace(Vector3[] verts, ITerrainable terrainable)
         {
-            return GetVertexWorldSpace(Random.Range(0, verts.Length), ref verts, terrainable);
+            return GetVertexWorldSpace(Random.Range(0, verts.Length), verts, terrainable);
         }
 
         public static List<T> GetAll<T>()

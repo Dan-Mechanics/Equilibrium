@@ -23,7 +23,7 @@ namespace Equilibrium
         [SerializeField] private SpawnData spawnData = default;
         [SerializeField] private InspectorInterface<IDataGettable<Vector3[]>> terrainReader = default;
         [SerializeField] private InspectorInterface<ISpawnable> spawner = default;  
-        [SerializeField] private List<InspectorInterface<IPassable<int[]>>> factionsTallyListeners = default;
+        [SerializeField] private List<InspectorInterface<IWritable<int[]>>> factionsTallyListeners = default;
 
         private CreatureBehaviour[] creatures;
         private FixedTicks fixedTicks;
@@ -106,7 +106,7 @@ namespace Equilibrium
             Vector3[] verts = terrainReader.attached.Data;
             for (int i = 0; i < creatures.Length; i++)
             {
-                ResetCreature(creatures[i], ref verts);
+                ResetCreature(creatures[i], verts);
             }
 
             SendTally();
@@ -133,7 +133,7 @@ namespace Equilibrium
 
         private void SendTally()
         {
-            factionsTallyListeners.ForEach(x => x.attached.Pass(ref factionsTally));
+            factionsTallyListeners.ForEach(x => x.attached.Write(factionsTally));
         }
 
         private void SpawnNewCreatures()
@@ -151,9 +151,9 @@ namespace Equilibrium
         /// <summary>
         /// I dont really think ref is required here.
         /// </summary>
-        private void ResetCreature(CreatureBehaviour creature, ref Vector3[] verts)
+        private void ResetCreature(CreatureBehaviour creature, Vector3[] verts)
         {
-            creature.transform.position = Utils.GetRandomVertexWorldSpace(ref verts, terrainable) + spawnData.spawnOffset;
+            creature.transform.position = Utils.GetRandomVertexWorldSpace(verts, terrainable) + spawnData.spawnOffset;
             TallyFaction(creature.ResetCreature(baseTerrain.biome), 1); // use the int here.
         }
 

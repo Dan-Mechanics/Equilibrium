@@ -9,14 +9,14 @@ namespace Equilibrium
     /// 
     /// Please refactor with smallstate and other memes.
     /// </summary>
-    public class Terraformer : MonoBehaviour, IPassable<Vector3[]>, IDataGettable<Vector3[]>, IUpdatable, IWritable<ITerrainable>, IWritable<BaseTerrain>
+    public class Terraformer : MonoBehaviour, IWritable<Vector3[]>, IDataGettable<Vector3[]>, IUpdatable, IWritable<ITerrainable>, IWritable<BaseTerrain>
     {
         public Vector3[] Data => verticies;
 
         [SerializeField] private MeshFilter filter = default;
         [SerializeField] private Camera cam = default;
         [SerializeField] private InspectorInterface<IDataGettable<State>> state = default;
-        [SerializeField] private List<InspectorInterface<IPassable<Vector3[]>>> listeners = default;
+        [SerializeField] private List<InspectorInterface<IWritable<Vector3[]>>> listeners = default;
 
         [Header("Settings")]
         [SerializeField] private RaycastSettings raycastSettings = default;
@@ -38,15 +38,15 @@ namespace Equilibrium
         }
 
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
-        public void Pass(ref Vector3[] verts) => verticies = verts;
+        public void Write(Vector3[] verts) => verticies = verts;
 
         public void DoUpdate()
         {
+            if (state.attached.Data == State.Dragging)
+                return;
+
             for (int i = 0; i < fixedTicks.GetTicksCount(Time.deltaTime); i++)
             {
-                if (state.attached.Data == State.Dragging)
-                    continue;
-                
                 if (Input.GetKey(KeyCode.Mouse0))
                     DoRaycast();
             }
@@ -58,7 +58,7 @@ namespace Equilibrium
                 return;
 
             // so now we're yapping to the generator and decorations.
-            listeners.ForEach(x => x.attached.Pass(ref verticies));
+            listeners.ForEach(x => x.attached.Write(verticies));
             hasChanged = false;
         }
 
@@ -105,10 +105,6 @@ namespace Equilibrium
                         terrainable.GetSize(), terrainable.GetSize(), out int index))
                         continue;
 
-                    /*if (!Utils.TryGetIndexFromPos(baseTerrain.brush.GetRound(point.x, x), baseTerrain.brush.GetRound(point.z, z),
-                        terrainable.GetSize(), terrainable.GetSize(), out int index))
-                        continue;*/
-
                     Terraform(index, brushStrength * baseTerrain.brush.GetBrushMod(dist, brushSize) * brushInterval * dir);
                 }
             }
@@ -130,11 +126,8 @@ namespace Equilibrium
             }
         }
 
-        [ContextMenu(nameof(WipeClean))]
         public void WipeClean() 
         {
-            print(nameof(WipeClean));
-
             for (int i = 0; i < verticies.Length; i++)
             {
                 verticies[i].y = 0f;
@@ -144,16 +137,5 @@ namespace Equilibrium
         }
 
         public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
-
-        /*private void Flatten(int index, float y)
-        {
-            if (y > verticies[index].y)
-                verticies[index].y += brushInterval * 10f;
-
-            if (y < verticies[index].y)
-                verticies[index].y -= brushInterval * 10f;
-
-            //verticies[index].y = data.ClampTerrainHeight(y);
-        }*/
     }
 }

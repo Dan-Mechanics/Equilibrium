@@ -10,7 +10,7 @@ namespace Equilibrium
     /// the bars display the count of the factions and display a bar which is x / max_count
     /// if the count is zero or the faction doesnt exist, display nothing.
     /// </summary>
-    public class CreatureUI : MonoBehaviour, IPassable<int[]>
+    public class CreatureUI : MonoBehaviour, IWritable<int[]>
     {
         [SerializeField] private Transform barsHolder = default;
         [SerializeField] private CreatureData creatureData = default;
@@ -25,7 +25,7 @@ namespace Equilibrium
 
         private FactionUI[] displays;
 
-        public void Pass(ref int[] t) => Display(ref t);
+        public void Write(int[] factionsTally) => Display(factionsTally);
 
         private void Awake()
         {
@@ -39,7 +39,7 @@ namespace Equilibrium
             //handler.OnNewFactionsTally += Display;
         }
 
-        private void Display(ref int[] factionsTally)
+        private void Display(int[] factionsTally)
         {
             for (int i = 0; i < factionsTally.Length; i++)
             {
