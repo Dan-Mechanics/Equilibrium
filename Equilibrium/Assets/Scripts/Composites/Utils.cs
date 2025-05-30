@@ -123,6 +123,13 @@ namespace Equilibrium
             return new Vector2Int(x, z);
         }
 
+        public static void PipeTo<T>(List<MonoBehaviour> source, List<T> dest) 
+        {
+            dest.Clear();
+            source.ForEach(x => dest.Add(x.GetComponent<T>()));
+            source.Clear();
+        }
+
         public static Vector3 GetVertexWorldSpace(int index, Vector3[] verts, ITerrainable terrainable)
         {
             return verts[index] + new Vector3(-terrainable.GetSize() / 2f, 0f, -terrainable.GetSize() / 2f);

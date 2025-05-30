@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ed88d3ebad106a49b93e2f82d6f60b4, type: 3}
-  m_Name: SERENE
+  m_Name: CALM
   m_EditorClassIdentifier: 
   speedMod: 1
   waterHeight: -0.1

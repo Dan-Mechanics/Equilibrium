@@ -21,14 +21,26 @@ namespace Equilibrium
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainableColorable>>> colorListeners = default;
         [SerializeField] private List<InspectorInterface<IWritable<BaseTerrain>>> baseListeners = default;
 
+        [SerializeField] private List<MonoBehaviour> terrainListenersMono = default;
+        [SerializeField] private List<MonoBehaviour> colorListenersMono = default;
+        [SerializeField] private List<MonoBehaviour> baseListenersMono = default;
+
+        private List<IWritable<ITerrainable>> terrainListeners2;
+        private List<IWritable<BaseTerrain>> baseListeners2;
+        private List<IWritable<ITerrainableColorable>> colorListeners2;
+
         [SerializeField] private UnityEvent onRefresh = default;
         [SerializeField] private UnityEvent onUpperLimitReached = default;
 
         private void Awake()
         {
-            terrainListeners.ForEach(x => x.Setup());
+            /*terrainListeners.ForEach(x => x.Setup());
             colorListeners.ForEach(x => x.Setup());
-            baseListeners.ForEach(x => x.Setup());
+            baseListeners.ForEach(x => x.Setup());*/
+
+            Utils.PipeTo(terrainListenersMono, terrainListeners2);
+            Utils.PipeTo(colorListenersMono, colorListeners2);
+            Utils.PipeTo(baseListenersMono, baseListeners2);
 
             /*MonoBehaviour[] monoBehaviours = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None);
             IWritable<ITerrainable>[] terrainables = FindObjectsByType<IWritable<ITerrainable>>(FindObjectsSortMode.None);*/

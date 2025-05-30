@@ -1,3 +1,6 @@
+idea: add funny texture to background !!
+rename creature data to creaturesettings right right.
+
 keep in mind that for equilbrium, your protypes rest in fantasy landscapes yo.
 VV i wanan look at the ref stuff because that might not be needed everywhere right.
 and then i wanna fix enums and then i wanna make builds again

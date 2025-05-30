@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ad9ae148fc56746b5b9b2e22667118, type: 3}
+  m_Name: MESA_MAP
+  m_EditorClassIdentifier: 
+  baseTerrain: {fileID: 11400000, guid: 5e0224b7551a2164f908df64fc469bae, type: 2}
+  decorators:
+  - {fileID: 11400000, guid: dd98b1d45ea3728419338974038ca064, type: 2}
+  colorDecorators:
+  - {fileID: 11400000, guid: 3c9cd0a7a3468884fab69fd00027b35e, type: 2}
+  - {fileID: 11400000, guid: afa4db1d28820984ab92d5a7976c155e, type: 2}
+  - {fileID: 11400000, guid: 86559c389e74f374faed67c7d11a5d72, type: 2}

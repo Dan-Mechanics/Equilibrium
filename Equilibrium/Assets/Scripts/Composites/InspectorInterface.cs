@@ -5,6 +5,10 @@ namespace Equilibrium
 {
     /// <summary>
     /// I call this the "bullshit fuck your mother pattern".
+    /// 
+    /// It would be better if we just had a list of Objects
+    /// and then we make our own thing out of it
+    /// so like pip the objects into this so it works better.
     /// </summary>
     [Serializable]
     public class InspectorInterface<T>
