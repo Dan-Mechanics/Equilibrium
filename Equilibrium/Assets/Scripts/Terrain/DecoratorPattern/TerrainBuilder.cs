@@ -4,46 +4,27 @@ using UnityEngine.Events;
 
 namespace Equilibrium
 {
-    /// <summary>
-    /// TEMP NAME
-    /// There's nothing more permanent than a temporary name.
-    /// 
-    /// This class's responsiblitties are a little large lol XD.
-    /// But then it means i would need to make a new class that is like 
-    /// an intermediary and that takes too much time i think right about now but maybe thats exactly what i need tho.
-    /// </summary>
     public class TerrainBuilder : MonoBehaviour
     {
         [SerializeField] private int currentMap = default;
         [SerializeField] private List<Map> maps = default;
 
-        [SerializeField] private List<InspectorInterface<IWritable<ITerrainable>>> terrainListeners = default;
-        [SerializeField] private List<InspectorInterface<IWritable<ITerrainableColorable>>> colorListeners = default;
-        [SerializeField] private List<InspectorInterface<IWritable<BaseTerrain>>> baseListeners = default;
-
+        [SerializeField] private List<MonoBehaviour> baseListenersMono = default;
         [SerializeField] private List<MonoBehaviour> terrainListenersMono = default;
         [SerializeField] private List<MonoBehaviour> colorListenersMono = default;
-        [SerializeField] private List<MonoBehaviour> baseListenersMono = default;
-
-        private List<IWritable<ITerrainable>> terrainListeners2;
-        private List<IWritable<BaseTerrain>> baseListeners2;
-        private List<IWritable<ITerrainableColorable>> colorListeners2;
 
         [SerializeField] private UnityEvent onRefresh = default;
         [SerializeField] private UnityEvent onUpperLimitReached = default;
 
+        private readonly List<IWritable<ITerrainable>> terrainListeners = new();
+        private readonly List<IWritable<BaseTerrain>> baseListeners = new();
+        private readonly List<IWritable<ITerrainableColorable>> colorListeners = new();
+        
         private void Awake()
         {
-            /*terrainListeners.ForEach(x => x.Setup());
-            colorListeners.ForEach(x => x.Setup());
-            baseListeners.ForEach(x => x.Setup());*/
-
-            Utils.PipeTo(terrainListenersMono, terrainListeners2);
-            Utils.PipeTo(colorListenersMono, colorListeners2);
-            Utils.PipeTo(baseListenersMono, baseListeners2);
-
-            /*MonoBehaviour[] monoBehaviours = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None);
-            IWritable<ITerrainable>[] terrainables = FindObjectsByType<IWritable<ITerrainable>>(FindObjectsSortMode.None);*/
+            Utils.PipeTo(terrainListenersMono, terrainListeners);
+            Utils.PipeTo(baseListenersMono, baseListeners);
+            Utils.PipeTo(colorListenersMono, colorListeners);
         }
 
         private void Refresh()
@@ -65,7 +46,7 @@ namespace Equilibrium
         private void InitializeNewMap(int index)
         {
             BaseTerrain baseTerrain = maps[index].baseTerrain;
-            baseListeners.ForEach(x => x.attached.Write(baseTerrain));
+            baseListeners.ForEach(x => x.Write(baseTerrain));
 
             ITerrainable terrainable = baseTerrain;
             ITerrainableColorable colorable = baseTerrain;
@@ -84,8 +65,8 @@ namespace Equilibrium
             }
 
             // The order of these is important !!
-            colorListeners.ForEach(x => x.attached.Write(colorable));
-            terrainListeners.ForEach(x => x.attached.Write(terrainable));
+            colorListeners.ForEach(x => x.Write(colorable));
+            terrainListeners.ForEach(x => x.Write(terrainable));
         }
 
         public void GoPreviousMap()
@@ -98,14 +79,6 @@ namespace Equilibrium
         {
             currentMap++;
             Refresh();
-        }
-
-        [System.Serializable]
-        public class DecoratedTerrain 
-        {
-            public BaseTerrain baseTerrain;
-            public TerrainDecorator[] decorators;
-            public TerrainColorDecorator[] colorDecorators;
         }
     }
 }

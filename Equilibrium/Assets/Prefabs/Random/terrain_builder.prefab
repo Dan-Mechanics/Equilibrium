@@ -52,19 +52,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 35c5e16df87915f498a461e323277253, type: 2}
   - {fileID: 11400000, guid: a30845db9835afb4fadb373d734c4346, type: 2}
   - {fileID: 11400000, guid: 7bdf371317b6d4a44ab203e1a98d93d5, type: 2}
-  terrainListeners:
-  - monoBehaviour: {fileID: 0}
-  - monoBehaviour: {fileID: 0}
-  - monoBehaviour: {fileID: 0}
-  - monoBehaviour: {fileID: 0}
-  - monoBehaviour: {fileID: 0}
-  colorListeners:
-  - monoBehaviour: {fileID: 0}
-  baseListeners:
-  - monoBehaviour: {fileID: 0}
-  - monoBehaviour: {fileID: 0}
-  - monoBehaviour: {fileID: 0}
-  - monoBehaviour: {fileID: 0}
+  terrainListenersMono:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  colorListenersMono:
+  - {fileID: 0}
+  baseListenersMono:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   onRefresh:
     m_PersistentCalls:
       m_Calls:

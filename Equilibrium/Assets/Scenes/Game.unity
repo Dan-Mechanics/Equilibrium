@@ -2100,21 +2100,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
-      propertyPath: baseListenersMono.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: colorListenersMono.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: terrainListenersTwo.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
       propertyPath: baseListenersMono.Array.data[0]
       value: 
       objectReference: {fileID: 249153634}
@@ -2133,11 +2118,6 @@ PrefabInstance:
       propertyPath: baseListenersMono.Array.data[3]
       value: 
       objectReference: {fileID: 747860301}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: terrainListenersMono.Array.size
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
       propertyPath: colorListenersMono.Array.data[0]
@@ -2166,56 +2146,6 @@ PrefabInstance:
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
       propertyPath: terrainListenersMono.Array.data[4]
-      value: 
-      objectReference: {fileID: 2135685229}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: baseListeners.Array.data[0].monoBehaviour
-      value: 
-      objectReference: {fileID: 249153634}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: baseListeners.Array.data[1].monoBehaviour
-      value: 
-      objectReference: {fileID: 1848321846}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: baseListeners.Array.data[2].monoBehaviour
-      value: 
-      objectReference: {fileID: 200909042}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: baseListeners.Array.data[3].monoBehaviour
-      value: 
-      objectReference: {fileID: 747860301}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: colorListeners.Array.data[0].monoBehaviour
-      value: 
-      objectReference: {fileID: 7723378074576480906}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: terrainListeners.Array.data[0].monoBehaviour
-      value: 
-      objectReference: {fileID: 747860301}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: terrainListeners.Array.data[1].monoBehaviour
-      value: 
-      objectReference: {fileID: 761388911}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: terrainListeners.Array.data[2].monoBehaviour
-      value: 
-      objectReference: {fileID: 1848321846}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: terrainListeners.Array.data[3].monoBehaviour
-      value: 
-      objectReference: {fileID: 249153634}
-    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
-        type: 3}
-      propertyPath: terrainListeners.Array.data[4].monoBehaviour
       value: 
       objectReference: {fileID: 2135685229}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
