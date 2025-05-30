@@ -123,6 +123,10 @@ namespace Equilibrium
             return new Vector2Int(x, z);
         }
 
+        /// <summary>
+        /// You could make this better by saying if it dont find it look
+        /// in the gameobject and if you still cant find it give up.
+        /// </summary>
         public static void PipeTo<T>(List<MonoBehaviour> source, List<T> dest) 
         {
             dest.Clear();
