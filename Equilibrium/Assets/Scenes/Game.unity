@@ -2150,6 +2150,22 @@ PrefabInstance:
       objectReference: {fileID: 2135685229}
     - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
         type: 3}
+      propertyPath: maps.Array.data[0].colorDecorators.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
+      propertyPath: maps.Array.data[3].colorDecorators.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
+      propertyPath: maps.Array.data[3].colorDecorators.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 86559c389e74f374faed67c7d11a5d72,
+        type: 2}
+    - target: {fileID: 2485992251736789793, guid: 5f07d60a53338cb42ad8a1d949cecf55,
+        type: 3}
       propertyPath: onRefresh.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 747860301}
@@ -4651,6 +4667,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: cam_pivot
+      objectReference: {fileID: 0}
+    - target: {fileID: 914232822069356136, guid: 092772b0498319a4db85762db6b090e0,
+        type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6179738720916800745, guid: 092772b0498319a4db85762db6b090e0,
         type: 3}

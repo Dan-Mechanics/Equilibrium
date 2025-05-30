@@ -27,7 +27,7 @@ namespace Equilibrium
         private float dieTime;
         private float speedMod;
         private Vector3 idealVelocity;
-        private Utils.ClosestPair closest;
+        private ClosestPair closest;
 
         public void Setup(ICreatureCallbacks creatureCallback)
         {
@@ -47,12 +47,12 @@ namespace Equilibrium
 
             if (TryFindClosestOfMask(foodMask, data.foodSeeingRange))
             {
-                chaseVelocity = data.chaseBias * speed * Utils.Flatten(closest.transform.position - transform.position).normalized;
+                chaseVelocity = data.chaseBias * speed * Utils.Flatten(closest.Transform.position - transform.position).normalized;
                 TryEat();
             }
 
             if (TryFindClosestOfMask(dangerMask, data.dangerSeeingRange))
-                runVelocity = data.runBias * speed * Utils.Flatten(transform.position - closest.transform.position).normalized;
+                runVelocity = data.runBias * speed * Utils.Flatten(transform.position - closest.Transform.position).normalized;
 
             idealVelocity = chaseVelocity + runVelocity;
             idealVelocityWriter.attached.Write(idealVelocity);

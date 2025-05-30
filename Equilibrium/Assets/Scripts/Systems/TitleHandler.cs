@@ -107,17 +107,15 @@ namespace Equilibrium
         private void SetCurrentMessage(TitleMessage message)
         {
             current = message;
+            print(current.message);
 
             title.text = current.message;
             fadingColor = current.color;
             title.color = fadingColor;
-
-            print($"{current.message} ...");
         }
 
         public void SetTitleWithMessage(string message) 
         {
-            print($"queueing {message} ...");
             standard.message = message;
             EnqueueTitle(standard);
         }

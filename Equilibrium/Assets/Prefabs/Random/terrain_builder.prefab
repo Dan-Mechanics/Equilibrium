@@ -54,6 +54,7 @@ MonoBehaviour:
     colorDecorators:
     - {fileID: 11400000, guid: 126f7c0168804b44f971e78a04608e62, type: 2}
     - {fileID: 11400000, guid: afa4db1d28820984ab92d5a7976c155e, type: 2}
+    - {fileID: 11400000, guid: 86559c389e74f374faed67c7d11a5d72, type: 2}
   - baseTerrain: {fileID: 11400000, guid: f11895ed3e41e374dbd8aab4fe9c0194, type: 2}
     decorators:
     - {fileID: 11400000, guid: d460fe113ee0649499b69f4fddb46fc9, type: 2}

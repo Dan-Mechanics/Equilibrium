@@ -10,7 +10,6 @@ namespace Equilibrium
             return Mathf.Pow(Mathf.Pow(value, 2f) + Mathf.Pow(value, 2f), 0.5f);
         }
         
-        
         public static Vector3 Flatten(Vector3 vec, float y = 0f)
         {
             vec.y = y;
@@ -63,16 +62,6 @@ namespace Equilibrium
             return index;
         }
 
-        /*public static void StopRigidbody(Rigidbody rb, Vector3 pass) 
-        {
-            Vector3 vel = rb.velocity;
-            vel.x *= pass.x;
-            vel.y *= pass.y;
-            vel.z *= pass.z;
-
-            rb.AddForce(-vel, ForceMode.VelocityChange);
-        }*/
-
         public static int GetSmallestFloat(int[] array) 
         {
             int index = 0;
@@ -119,39 +108,12 @@ namespace Equilibrium
             {
                 tempDist = Vector3.Distance(toPoint, components[i].transform.position);
 
-                //Debug.Log($"if ({tempDist} < {closest.distance})");
-
                 if (tempDist < closest.distance || i == 0)
-                {
-                   // Debug.Log("hello");
                     closest.Set(components[i], tempDist);
-                }
             }
         }
 
-        public static bool IsTime(float time) 
-        {
-            return Time.time >= time;
-        }
-
-        public struct ClosestPair 
-        {
-            public Component component;
-            public Transform transform => component?.transform;
-            public float distance;
-
-            public ClosestPair(Component component, float distance)
-            {
-                this.component = component;
-                this.distance = distance;
-            }
-
-            public void Set(Component component, float distance)
-            {
-                this.component = component;
-                this.distance = distance;
-            }
-        }
+        public static bool IsTime(float time) => Time.time >= time;
 
         public static Vector2Int GetPosFromIndex(int i, int dominantSideLength)
         {

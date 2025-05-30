@@ -12,6 +12,7 @@ namespace Equilibrium
         public BaseBrush brush;
         public Color iconicColor; 
         public Color backgroundColor;
+        public float terrainHeight;
 
         [Header("Mesh")]
         [Min(1)] public int size;
@@ -30,7 +31,7 @@ namespace Equilibrium
         }
 
         public Texture2D GetTexture() => null;
-        public void SetHeightStartup(float x, ref float y, float z) { }
+        public void SetHeightStartup(float x, ref float y, float z) => y = terrainHeight;
         public void SetHeightTerraform(float x, ref float y, float z) { }
     }
 }

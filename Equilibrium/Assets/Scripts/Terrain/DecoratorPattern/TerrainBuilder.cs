@@ -15,6 +15,11 @@ namespace Equilibrium
     public class TerrainBuilder : MonoBehaviour
     {
         [SerializeField] private int currentMap = default;
+
+        /// <summary>
+        /// Consider dit is een beetje irritant want inspector lore
+        /// consider dat de base terrain houd de reference naar de shti vast? misschien is dat minder modulair.
+        /// </summary>
         [SerializeField] private DecoratedTerrain[] maps = default;
 
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainable>>> terrainListeners = default;

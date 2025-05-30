@@ -12,10 +12,13 @@ namespace Equilibrium
             return this;
         }
 
-        // or the default should be checking if its null would be better maybe.
+        /// <summary>
+        /// or the default should be checking if its null would be better maybe.
+        /// nah we dont do that scared ass programming style.
+        /// if i missed a decorator somewhere i want to know about it.
+        /// </summary>
         public virtual float GetColorFloor(float min) => colorable.GetColorFloor(min);
         public virtual float GetColorCeiling(float max) => colorable.GetColorCeiling(max);
         public virtual Texture2D GetTexture() => colorable.GetTexture();
-        //public virtual Color GetIntroductionColor() => colorable.GetIntroductionColor();
     }
 }
