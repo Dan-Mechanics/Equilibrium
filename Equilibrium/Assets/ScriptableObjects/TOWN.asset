@@ -17,6 +17,7 @@ MonoBehaviour:
   brush: {fileID: 11400000, guid: 1b7761554c7dcb34c96cf18bf7c4e562, type: 2}
   iconicColor: {r: 0, g: 0, b: 0, a: 1}
   backgroundColor: {r: 0.514151, g: 0.8441272, b: 1, a: 1}
+  terrainHeight: 1
   size: 100
   spawnDatas:
   - prefab: {fileID: 3837364881763130312, guid: 80db7dd53e2b6ff4facc93f7c1d1b8d3,

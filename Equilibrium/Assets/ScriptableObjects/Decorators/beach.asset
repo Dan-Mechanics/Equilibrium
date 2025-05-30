@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afa4958c1f69094caf662258ef66911, type: 3}
   m_Name: beach
   m_EditorClassIdentifier: 
-  beachColor: {r: 0.9150943, g: 0.83052844, b: 0.66042185, a: 1}
-  min: 0
-  max: 10
+  beachColor: {r: 1, g: 0.8640307, b: 0.6839622, a: 1}
+  minPercentage: 0
+  maxPercentage: 0.025

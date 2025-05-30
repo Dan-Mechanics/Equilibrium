@@ -11,21 +11,26 @@ namespace Equilibrium
         /// Maybe add something abt waterheight ??
         /// </summary>
         public Color beachColor;
-        public int min;
-        public int max;
+        [Range(0f, 1f)] public float minPercentage;
+        [Range(0f, 1f)] public float maxPercentage;
 
         public override Texture2D GetTexture()
         {
-            Texture2D tex = null;
-            Graphics.CopyTexture(base.GetTexture(), tex);
-            
-            for (int i = min; i <= max; i++)
+            Texture2D src = base.GetTexture();
+            Texture2D copyTexture = new Texture2D(src.width, src.height);
+            copyTexture.filterMode = src.filterMode;
+            copyTexture.SetPixels(src.GetPixels());
+
+            int min = Mathf.FloorToInt(minPercentage * src.width);
+            int max = Mathf.CeilToInt(maxPercentage * src.width);
+
+            for (int i = min; i < max; i++)
             {
-                tex.SetPixel(i, 0, beachColor);
+                copyTexture.SetPixel(i, 0, beachColor);
             }
 
-            tex.Apply();
-            return tex;
+            copyTexture.Apply();
+            return copyTexture;
         }
     }
 }

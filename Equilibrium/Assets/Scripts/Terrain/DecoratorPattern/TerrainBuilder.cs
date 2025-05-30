@@ -15,16 +15,12 @@ namespace Equilibrium
     public class TerrainBuilder : MonoBehaviour
     {
         [SerializeField] private int currentMap = default;
-
-        /// <summary>
-        /// Consider dit is een beetje irritant want inspector lore
-        /// consider dat de base terrain houd de reference naar de shti vast? misschien is dat minder modulair.
-        /// </summary>
-        [SerializeField] private DecoratedTerrain[] maps = default;
+        [SerializeField] private List<Map> maps = default;
 
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainable>>> terrainListeners = default;
         [SerializeField] private List<InspectorInterface<IWritable<ITerrainableColorable>>> colorListeners = default;
         [SerializeField] private List<InspectorInterface<IWritable<BaseTerrain>>> baseListeners = default;
+
         [SerializeField] private UnityEvent onRefresh = default;
         [SerializeField] private UnityEvent onUpperLimitReached = default;
 
@@ -43,37 +39,41 @@ namespace Equilibrium
             if (currentMap < 0)
                 currentMap = 0;
 
-            if (currentMap >= maps.Length) 
+            if (currentMap >= maps.Count)
             {
                 onUpperLimitReached?.Invoke();
-                currentMap = maps.Length - 1;
+                currentMap = maps.Count - 1;
                 return;
             }
 
-            BaseTerrain baseTerrain = maps[currentMap].baseTerrain;
+            InitializeNewMap(currentMap);
+            onRefresh?.Invoke();
+        }
+
+        private void InitializeNewMap(int index)
+        {
+            BaseTerrain baseTerrain = maps[index].baseTerrain;
             baseListeners.ForEach(x => x.attached.Write(baseTerrain));
 
             ITerrainable terrainable = baseTerrain;
             ITerrainableColorable colorable = baseTerrain;
 
             EventManager<TitleHandler.TitleMessage>.RaiseEvent(EventManager.EventType.TITLE,
-                    new TitleHandler.TitleMessage(maps[currentMap].baseTerrain.name, maps[currentMap].baseTerrain.iconicColor, false));
+                    new TitleHandler.TitleMessage(maps[index].baseTerrain.name, maps[index].baseTerrain.iconicColor, false));
 
-            for (int i = 0; i < maps[currentMap].decorators.Length; i++)
+            for (int i = 0; i < maps[index].decorators.Count; i++)
             {
-                terrainable = maps[currentMap].decorators[i].Decorate(terrainable);
+                terrainable = maps[index].decorators[i].Decorate(terrainable);
             }
 
-            for (int i = 0; i < maps[currentMap].colorDecorators.Length; i++)
+            for (int i = 0; i < maps[index].colorDecorators.Count; i++)
             {
-                colorable = maps[currentMap].colorDecorators[i].Decorate(colorable);
+                colorable = maps[index].colorDecorators[i].Decorate(colorable);
             }
 
             // The order of these is important !!
             colorListeners.ForEach(x => x.attached.Write(colorable));
             terrainListeners.ForEach(x => x.attached.Write(terrainable));
-
-            onRefresh?.Invoke();
         }
 
         public void GoPreviousMap()
