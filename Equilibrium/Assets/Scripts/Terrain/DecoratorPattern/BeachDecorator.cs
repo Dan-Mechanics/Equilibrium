@@ -19,10 +19,12 @@ namespace Equilibrium
             Texture2D src = base.GetTexture();
             Texture2D copyTexture = new Texture2D(src.width, src.height);
             copyTexture.filterMode = src.filterMode;
-            copyTexture.SetPixels(src.GetPixels());
+            copyTexture.SetPixels32(src.GetPixels32());
+            copyTexture.Apply();
 
             int min = Mathf.FloorToInt(minPercentage * src.width);
             int max = Mathf.CeilToInt(maxPercentage * src.width);
+
 
             for (int i = min; i < max; i++)
             {
