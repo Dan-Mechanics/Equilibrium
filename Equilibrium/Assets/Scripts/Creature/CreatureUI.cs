@@ -13,7 +13,7 @@ namespace Equilibrium
     public class CreatureUI : MonoBehaviour, IWritable<int[]>
     {
         [SerializeField] private Transform barsHolder = default;
-        [SerializeField] private CreatureData creatureData = default;
+        [SerializeField] private CreatureSettings settings = default;
 
         [SerializeField] private TMP_Text winConditonTimer = default;
         [SerializeField] private TMP_Text referenceText = default;
@@ -43,8 +43,8 @@ namespace Equilibrium
         {
             for (int i = 0; i < factionsTally.Length; i++)
             {
-                displays[i].image.fillAmount = (float)factionsTally[i] / creatureData.creatureSpawnCount;
-                displays[i].text.text = $"{factionsTally[i]} / {creatureData.creatureSpawnCount}";
+                displays[i].image.fillAmount = (float)factionsTally[i] / settings.creatureSpawnCount;
+                displays[i].text.text = $"{factionsTally[i]} / {settings.creatureSpawnCount}";
 
                 displays[i].boss.SetActive(displays[i].image.fillAmount > 0f);
             }

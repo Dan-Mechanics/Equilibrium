@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5afdc364c93b864799b1aec6d399a00, type: 3}
-  m_Name: calm_mesh_crunch
+  m_Script: {fileID: 11500000, guid: 6e4448833c1be38489966f89c7aa6bcb, type: 3}
+  m_Name: serene_color_crunch
   m_EditorClassIdentifier: 
-  meshFloor: -0.5
-  meshCeiling: 50
+  floorHeight: -0.5
+  ceilingHeight: 35

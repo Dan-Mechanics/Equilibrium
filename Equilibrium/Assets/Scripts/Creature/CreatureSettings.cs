@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Equilibrium
 {
-    [CreateAssetMenu(menuName = "CreatureData")]
-    public class CreatureData : ScriptableObject
+    [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(CreatureSettings), fileName = "New " + nameof(CreatureSettings))]
+    public class CreatureSettings : ScriptableObject
     {
         [Min(0f)] public float baseSpeed;
         [Min(0f)] public float foodSeeingRange;

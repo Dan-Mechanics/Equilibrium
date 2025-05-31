@@ -5901,6 +5901,12 @@ PrefabInstance:
       objectReference: {fileID: 459015136}
     - target: {fileID: 8211612423830256730, guid: fc4e4c334155e764b80e7541a7b49d55,
         type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: 4128568c2c5b885469944d83587edcd3,
+        type: 2}
+    - target: {fileID: 8211612423830256730, guid: fc4e4c334155e764b80e7541a7b49d55,
+        type: 3}
       propertyPath: barsHolder
       value: 
       objectReference: {fileID: 23864450}
@@ -6196,6 +6202,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: creature_handler
       objectReference: {fileID: 0}
+    - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
+        type: 3}
+      propertyPath: settings
+      value: 
+      objectReference: {fileID: 11400000, guid: 4128568c2c5b885469944d83587edcd3,
+        type: 2}
     - target: {fileID: 7720309226832471414, guid: e4592990b2ea1c64a87a08866ed6aed0,
         type: 3}
       propertyPath: terrainReader.monoBehaviour

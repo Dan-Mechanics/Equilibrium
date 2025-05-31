@@ -19,7 +19,7 @@ namespace Equilibrium
     /// </summary>
     public class CreatureHandler : MonoBehaviour, ICreatureCallbacks, IUpdatable, IWritable<float>, IWritable<ITerrainable>, IWritable<BaseTerrain>
     {
-        [SerializeField] private CreatureData data = default;
+        [SerializeField] private CreatureSettings settings = default;
         [SerializeField] private SpawnData spawnData = default;
         [SerializeField] private InspectorInterface<IGetter<Vector3[]>> terrainReader = default;
         [SerializeField] private InspectorInterface<ISpawnable> spawner = default;  
@@ -34,10 +34,10 @@ namespace Equilibrium
 
         private void Awake()
         {
-            creatures = new CreatureBehaviour[data.creatureSpawnCount];
+            creatures = new CreatureBehaviour[settings.creatureSpawnCount];
             terrainReader.Setup();
             factionsTallyListeners.ForEach(x => x.Setup());
-            factionsTally = new int[data.factionsCount];
+            factionsTally = new int[settings.factionsCount];
             spawner.Setup();
         }
 
@@ -51,7 +51,7 @@ namespace Equilibrium
         /// This must be like this because of the different processinterval than
         /// usual fixedupdaterate.
         /// </summary>
-        public void Write(float timeScale) => fixedTicks = new FixedTicks(data.processInterval * timeScale);
+        public void Write(float timeScale) => fixedTicks = new FixedTicks(settings.processInterval * timeScale);
         public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
 
@@ -137,7 +137,7 @@ namespace Equilibrium
 
         private void SpawnNewCreatures()
         {
-            data.foundColliders = new Collider[data.creatureSearchBufferSize];
+            settings.foundColliders = new Collider[settings.creatureSearchBufferSize];
 
             for (int i = 0; i < creatures.Length; i++)
             {
@@ -161,7 +161,7 @@ namespace Equilibrium
 
         public void ClaimCallback(int faction)
         {
-            int previousIndex = Utils.WrapIndex(faction, 1, data.factionsCount);
+            int previousIndex = Utils.WrapIndex(faction, 1, settings.factionsCount);
 
             TallyFaction(faction, 1);
             TallyFaction(previousIndex, -1);
@@ -170,7 +170,7 @@ namespace Equilibrium
         private void TallyFaction(int index, int direction) 
         {
             factionsTally[index] += direction;
-            factionsTally[index] = Mathf.Clamp(factionsTally[index], 0, data.creatureSpawnCount);
+            factionsTally[index] = Mathf.Clamp(factionsTally[index], 0, settings.creatureSpawnCount);
 
             hasChangedThisFrame = true;
         }

@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe24309d30b310647bec57aeb7206488, type: 3}
+  m_Script: {fileID: 11500000, guid: 359e3f201e7c24c4b8363751bd55e0a9, type: 3}
   m_Name: creature
   m_EditorClassIdentifier: 
   baseSpeed: 2.3

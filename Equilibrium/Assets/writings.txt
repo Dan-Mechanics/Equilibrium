@@ -1,5 +1,5 @@
 idea: add funny texture to background !!
-rename creature data to creaturesettings right right.
+rename creature data to creaturesettings right right. VVV
 
 stuff i still wanan do:
 add funny thing in the background

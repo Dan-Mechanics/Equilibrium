@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792e50b05cf03364d94b4bedb7bf863b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 4128568c2c5b885469944d83587edcd3, type: 2}
+  settings: {fileID: 11400000, guid: 4128568c2c5b885469944d83587edcd3, type: 2}
   rend: {fileID: 8417072742981633920}
   firstLayerIndex: 6
   idealVelocityWriter:
