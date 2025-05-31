@@ -101,7 +101,11 @@ namespace Equilibrium
                     if (dist > brushSize)
                         continue;
 
-                    if (!Utils.TryGetIndexFromPos((int)point.x + x, (int)point.z + z,
+                    /*if (!Utils.TryGetIndexFromPos((int)point.x + x, (int)point.z + z,
+                        terrainable.GetSize(), terrainable.GetSize(), out int index))
+                        continue;*/
+
+                    if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x + x), Mathf.RoundToInt(point.z + z),
                         terrainable.GetSize(), terrainable.GetSize(), out int index))
                         continue;
 
