@@ -22,11 +22,16 @@ namespace Equilibrium
             copyTexture.SetPixels32(src.GetPixels32());
             copyTexture.Apply();
 
-            int min = Mathf.FloorToInt(minPercentage * src.width);
-            int max = Mathf.CeilToInt(maxPercentage * src.width);
+            //int min = Mathf.FloorToInt(minPercentage * src.width);
+            int max = Mathf.RoundToInt(maxPercentage * (float)src.width);
 
 
-            for (int i = min; i < max; i++)
+            /*for (int i = min; i < max; i++)
+            {
+                copyTexture.SetPixel(i, 0, beachColor);
+            }*/
+
+            for (int i = 0; i < max; i++)
             {
                 copyTexture.SetPixel(i, 0, beachColor);
             }
