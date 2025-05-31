@@ -11,7 +11,7 @@ namespace Equilibrium
         /// Maybe add something abt waterheight ??
         /// </summary>
         public Color beachColor;
-        [Range(0f, 1f)] public float minPercentage;
+        //[Range(0f, 1f)] public float minPercentage;
         [Range(0f, 1f)] public float maxPercentage;
 
         public override Texture2D GetTexture()
@@ -20,17 +20,8 @@ namespace Equilibrium
             Texture2D copyTexture = new Texture2D(src.width, src.height);
             copyTexture.filterMode = src.filterMode;
             copyTexture.SetPixels32(src.GetPixels32());
-            copyTexture.Apply();
 
-            //int min = Mathf.FloorToInt(minPercentage * src.width);
-            int max = Mathf.RoundToInt(maxPercentage * (float)src.width);
-
-
-            /*for (int i = min; i < max; i++)
-            {
-                copyTexture.SetPixel(i, 0, beachColor);
-            }*/
-
+            int max = Mathf.CeilToInt(maxPercentage * (float)src.width);
             for (int i = 0; i < max; i++)
             {
                 copyTexture.SetPixel(i, 0, beachColor);
