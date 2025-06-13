@@ -20,13 +20,17 @@ namespace Equilibrium
         private Mesh mesh;
         private int[] triangles;
 
-        private readonly MeshColliderCookingOptions cookingOptions =
-        MeshColliderCookingOptions.UseFastMidphase & MeshColliderCookingOptions.CookForFasterSimulation;
-
         /// <summary>
-        /// We are not going for the simulation time because IDK.
+        /// This is a little bit IDK to me.
+        /// In the sense that I want it to cook fast
+        /// and the simulation speed needs to be fast but I don't
+        /// know which is more important to me like ...
+        /// I'll just leave it like this this feels the best to me.
         /// </summary>
-        //private readonly MeshColliderCookingOptions cookingOptions = MeshColliderCookingOptions.UseFastMidphase;
+        /*private readonly MeshColliderCookingOptions cookingOptions =
+        MeshColliderCookingOptions.UseFastMidphase & MeshColliderCookingOptions.CookForFasterSimulation;*/
+
+        private readonly MeshColliderCookingOptions cookingOptions = MeshColliderCookingOptions.UseFastMidphase;
 
         private void Awake()
         {
@@ -41,9 +45,9 @@ namespace Equilibrium
         private void MakeNewTerrain(ITerrainable terrainable)
         {
             mesh = new Mesh();
-            mesh.MarkDynamic();
             filter.mesh = mesh;
             coll.cookingOptions = cookingOptions;
+            mesh.MarkDynamic();
 
             // ----
 
