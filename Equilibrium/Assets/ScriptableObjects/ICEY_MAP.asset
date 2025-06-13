@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ad9ae148fc56746b5b9b2e22667118, type: 3}
+  m_Name: ICEY_MAP
+  m_EditorClassIdentifier: 
+  baseTerrain: {fileID: 11400000, guid: 314fe03b14b48144692749472375d1a3, type: 2}
+  decorators:
+  - {fileID: 11400000, guid: 9f81e5b82470a254ea3e65f4142cbf16, type: 2}
+  colorDecorators:
+  - {fileID: 11400000, guid: e3bd935505277bd45b47c1f6c2ad80f5, type: 2}
+  - {fileID: 11400000, guid: 9d3981698326ec948877a59da8d68547, type: 2}

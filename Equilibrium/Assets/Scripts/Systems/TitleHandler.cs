@@ -25,6 +25,11 @@ namespace Equilibrium
         private TitleMessage current;
         private Color fadingColor;
         private readonly Dictionary<EventManager.EventType, TitleMessage> conversions = new();
+
+        /// <summary>
+        /// Consider making this just one method considering that you always have
+        /// one qqueueud up, then it needs to be a class too.
+        /// </summary>
         private readonly Queue<TitleMessage> pendingTitleMessages = new();
 
         private void FixedUpdate()
@@ -53,8 +58,6 @@ namespace Equilibrium
 
         private void EnqueueTitle(TitleMessage message) 
         {
-            //print(message);
-            
             if (message.duration <= 0f)
                 message.duration = introductionTime;
 
@@ -104,17 +107,15 @@ namespace Equilibrium
         private void SetCurrentMessage(TitleMessage message)
         {
             current = message;
+            print(current.message);
 
             title.text = current.message;
             fadingColor = current.color;
             title.color = fadingColor;
-
-            print(current.message);
         }
 
         public void SetTitleWithMessage(string message) 
         {
-            print(message);
             standard.message = message;
             EnqueueTitle(standard);
         }

@@ -17,13 +17,13 @@ namespace Equilibrium
     /// This code is a little bit overengineerd i think.
     /// i think i can make some conrete interfaces like IClaimCallback and IDieCallback or something
     /// </summary>
-    public class CreatureHandler : MonoBehaviour, IDieCallback, IClaimCallback, IUpdatable, IWritable<float>, IWritable<ITerrainable>, IWritable<BaseTerrain>
+    public class CreatureHandler : MonoBehaviour, ICreatureCallbacks, IUpdatable, IWritable<float>, IWritable<ITerrainable>, IWritable<BaseTerrain>
     {
-        [SerializeField] private CreatureData data = default;
+        [SerializeField] private CreatureSettings settings = default;
         [SerializeField] private SpawnData spawnData = default;
-        [SerializeField] private InspectorInterface<IDataGettable<Vector3[]>> terrainReader = default;
+        [SerializeField] private InspectorInterface<IGetter<Vector3[]>> terrainReader = default;
         [SerializeField] private InspectorInterface<ISpawnable> spawner = default;  
-        [SerializeField] private List<InspectorInterface<IPassable<int[]>>> factionsTallyListeners = default;
+        [SerializeField] private List<InspectorInterface<IWritable<int[]>>> factionsTallyListeners = default;
 
         private CreatureBehaviour[] creatures;
         private FixedTicks fixedTicks;
@@ -34,10 +34,10 @@ namespace Equilibrium
 
         private void Awake()
         {
-            creatures = new CreatureBehaviour[data.creatureSpawnCount];
+            creatures = new CreatureBehaviour[settings.creatureSpawnCount];
             terrainReader.Setup();
             factionsTallyListeners.ForEach(x => x.Setup());
-            factionsTally = new int[data.factionsCount];
+            factionsTally = new int[settings.factionsCount];
             spawner.Setup();
         }
 
@@ -51,7 +51,7 @@ namespace Equilibrium
         /// This must be like this because of the different processinterval than
         /// usual fixedupdaterate.
         /// </summary>
-        public void Write(float timeScale) => fixedTicks = new FixedTicks(data.processInterval * timeScale);
+        public void Write(float timeScale) => fixedTicks = new FixedTicks(settings.processInterval * timeScale);
         public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
 
@@ -103,16 +103,15 @@ namespace Equilibrium
                 factionsTally[i] = 0;
             }
 
-            Vector3[] verts = terrainReader.attached.Data;
+            Vector3[] verts = terrainReader.attached.Get();
             for (int i = 0; i < creatures.Length; i++)
             {
-                ResetCreature(creatures[i], ref verts);
+                ResetCreature(creatures[i], verts);
             }
 
             SendTally();
         }
 
-        //[ContextMenu(nameof(Stop))]
         public void Stop()
         {
             if (creatures == null || creatures.Length <= 0 || creatures[0] == null)
@@ -133,17 +132,17 @@ namespace Equilibrium
 
         private void SendTally()
         {
-            factionsTallyListeners.ForEach(x => x.attached.Pass(ref factionsTally));
+            factionsTallyListeners.ForEach(x => x.attached.Write(factionsTally));
         }
 
         private void SpawnNewCreatures()
         {
-            data.foundColliders = new Collider[data.creatureSearchBufferSize];
+            settings.foundColliders = new Collider[settings.creatureSearchBufferSize];
 
             for (int i = 0; i < creatures.Length; i++)
             {
                 CreatureBehaviour newCreature = spawner.attached.SpawnSingle(spawnData).GetComponent<CreatureBehaviour>();
-                newCreature.Setup(this, this);
+                newCreature.Setup(this);
                 creatures[i] = newCreature;
             }
         }
@@ -151,17 +150,18 @@ namespace Equilibrium
         /// <summary>
         /// I dont really think ref is required here.
         /// </summary>
-        private void ResetCreature(CreatureBehaviour creature, ref Vector3[] verts)
+        private void ResetCreature(CreatureBehaviour creature, Vector3[] verts)
         {
-            creature.transform.position = Utils.GetRandomVertexWorldSpace(ref verts, terrainable) + spawnData.spawnOffset;
-            TallyFaction(creature.ResetCreature(baseTerrain.biome), 1); // use the int here.
+            creature.transform.position = Utils.GetRandomVertexWorldSpace(verts, terrainable) + spawnData.spawnOffset;
+
+            TallyFaction(creature.ResetCreature(baseTerrain.speedMod), 1); // use the int here.
         }
 
         public void DieCallback(int faction) => TallyFaction(faction, -1);
 
         public void ClaimCallback(int faction)
         {
-            int previousIndex = Utils.WrapIndex(faction, 1, data.factionsCount);
+            int previousIndex = Utils.WrapIndex(faction, 1, settings.factionsCount);
 
             TallyFaction(faction, 1);
             TallyFaction(previousIndex, -1);
@@ -170,7 +170,7 @@ namespace Equilibrium
         private void TallyFaction(int index, int direction) 
         {
             factionsTally[index] += direction;
-            factionsTally[index] = Mathf.Clamp(factionsTally[index], 0, data.creatureSpawnCount);
+            factionsTally[index] = Mathf.Clamp(factionsTally[index], 0, settings.creatureSpawnCount);
 
             hasChangedThisFrame = true;
         }

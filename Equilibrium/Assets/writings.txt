@@ -1,6 +1,18 @@
+idea: add funny texture to background !!
+rename creature data to creaturesettings right right. VVV
+
+stuff i still wanan do:
+add funny thing in the background
+rename creatures to settings
+and make like 10 billion builds again
+
+
+
 keep in mind that for equilbrium, your protypes rest in fantasy landscapes yo.
-i wanan look at the ref stuff because that might not be needed everywhere right.
+VV i wanan look at the ref stuff because that might not be needed everywhere right.
 and then i wanna fix enums and then i wanna make builds again
+i also kinda wanna give creature a direct ref to movement a direct reference to something lowkey.
+    For some reason this reduces the framerate like ??
 
 je kan morgne schrivjen over hoe je het vond gaan om 1 uur locked in te scrijven / onderzoke te doen.
 tldr: het duurt lang en het is nutteloos. hard skills RULE !!.

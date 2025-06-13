@@ -9,14 +9,12 @@ namespace Equilibrium
     /// 
     /// Please refactor with smallstate and other memes.
     /// </summary>
-    public class Terraformer : MonoBehaviour, IPassable<Vector3[]>, IDataGettable<Vector3[]>, IUpdatable, IWritable<ITerrainable>, IWritable<BaseTerrain>
+    public class Terraformer : MonoBehaviour, IWritable<Vector3[]>, IGetter<Vector3[]>, IUpdatable, IWritable<ITerrainable>, IWritable<BaseTerrain>
     {
-        public Vector3[] Data => verticies;
-
         [SerializeField] private MeshFilter filter = default;
         [SerializeField] private Camera cam = default;
-        [SerializeField] private InspectorInterface<IDataGettable<State>> state = default;
-        [SerializeField] private List<InspectorInterface<IPassable<Vector3[]>>> listeners = default;
+        [SerializeField] private InspectorInterface<IGetter<State>> state = default;
+        [SerializeField] private List<InspectorInterface<IWritable<Vector3[]>>> listeners = default;
 
         [Header("Settings")]
         [SerializeField] private RaycastSettings raycastSettings = default;
@@ -38,15 +36,17 @@ namespace Equilibrium
         }
 
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
-        public void Pass(ref Vector3[] verts) => verticies = verts;
+        public void Write(Vector3[] verts) => verticies = verts;
+        public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
+        public Vector3[] Get() => verticies;
 
         public void DoUpdate()
         {
+            if (state.attached.Get() == State.Dragging)
+                return;
+
             for (int i = 0; i < fixedTicks.GetTicksCount(Time.deltaTime); i++)
             {
-                if (state.attached.Data == State.Dragging)
-                    continue;
-                
                 if (Input.GetKey(KeyCode.Mouse0))
                     DoRaycast();
             }
@@ -58,7 +58,7 @@ namespace Equilibrium
                 return;
 
             // so now we're yapping to the generator and decorations.
-            listeners.ForEach(x => x.attached.Pass(ref verticies));
+            listeners.ForEach(x => x.attached.Write(verticies));
             hasChanged = false;
         }
 
@@ -69,7 +69,7 @@ namespace Equilibrium
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, raycastSettings.range, raycastSettings.mask, QueryTriggerInteraction.Ignore))
-                TryChangeTerrain(hit.point, state.attached.Data == State.Mountain ? 1f : -1f);
+                TryChangeTerrain(hit.point, state.attached.Get() == State.Mountain ? 1f : -1f);
         }
 
         private void DoDebug() 
@@ -101,13 +101,13 @@ namespace Equilibrium
                     if (dist > brushSize)
                         continue;
 
-                    if (!Utils.TryGetIndexFromPos((int)point.x + x, (int)point.z + z,
-                        terrainable.GetSize(), terrainable.GetSize(), out int index))
-                        continue;
-
-                    /*if (!Utils.TryGetIndexFromPos(baseTerrain.brush.GetRound(point.x, x), baseTerrain.brush.GetRound(point.z, z),
+                    /*if (!Utils.TryGetIndexFromPos((int)point.x + x, (int)point.z + z,
                         terrainable.GetSize(), terrainable.GetSize(), out int index))
                         continue;*/
+
+                    if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x + x), Mathf.RoundToInt(point.z + z),
+                        terrainable.GetSize(), terrainable.GetSize(), out int index))
+                        continue;
 
                     Terraform(index, brushStrength * baseTerrain.brush.GetBrushMod(dist, brushSize) * brushInterval * dir);
                 }
@@ -130,11 +130,8 @@ namespace Equilibrium
             }
         }
 
-        [ContextMenu(nameof(WipeClean))]
         public void WipeClean() 
         {
-            print(nameof(WipeClean));
-
             for (int i = 0; i < verticies.Length; i++)
             {
                 verticies[i].y = 0f;
@@ -142,18 +139,5 @@ namespace Equilibrium
 
             hasChanged = true;
         }
-
-        public void Write(BaseTerrain baseTerrain) => this.baseTerrain = baseTerrain;
-
-        /*private void Flatten(int index, float y)
-        {
-            if (y > verticies[index].y)
-                verticies[index].y += brushInterval * 10f;
-
-            if (y < verticies[index].y)
-                verticies[index].y -= brushInterval * 10f;
-
-            //verticies[index].y = data.ClampTerrainHeight(y);
-        }*/
     }
 }

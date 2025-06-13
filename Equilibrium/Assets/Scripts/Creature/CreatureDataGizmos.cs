@@ -4,14 +4,14 @@ namespace Equilibrium
 {
     public class CreatureDataGizmos : MonoBehaviour
     {
-        [SerializeField] private CreatureData data = default;
+        [SerializeField] private CreatureSettings settings = default;
         
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position, data.eatingRange);
+            Gizmos.DrawWireSphere(transform.position, settings.eatingRange);
             Gizmos.color = Color.white;
-            Gizmos.DrawWireSphere(transform.position, data.foodSeeingRange);
+            Gizmos.DrawWireSphere(transform.position, settings.foodSeeingRange);
         }
     }
 }

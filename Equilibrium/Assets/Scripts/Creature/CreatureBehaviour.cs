@@ -9,19 +9,13 @@ namespace Equilibrium
     {
         private bool IsAwake => Utils.IsTime(awakeTime);
 
-        [SerializeField] private CreatureData data = default;
+        [SerializeField] private CreatureSettings settings = default;
         [SerializeField] private MeshRenderer rend = default;
         [SerializeField] private int firstLayerIndex = default;
 
-        /// <summary>
-        /// Consider making this less ass?
-        /// </summary>
         [SerializeField] private InspectorInterface<IWritable<Vector3>> idealVelocityWriter = default;
         [SerializeField] private InspectorInterface<IWritable<float>> fallingSpeedWriter = default;
-        //[SerializeField] private Material[] materials = default;
 
-
-        //private Collider[] foundColliders;
         private float speed;
         private LayerMask foodMask;
         private LayerMask dangerMask;
@@ -29,28 +23,21 @@ namespace Equilibrium
         private float awakeTime;
         private Vector3 runVelocity;
         private Vector3 chaseVelocity;
-        private IDieCallback dieCallback;
-        private IClaimCallback claimCallback;
+        private ICreatureCallbacks creatureCallback;
         private float dieTime;
-        private Biome currentBiome;
+        private float speedMod;
         private Vector3 idealVelocity;
-        private Utils.ClosestPair closest;
+        private ClosestPair closest;
 
-        public void Setup(IDieCallback dieCallback, IClaimCallback claimCallback)
+        public void Setup(ICreatureCallbacks creatureCallback)
         {
-            //data.foundColliders = new Collider[data.creatureSearchBufferSize];
-
             idealVelocityWriter.Setup();
             fallingSpeedWriter.Setup();
 
-            transform.localScale = Vector3.one * data.size;
-            this.dieCallback = dieCallback;
-            this.claimCallback = claimCallback;
+            transform.localScale = Vector3.one * settings.size;
+            this.creatureCallback = creatureCallback;
 
-            fallingSpeedWriter.attached.Write(data.fallingSpeed);
-
-            /*if (data.materials.Length != data.factionsCount)
-                Debug.LogError("if(materials.Length != data.factionsCount)");*/
+            fallingSpeedWriter.attached.Write(settings.fallingSpeed);
         }
 
         public void ProcessFixedFrame()
@@ -58,14 +45,14 @@ namespace Equilibrium
             if (CheckDeath())
                 return;
 
-            if (TryFindClosestOfMask(foodMask, data.foodSeeingRange))
+            if (TryFindClosestOfMask(foodMask, settings.foodSeeingRange))
             {
-                chaseVelocity = data.chaseBias * speed * Utils.Flatten(closest.transform.position - transform.position).normalized;
+                chaseVelocity = settings.chaseBias * speed * Utils.Flatten(closest.Transform.position - transform.position).normalized;
                 TryEat();
             }
 
-            if (TryFindClosestOfMask(dangerMask, data.dangerSeeingRange))
-                runVelocity = data.runBias * speed * Utils.Flatten(transform.position - closest.transform.position).normalized;
+            if (TryFindClosestOfMask(dangerMask, settings.dangerSeeingRange))
+                runVelocity = settings.runBias * speed * Utils.Flatten(transform.position - closest.Transform.position).normalized;
 
             idealVelocity = chaseVelocity + runVelocity;
             idealVelocityWriter.attached.Write(idealVelocity);
@@ -94,7 +81,7 @@ namespace Equilibrium
                 }
             }
 
-            if (transform.position.y <= data.deathPitHeight)
+            if (transform.position.y <= settings.deathPitHeight)
             {
                 Die();
                 return true;
@@ -108,7 +95,7 @@ namespace Equilibrium
             if (!IsAwake)
                 return;
 
-            if (closest.distance > data.eatingRange)
+            if (closest.distance > settings.eatingRange)
                 return;
 
             SetDieTime();
@@ -119,9 +106,9 @@ namespace Equilibrium
 
         private bool TryFindClosestOfMask(LayerMask mask, float seeingRange)
         {
-            int foundCount = Physics.OverlapSphereNonAlloc(transform.position, seeingRange, data.foundColliders, mask, QueryTriggerInteraction.Ignore);
+            int foundCount = Physics.OverlapSphereNonAlloc(transform.position, seeingRange, settings.foundColliders, mask, QueryTriggerInteraction.Ignore);
 
-            Utils.GetClosest(data.foundColliders, foundCount, transform.position, out closest);
+            Utils.GetClosest(settings.foundColliders, foundCount, transform.position, out closest);
 
             return foundCount > 0;
         }
@@ -129,16 +116,17 @@ namespace Equilibrium
         private void ClaimByCreature(int factionIndex)
         {
             Claim(factionIndex);
-            claimCallback.ClaimCallback(factionIndex);
+            creatureCallback.ClaimCallback(factionIndex);
         }
 
-        public int ResetCreature(Biome currentBiome)
+        public int ResetCreature(float mod)
         {
-            int faction = Random.Range(0, data.factionsCount);
+            this.speedMod = mod;
+
+            int faction = Random.Range(0, settings.factionsCount);
             Claim(faction);
             gameObject.SetActive(true);
             SetDieTime();
-            this.currentBiome = currentBiome;
 
             return faction;
         }
@@ -148,25 +136,25 @@ namespace Equilibrium
         /// </summary>
         private void SetDieTime()
         {
-            dieTime = Time.time + data.aliveTimeWithoutFood;
+            dieTime = Time.time + settings.aliveTimeWithoutFood;
         }
 
         private void Claim(int factionIndex) 
         {
             this.factionIndex = factionIndex;
-            rend.material = data.materials[factionIndex];
+            rend.material = settings.materials[factionIndex];
 
             gameObject.layer = firstLayerIndex + factionIndex;
-            foodMask = 1 << (firstLayerIndex + Utils.WrapIndex(factionIndex, 1, data.materials.Length));
-            dangerMask = 1 << (firstLayerIndex + Utils.WrapIndex(factionIndex, 2, data.materials.Length));
+            foodMask = 1 << (firstLayerIndex + Utils.WrapIndex(factionIndex, 1, settings.materials.Length));
+            dangerMask = 1 << (firstLayerIndex + Utils.WrapIndex(factionIndex, 2, settings.materials.Length));
 
             Refresh();
         }
 
         private void Refresh()
         {
-            speed = data.GetSpeed(currentBiome);
-            awakeTime = Time.time + data.asleepTime;
+            speed = settings.GetSpeed(speedMod);
+            awakeTime = Time.time + settings.asleepTime;
 
             // NEW NEW NEW.
             //SetDieTime();
@@ -178,7 +166,7 @@ namespace Equilibrium
         private void Die() 
         {
             gameObject.SetActive(false);
-            dieCallback.DieCallback(factionIndex);
+            creatureCallback.DieCallback(factionIndex);
         }
     }
 }

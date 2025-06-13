@@ -7,7 +7,7 @@ namespace Equilibrium
     /// This class is responsible for generating the mesh, i could make another script that actually generates the perinl
     /// and such. Cool idea: classes talk tuah eachother via interfaces.
     /// </summary>
-    public class TerrainGenerator : MonoBehaviour, IPassable<Vector3[]>, IWritable<ITerrainable>
+    public class TerrainGenerator : MonoBehaviour, IWritable<Vector3[]>, IWritable<ITerrainable>
     {
         [SerializeField] private MeshFilter filter = default;
         [SerializeField] private MeshCollider coll = default;
@@ -17,7 +17,7 @@ namespace Equilibrium
         [SerializeField] private InspectorInterface<IWritable<float, float>> terrainMaterial = default;
         // Or we could abstract these two into onle list.
 
-        [SerializeField] private List<InspectorInterface<IPassable<Vector3[]>>> listeners = default;
+        [SerializeField] private List<InspectorInterface<IWritable<Vector3[]>>> listeners = default;
 
         private Mesh mesh;
         private int[] triangles;
@@ -32,7 +32,7 @@ namespace Equilibrium
         }
 
         public void Write(ITerrainable terrainable) => MakeNewTerrain(terrainable);
-        public void Pass(ref Vector3[] verts) => UpdateMesh(ref verts);
+        public void Write(Vector3[] verts) => UpdateMesh(verts);
 
         private void MakeNewTerrain(ITerrainable terrainable)
         {
@@ -43,8 +43,8 @@ namespace Equilibrium
             // ----
 
             Vector3[] verts = GenerateMesh(terrainable);
-            listeners.ForEach(x => x.attached.Pass(ref verts));
-            UpdateMesh(ref verts);
+            listeners.ForEach(x => x.attached.Write(verts));
+            UpdateMesh(verts);
 
             transform.position = new Vector3(-terrainable.GetSize() / 2f, 0f, -terrainable.GetSize() / 2f);
 
@@ -98,7 +98,7 @@ namespace Equilibrium
             return verticies;
         }
 
-        private void UpdateMesh(ref Vector3[] verticies)
+        private void UpdateMesh(Vector3[] verticies)
         {
             mesh.Clear();
 

@@ -7,7 +7,7 @@ namespace Equilibrium
     /// Maybe try make this class mor general ?? Open and closed vibes.
     /// NOTE: this script will prolly not work for changing sizes of the terrain.
     /// </summary>
-    public class DecorationHandler : MonoBehaviour, IPassable<Vector3[]>, IWritable<BaseTerrain>, IWritable<ITerrainable>
+    public class DecorationHandler : MonoBehaviour, IWritable<Vector3[]>, IWritable<BaseTerrain>, IWritable<ITerrainable>
     {
         [SerializeField] private InspectorInterface<ISpawnable> spawner = default;
         [SerializeField] private bool hasDecorations = default;
@@ -18,7 +18,7 @@ namespace Equilibrium
 
         private void Awake() => spawner.Setup();
         public void Write(ITerrainable terrainable) => this.terrainable = terrainable;
-        public void Pass(ref Vector3[] verts) => TryPlaceAll(ref verts);
+        public void Write(Vector3[] verts) => TryPlaceAll(verts);
 
         public void Write(BaseTerrain baseTerrain)
         {
@@ -28,7 +28,7 @@ namespace Equilibrium
             this.baseTerrain = baseTerrain;
         }
 
-        private void TryPlaceAll(ref Vector3[] verts)
+        private void TryPlaceAll(Vector3[] verts)
         {
             if (baseTerrain == null)
                 return;
@@ -42,7 +42,7 @@ namespace Equilibrium
 
             for (int i = 0; i < decorations.Count; i++)
             {
-                PlaceDecoration(decorations[i], ref verts);
+                PlaceDecoration(decorations[i], verts);
             }
         }
 
@@ -59,12 +59,12 @@ namespace Equilibrium
             }
         }
 
-        private void PlaceDecoration(Decoration decoration, ref Vector3[] verts)
+        private void PlaceDecoration(Decoration decoration, Vector3[] verts)
         {
             if (terrainable == null)
                 return;
 
-            decoration.transform.position = Utils.GetVertexWorldSpace(decoration.vertexIndex, ref verts, terrainable) + decoration.offset;
+            decoration.transform.position = Utils.GetVertexWorldSpace(decoration.vertexIndex, verts, terrainable) + decoration.offset;
             decoration.transform.gameObject.SetActive(verts[decoration.vertexIndex].y > terrainable.GetWaterHeight());
         }
 

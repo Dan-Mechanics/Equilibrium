@@ -2,16 +2,18 @@ using UnityEngine;
 
 namespace Equilibrium
 {
-    [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(SpikeBrush), fileName = "New " + nameof(SpikeBrush))]
-    public class SpikeBrush : BaseBrush
+    [CreateAssetMenu(menuName = "ScriptableObject/" + nameof(MixedBrush), fileName = "New " + nameof(MixedBrush))]
+    public class MixedBrush : BaseBrush
     {
         public override float GetBrushMod(float dist, float brushSize)
         {
-            float result = 1f;
-            if (dist < 3f)
-                result += 0.3f;
+            dist = 1f - (dist / Utils.Root(brushSize));
+            dist *= 1.32f;
 
-            return 1f + result;
+            if (dist < 3f)
+                dist += 0.6f;
+
+            return dist;
         }
     }
 }
