@@ -12,10 +12,8 @@ namespace Equilibrium
         [SerializeField] private MeshFilter filter = default;
         [SerializeField] private MeshCollider coll = default;
 
-        // Or we could abstract these two into onle list.
         [SerializeField] private InspectorInterface<IWritable<Vector3>> cameraPivot = default;
         [SerializeField] private InspectorInterface<IWritable<float, float>> terrainMaterial = default;
-        // Or we could abstract these two into onle list.
 
         [SerializeField] private List<InspectorInterface<IWritable<Vector3[]>>> listeners = default;
 
@@ -37,6 +35,7 @@ namespace Equilibrium
         private void MakeNewTerrain(ITerrainable terrainable)
         {
             mesh = new Mesh();
+            mesh.MarkDynamic();
             filter.mesh = mesh;
             coll.cookingOptions = cookingOptions;
 
