@@ -19,14 +19,20 @@ namespace Equilibrium
 
         private Mesh mesh;
         private int[] triangles;
+
         private readonly MeshColliderCookingOptions cookingOptions =
         MeshColliderCookingOptions.UseFastMidphase & MeshColliderCookingOptions.CookForFasterSimulation;
+
+        /// <summary>
+        /// We are not going for the simulation time because IDK.
+        /// </summary>
+        //private readonly MeshColliderCookingOptions cookingOptions = MeshColliderCookingOptions.UseFastMidphase;
 
         private void Awake()
         {
             listeners.ForEach(x => x.Setup());
             terrainMaterial.Setup();
-            cameraPivot.Setup();
+            cameraPivot.Setup(); 
         }
 
         public void Write(ITerrainable terrainable) => MakeNewTerrain(terrainable);
