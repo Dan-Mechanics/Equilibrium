@@ -27,10 +27,10 @@ namespace Equilibrium
         /// know which is more important to me like ...
         /// I'll just leave it like this this feels the best to me.
         /// </summary>
-        /*private readonly MeshColliderCookingOptions cookingOptions =
-        MeshColliderCookingOptions.UseFastMidphase & MeshColliderCookingOptions.CookForFasterSimulation;*/
+        private readonly MeshColliderCookingOptions cookingOptions =
+        MeshColliderCookingOptions.UseFastMidphase & MeshColliderCookingOptions.CookForFasterSimulation;
 
-        private readonly MeshColliderCookingOptions cookingOptions = MeshColliderCookingOptions.UseFastMidphase;
+        // private readonly MeshColliderCookingOptions cookingOptions = MeshColliderCookingOptions.UseFastMidphase;
 
         private void Awake()
         {

@@ -132,7 +132,7 @@ namespace Equilibrium
         {
             for (int i = 0; i < verticies.Length; i++)
             {
-                verticies[i].y = 0f;
+                verticies[i].y = baseTerrain.waterHeight;
             }
 
             hasChanged = true;
