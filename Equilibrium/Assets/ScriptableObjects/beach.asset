@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beachColor: {r: 1, g: 0.8640307, b: 0.6839622, a: 1}
   minPercentage: 0
-  maxPercentage: 0.025
+  maxPercentage: 0.01

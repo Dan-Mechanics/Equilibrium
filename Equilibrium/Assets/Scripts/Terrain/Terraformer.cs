@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Equilibrium
 {
@@ -95,7 +94,6 @@ namespace Equilibrium
                 for (int z = -brushSize; z <= brushSize; z++)
                 {
                     Utils.SetVector2(ref offset, x, z);
-
                     float dist = Vector2.Distance(Vector2.zero, offset);
 
                     if (dist > brushSize)
@@ -134,7 +132,7 @@ namespace Equilibrium
         {
             for (int i = 0; i < verticies.Length; i++)
             {
-                verticies[i].y = 0f;
+                verticies[i].y = baseTerrain.waterHeight;
             }
 
             hasChanged = true;
