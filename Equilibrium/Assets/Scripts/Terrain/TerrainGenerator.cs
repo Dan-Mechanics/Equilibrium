@@ -27,9 +27,7 @@ namespace Equilibrium
         /// know which is more important to me like ...
         /// I'll just leave it like this this feels the best to me.
         /// </summary>
-        /*private readonly MeshColliderCookingOptions cookingOptions =
-        MeshColliderCookingOptions.UseFastMidphase & MeshColliderCookingOptions.CookForFasterSimulation;*/
-        private readonly MeshColliderCookingOptions cookingOptions = MeshColliderCookingOptions.UseFastMidphase;
+        private readonly MeshColliderCookingOptions cookingOptions = MeshColliderCookingOptions.UseFastMidphase & MeshColliderCookingOptions.CookForFasterSimulation;
 
         private void Awake()
         {
@@ -55,9 +53,6 @@ namespace Equilibrium
             UpdateMesh(verts);
 
             transform.position = new Vector3(-terrainable.GetSize() / 2f, 0f, -terrainable.GetSize() / 2f);
-
-            // You need to make sure this happens after terraianble has been referenced for this.
-            //if (!keepUpdatingShader)
             terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
         }
 
@@ -118,12 +113,6 @@ namespace Equilibrium
             coll.sharedMesh = mesh;
 
             cameraPivot.attached.Write(Vector3.up * ((mesh.bounds.min.y + mesh.bounds.max.y) / 2f));
-
-            // if we have this it lags tf out.
-            //terrainMaterial.attached.Write(terrainable, mesh);
-
-            //if (keepUpdatingShader)
-            //terrainMaterial.attached.Write(mesh.bounds.min.y, mesh.bounds.max.y);
         }
     }
 }
