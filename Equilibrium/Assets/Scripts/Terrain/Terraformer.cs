@@ -68,7 +68,7 @@ namespace Equilibrium
         {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, raycastSettings.range, raycastSettings.mask, QueryTriggerInteraction.Ignore))
-                TryChangeTerrain(hit.point, state.attached.Get() == State.Mountain ? 1f : -1f);
+                ApplyBrush(hit.point, state.attached.Get() == State.Mountain ? 1f : -1f);
         }
 
         private void DoDebug() 
@@ -84,7 +84,7 @@ namespace Equilibrium
                 Move(-50f);
         }
 
-        private void TryChangeTerrain(Vector3 point, float dir)
+        private void ApplyBrush(Vector3 point, float upValue)
         {
             point -= filter.transform.position;
             Vector2 offset = Vector2.zero;
@@ -93,21 +93,18 @@ namespace Equilibrium
             {
                 for (int z = -brushSize; z <= brushSize; z++)
                 {
-                    Utils.SetVector2(ref offset, x, z);
+                    offset.x = x;
+                    offset.y = z;
                     float dist = Vector2.Distance(Vector2.zero, offset);
 
                     if (dist > brushSize)
                         continue;
 
-                    /*if (!Utils.TryGetIndexFromPos((int)point.x + x, (int)point.z + z,
-                        terrainable.GetSize(), terrainable.GetSize(), out int index))
-                        continue;*/
-
                     if (!Utils.TryGetIndexFromPos(Mathf.RoundToInt(point.x + x), Mathf.RoundToInt(point.z + z),
                         terrainable.GetSize(), terrainable.GetSize(), out int index))
                         continue;
 
-                    Terraform(index, brushStrength * baseTerrain.brush.GetBrushMod(dist, brushSize) * brushInterval * dir);
+                    Terraform(index, brushStrength * baseTerrain.brush.GetBrushMod(dist, brushSize) * brushInterval * upValue);
                 }
             }
         }
